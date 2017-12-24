@@ -1,0 +1,7 @@
+{
+    "/sprw/api/*": {
+        "target": "localhost:8000/sprw/api/",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

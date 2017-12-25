@@ -1,5 +1,16 @@
 <div class="header">
+
     <span class="banner">
-        SPRW
+        <button
+            *ngIf="auth.isLoggedIn()"
+            pButton
+            icon="fa fa-bars"
+            style="
+                background-color: #1c85a800;
+                border: 0px;"
+            (click)="onToggled()"
+            >
+        </button>
+        SPRRW
     </span>
 </div>

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { AuthService } from './auth.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-root',
@@ -7,10 +7,20 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-    title = 'app';
+
+    sidebarShown = true;
+
+    constructor(public auth: AuthService) {
+
+    }
 
     ngOnInit() {
 
     }
+
+    onHeaderTrigger() {
+        this.sidebarShown = !this.sidebarShown;
+    }
+
 
 }

@@ -1,9 +1,24 @@
-<div class="spw-no-pad app">
-    <app-header></app-header>
+<div *ngIf="auth.isLoggedIn()" class="spw-no-pad app">
+    <app-header
+        (onTrigger)="onHeaderTrigger()"
+    >
+    </app-header>
     <div class="ui-g spw-fill-height spw-no-pad">
-        <div class="ui-g-3 spw-sidebar">
+        <div
+            class="spw-sidebar"
+            [ngClass]="{'ui-g-3': sidebarShown}"
+            [hidden]="!sidebarShown">
             <app-sidebar></app-sidebar>
         </div>
-        <div class="spw-yellow spw-content ui-g-9"> Content </div>
+        <div
+            class="spw-content"
+            [ngClass]="{'ui-g-9': sidebarShown,
+                        'ui-g-12': !sidebarShown}">
+            Content
+        </div>
     </div>
+</div>
+
+<div *ngIf="!auth.isLoggedIn()" class="spw-no-pad app">
+    <app-login></app-login>
 </div>

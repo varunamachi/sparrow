@@ -1,4 +1,5 @@
-import { AuthService } from './auth.service';
+import { SecurityModule } from './security/security.module';
+import { BasicModule } from './basic/basic.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'
@@ -6,24 +7,20 @@ import { JwtModule } from '@auth0/angular-jwt';
 
 
 import { AppComponent } from './app.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { HeaderComponent } from './header/header.component';
 
 import { PrmngModule } from "./prmng/prmng.module";
-import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        SidebarComponent,
-        HeaderComponent,
-        LoginComponent
     ],
     imports: [
         BrowserModule,
         PrmngModule,
         HttpClientModule,
+        BasicModule,
+        SecurityModule,
         JwtModule.forRoot({
             config: {
                 tokenGetter: () => {
@@ -34,7 +31,6 @@ import { LoginComponent } from './login/login.component';
         })
     ],
     providers: [
-        AuthService,
     ],
     bootstrap: [AppComponent]
 })

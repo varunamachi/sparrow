@@ -1,6 +1,6 @@
 {
     "/sprw/api/*": {
-        "target": "localhost:8000/sprw/api/",
+        "target": "localhost:8000/vaali/api/",
         "secure": false,
         "logLevel": "debug"
     }

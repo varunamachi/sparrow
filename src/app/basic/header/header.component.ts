@@ -25,4 +25,9 @@ export class HeaderComponent implements OnInit {
         this.trigger.emit();
     }
 
+    isIn() {
+        console.log(this.auth.isLoggedIn());
+        return this.auth.isLoggedIn();
+    }
+
 }

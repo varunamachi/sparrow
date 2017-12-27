@@ -17,5 +17,5 @@ export function murl(uri: string): string {
 }
 
 export function purl(uri: string): string {
-    return APP_NAME + '/api/' + API_VERSION + '/r4/' + uri;
+    return APP_NAME + '/api/' + API_VERSION + '/' + uri;
 }

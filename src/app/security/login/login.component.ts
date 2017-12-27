@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
                 window.alert('logged in');
             },
             err => {
-                window.alert(err);
+                window.alert(JSON.stringify(err));
             }
         )
     }

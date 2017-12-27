@@ -27,6 +27,7 @@ export class AuthService {
         const url = purl('login')
         return this.http.post(url, creds).map(
             (resp: Result) => {
+                console.log(resp);
                 const lr = <LoginResult> resp.data;
                 localStorage.setItem('token', lr.token);
                 localStorage.setItem("user", JSON.stringify(lr.user));
@@ -39,6 +40,7 @@ export class AuthService {
         //check token for expiry??
         const loggedIn = this.user != null;
         return loggedIn;
+        // return true;
     }
 
 }

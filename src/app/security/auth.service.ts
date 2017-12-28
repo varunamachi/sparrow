@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { User, AuthLevel, Credential } from './security.model';
 import { Injectable } from '@angular/core';
@@ -16,10 +17,11 @@ export class AuthService {
 
     user: User = null;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,
+        private router: Router) {
         const usrStr = localStorage.getItem('user');
-        if(usrStr) {
-            this.user = <User> JSON.parse(usrStr);
+        if (usrStr) {
+            this.user = <User>JSON.parse(usrStr);
         }
     }
 
@@ -28,7 +30,7 @@ export class AuthService {
         return this.http.post(url, creds).map(
             (resp: Result) => {
                 console.log(resp);
-                const lr = <LoginResult> resp.data;
+                const lr = <LoginResult>resp.data;
                 localStorage.setItem('token', lr.token);
                 localStorage.setItem("user", JSON.stringify(lr.user));
                 this.user = lr.user;
@@ -41,6 +43,48 @@ export class AuthService {
         const loggedIn = this.user != null;
         return loggedIn;
         // return true;
+    }
+
+    logout() {
+        this.user = null;
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        this.router.navigate(['/login']);
+    }
+
+    isSuperUser(): boolean {
+        if (this.user) {
+            return this.user.auth === 0;
+        }
+        return false;
+    }
+
+    isAdminUser(): boolean {
+        if (this.user) {
+            return this.user.auth <= 1;
+        }
+        return false;
+    }
+
+    isNormalUser(): boolean {
+        if (this.user) {
+            return this.user.auth <= 2;
+        }
+        return false;
+    }
+
+    isMonitorUser(): boolean {
+        if (this.user) {
+            return this.user.auth <= 3;
+        }
+        return false;
+    }
+
+    isPublicUser(): boolean {
+        if (this.user) {
+            return this.user.auth <= 4;
+        }
+        return false;
     }
 
 }

@@ -1,3 +1,5 @@
+import { AuthGuard, SuperGuard, AdminGuard, NormalGuard } from './guards';
+import { BasicModule } from './../basic/basic.module';
 import { PrmngModule } from './../prmng/prmng.module';
 import { AuthService } from './auth.service';
 import { NgModule } from '@angular/core';
@@ -9,7 +11,8 @@ import { FormsModule } from '@angular/forms';
     imports: [
         CommonModule,
         PrmngModule,
-        FormsModule
+        FormsModule,
+        BasicModule
     ],
     exports: [
         LoginComponent,
@@ -19,6 +22,10 @@ import { FormsModule } from '@angular/forms';
     ],
     providers: [
         AuthService,
+        AuthGuard,
+        SuperGuard,
+        AdminGuard,
+        NormalGuard,
     ]
 })
 export class SecurityModule { }

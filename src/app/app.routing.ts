@@ -8,21 +8,60 @@ import {
 } from './security/guards';
 import { RouterModule } from "@angular/router";
 import { NotFoundComponent } from './basic/not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
+import { EntityListComponent } from './entity/entity-list/entity-list.component';
+import { EntityMonitorComponent } from './entity/entity-monitor/entity-monitor.component';
+import { EntityConfigureComponent } from './entity/entity-configure/entity-configure.component';
+import { UsersComponent } from './admin/users/users.component';
+import { EventsComponent } from './admin/events/events.component';
+import { SettingsComponent } from './super/settings/settings.component';
+import { DebugComponent } from './super/debug/debug.component';
 
 
 export const routes = [
     {
-        path: 'login',
+        path: '',
         component: LoginComponent,
     },
     {
         path: 'home',
-        component: NotFoundComponent,
+        component: HomeComponent,
+        canActivate: [AuthGuard],
     },
     {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full',
+        path: 'entity/list',
+        component: EntityListComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'entity/monitor',
+        component: EntityMonitorComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'entity/configure',
+        component: EntityConfigureComponent,
+        canActivate: [AuthGuard, NormalGuard],
+    },
+    {
+        path: 'admin/users',
+        component: UsersComponent,
+        canActivate: [AuthGuard, AdminGuard],
+    },
+    {
+        path: 'admin/events',
+        component: EventsComponent,
+        canActivate: [AuthGuard, AdminGuard],
+    },
+    {
+        path: 'super/settings',
+        component: SettingsComponent,
+        canActivate: [AuthGuard, SuperGuard],
+    },
+    {
+        path: 'super/debug',
+        component: DebugComponent,
+        canActivate: [AuthGuard, SuperGuard],
     },
     {
         path: '**',
@@ -30,5 +69,3 @@ export const routes = [
     },
 
 ]
-
-// export let routes = RouterModule.forRoot(r);

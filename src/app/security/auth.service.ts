@@ -49,7 +49,7 @@ export class AuthService {
         this.user = null;
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/']);
     }
 
     isSuperUser(): boolean {

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './security/auth.service';
 
@@ -10,12 +11,17 @@ export class AppComponent implements OnInit {
 
     sidebarShown = true;
 
-    constructor(public auth: AuthService) {
+    constructor(public auth: AuthService,
+                private router: Router) {
 
     }
 
     ngOnInit() {
-
+        if(this.auth.isLoggedIn()) {
+            this.router.navigate(['/home']);
+        } else {
+            this.router.navigate(['/']);
+        }
     }
 
     onHeaderTrigger() {

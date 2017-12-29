@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import {
@@ -9,6 +10,7 @@ import {
 } from '@angular/common/http'
 import {Router} from '@angular/router'
 import {Injectable} from '@angular/core'
+import { MsgService } from '../basic/msg.service';
 
 
 @Injectable()
@@ -23,8 +25,8 @@ export class AuthInterceptor implements HttpInterceptor {
             error => {
                 if( error instanceof HttpErrorResponse) {
                     const herr = <HttpErrorResponse>error;
-                    if(herr.status == 401) {
-                        this.router.navigate(['/login']);
+                    if(herr.status == 401 && this.router.url !== '/') {
+                        this.router.navigate['/'];
                     }
                 }
             }

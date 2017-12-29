@@ -1,19 +1,46 @@
 <div class="header">
-
-    <span class="banner">
-        <button
-            *ngIf="auth.isLoggedIn()"
-            pButton
-            icon="fa-bars"
-            style="
-                background-color: #1c85a800;
-                border: 0px;"
-            (click)="onToggled()"
-
+    <span class="btn-cnt">
+            <button
+                *ngIf="auth.isLoggedIn()"
+                pButton
+                icon="fa-bars"
+                class="btn"
+                (click)="onToggled()"
+                style="
+                    background-color: #1c85a800;
+                    border: 0px;
+                    overflow: hidden;
+                "
             >
-        </button>
-        Sparrow
+            </button>
     </span>
+    <span class="banner">
+        <a href="/home">
+            Sparrow
+        </a>
+    </span>
+    <div class="header-menu">
+        <p-menu
+            #menu
+            popup="popup"
+            [model]="items"
+        ></p-menu>
+        <button
+            type="button"
+            pButton
+            icon="fa fa-user"
+            label="{{userName()}}"
+            (click)="menu.toggle($event)"
+        ></button>
+
+    </div>
 </div>
 
-<!-- background-color: #1c85a800; -->
+<!-- style="
+background-color: #1c85a800;
+border: 0px;
+padding: 0px !important;
+overflow: hidden;
+margin: 0px;
+max-height: 32px;
+" -->

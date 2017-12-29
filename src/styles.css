@@ -3,8 +3,9 @@
 @import "../node_modules/font-awesome/css/font-awesome.min.css";
 @import "../node_modules/primeng/resources/themes/cruze/theme.css";
 @import "../node_modules/primeng/resources/primeng.min.css";
-@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+/* @import url('https://fonts.googleapis.com/css?family=Titillium+Web'); */
 @import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Monda');
 
 body{
     padding: 0px;
@@ -12,7 +13,8 @@ body{
     margin: 0px;
     width: 100%;
     height: 100%;
-    font-family: 'Titillium Web', sans-serif;
+    /* font-family: 'Titillium Web', sans-serif; */
+    font-family: 'Monda', sans-serif !important;
     overflow: hidden;
 }
 
@@ -23,6 +25,10 @@ html{
     padding: 0px;
     width: 100%;
     height: 100%;
+}
+
+.ui-widget {
+    font-family: 'Monda', sans-serif;
 }
 
 .spw-red {
@@ -56,9 +62,46 @@ html{
 .spw-sidebar {
     height: 100%;
     /* background-color: #2d3e46; */
-    background-color: #2a4047;
-    margin: 0px;
+    /* background-color: #2a4047; */
+    /* margin: 0px;
     padding: 0px;
-    border-width: 0px;
+    border-width: 0px; */
+    background-color: #6e6b6b;
+    /* padding-left: 10px; */
+    padding-top: 10px;
     color: #d6cfcf;
 }
+
+/* Growl */
+.ui-growl-item-container.ui-state-highlight.ui-growl-message-info {
+    background-color: #176097;
+    border-color: #176097;
+    color: white;
+}
+
+.ui-growl-item-container.ui-state-highlight.ui-growl-message-error {
+    background-color: #ca3333b6;
+    border-color: #ca3333c0;
+    color: white;
+}
+
+.ui-growl-item-container.ui-state-highlight.ui-growl-message-warn {
+    background-color: rgba(163, 112, 1, 0.781);
+    border-color: rgba(163, 112, 1, 0.719);
+    color: white;
+}
+
+.ui-growl-item-container.ui-state-highlight.ui-growl-message-success {
+    background-color: rgba(33, 114, 34, 0.815);
+    border-color: rgba(33, 114, 34, 0.651);
+    color: white;
+}
+
+.ui-panelmenu-header {
+    /* background-color: #243b46; */
+    background-color: #2a3336;
+}
+
+/* .ui-panelmenu.ui-menu-item-link {
+    background-color: #2a33367e;
+} */

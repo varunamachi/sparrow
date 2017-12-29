@@ -1,0 +1,13 @@
+<div class="page-header">
+    <span class="page-name">
+        {{pageName}}
+    </span>
+    <span class="description">
+        <ng-content></ng-content>
+    </span>
+</div>
+<div *ngIf="placeholder">
+    <span class="placeholder">
+        This page is under construction!
+    </span>
+</div>

@@ -6,11 +6,41 @@
     border-width: 0px;
     padding: 0px;
     background-color: #2a3336;
-    color: #d6cfcf
+    color: #d6cfcf;
+    overflow: hidden;
 }
 
-.banner {
-    padding: 5px;
-    font-size: 32px;
+.banner a {
+    padding: 0px;
+    border-width: 0px;
+    font-size: 36px;
     font-family: 'Lobster', cursive;
+    color: #d6cfcf;
+    font-weight: normal;
 }
+
+.header-menu {
+    background-color: transparent;
+    overflow: hidden;
+    padding: 0px;
+    padding-right: 10px;
+    padding-top: 7px;
+    float: right;
+}
+
+.no-pad {
+    padding: 0px;
+}
+
+.btn-cnt {
+    max-width: 40px;
+    max-height: 40px;
+    padding-left: 5px;
+    padding-bottom: 20px;
+    vertical-align: 6px;
+}
+
+.banner a:link { text-decoration: none; }
+.banner a:visited { text-decoration: none; }
+.banner a:hover { text-decoration: none; }
+.banner a:active { text-decoration: none; }

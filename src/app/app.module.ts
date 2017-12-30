@@ -37,9 +37,7 @@ import { HomeComponent } from './home/home.component';
         SuperModule,
         JwtModule.forRoot({
             config: {
-                tokenGetter: () => {
-                    return localStorage.getItem('token');
-                },
+                tokenGetter: tokenGetter,
             }
         })
     ],
@@ -53,3 +51,8 @@ import { HomeComponent } from './home/home.component';
     bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+export function tokenGetter() {
+    return localStorage.getItem('token');
+}

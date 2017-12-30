@@ -1,12 +1,8 @@
-<!-- <div class="spw-red" style="width: 100%; height: 20px">
-        Register
-</div> -->
 <div id="parent">
     <div class="child banner">
         Sparrow
     </div>
     <div class="child content">
-        <form>
         <table><tbody><tr><td>
             <div class="ui-inputgroup">
                 <span class="ui-inputgroup-addon">
@@ -16,9 +12,10 @@
                     pInputText
                     style="width: 250px;"
                     type="text"
-                    name="sparrow_un"
+                    name="sparrow-userid"
                     placeholder="Username"
                     [(ngModel)]="userID"
+                    (keypress)="onKeyEvent($event)"
                     [ngModelOptions]="{standalone: true}"
                 >
             </div>
@@ -32,8 +29,10 @@
                     pInputText
                     style="width: 250px;"
                     type="password"
+                    name="sparrow-password"
                     placeholder="Password"
                     [(ngModel)]="password"
+                    (keypress)="onKeyEvent($event)"
                     [ngModelOptions]="{standalone: true}"
                 >
             </div>
@@ -46,7 +45,6 @@
                 label="Login"
             ></button>
         </td></tr></tbody></table>
-        </form>
     </div>
 </div>
 

@@ -56,4 +56,10 @@ export class LoginComponent implements OnInit {
         );
     }
 
+    onKeyEvent(event: KeyboardEvent) {
+        if(event.charCode === 13) {
+            this.login()
+        }
+    }
+
 }

@@ -1,0 +1,92 @@
+<table class="ucp"><tbody>
+    <form #f="ngForm" (ngSubmit)="createUser(f)">
+        <tr>
+            <td>User ID*</td>
+            <td>
+                <input
+                    required
+                    minlength="3"
+                    maxlength="10"
+                    class="form-control input-text"
+                    pInputText
+                    type="text"
+                    name="id"
+                    ngModel>
+            </td>
+        </tr>
+        <tr>
+            <td>E-Mail*</td>
+            <td>
+                <input
+                    required
+                    class="form-control input-text"
+                    pInputText
+                    type="text"
+                    name="email"
+                    ngModel>
+            </td>
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td>
+                <input
+                    class="form-control input-text"
+                    pInputText
+                    type="text"
+                    name="firstName"
+                    ngModel>
+            </td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td>
+                <input
+                    class="form-control input-text"
+                    pInputText
+                    type="text"
+                    name="lastName"
+                    ngModel>
+            </td>
+        </tr>
+        <tr>
+            <td>Password*</td>
+            <td>
+                <input
+                    required
+                    class="form-control input-text"
+                    pInputText
+                    type="password"
+                    name="password"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="password"
+                    ngModel>
+            </td>
+        </tr>
+        <tr>
+            <td>Confirm Password*</td>
+            <td>
+                <input
+                    required
+                    class="form-control input-text"
+                    pInputText
+                    type="password"
+                    name="confirm"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="confirm">
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button
+                    pButton
+                    submit
+                    style="float: right;"
+                    type="submit"
+                    label="Submit"
+                >
+                </button>
+            </td>
+        </tr>
+    </form>
+</tbody></table>

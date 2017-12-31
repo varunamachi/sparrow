@@ -8,24 +8,23 @@ import {
     HttpEvent,
     HttpErrorResponse,
 } from '@angular/common/http'
-import {Router} from '@angular/router'
-import {Injectable} from '@angular/core'
+import { Router } from '@angular/router'
+import { Injectable } from '@angular/core'
 import { MsgService } from '../basic/msg.service';
 
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(private router: Router) {}
+    constructor(private router: Router) { }
 
-    intercept(r: HttpRequest<any>, n: HttpHandler)
-        : Observable<any>{
+    intercept(r: HttpRequest<any>, n: HttpHandler) : Observable<any> {
         return n.handle(r).do(
-            event => {},
+            event => { },
             error => {
-                if( error instanceof HttpErrorResponse) {
+                if (error instanceof HttpErrorResponse) {
                     const herr = <HttpErrorResponse>error;
-                    if(herr.status == 401 && this.router.url !== '/') {
+                    if (herr.status === 401 && this.router.url !== '/') {
                         this.router.navigate['/'];
                     }
                 }

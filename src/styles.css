@@ -102,6 +102,10 @@ html{
     background-color: #2a3336;
 }
 
-/* .ui-panelmenu.ui-menu-item-link {
-    background-color: #2a33367e;
-} */
+.form-control {
+    border: 2px solid transparent;
+}
+
+.form-control.ng-touched.ng-invalid {
+    border: 2px solid rgba(255, 0, 0, 0.555);
+}

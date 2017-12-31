@@ -7,6 +7,7 @@ import {
     MessageModule,
     MenuModule,
     PanelMenuModule,
+    InputTextModule,
 } from 'primeng/primeng'
 
 @NgModule({
@@ -18,6 +19,7 @@ import {
         MessageModule,
         MenuModule,
         PanelMenuModule,
+        InputTextModule,
     ],
     exports: [
         ButtonModule,
@@ -26,6 +28,7 @@ import {
         MessageModule,
         MenuModule,
         PanelMenuModule,
+        InputTextModule,
     ],
 })
 export class PrmngModule { }

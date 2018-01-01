@@ -6,6 +6,7 @@ import { UsersComponent } from './users/users.component';
 import { EventsComponent } from './events/events.component';
 import { UserCreateComponent } from './user-create/user-create.component';
 import { FormsModule } from '@angular/forms';
+import { AdminService } from './admin.service';
 
 @NgModule({
     imports: [
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
         UsersComponent,
         EventsComponent,
         UserCreateComponent,
-    ]
+    ],
+    providers: [AdminService]
 })
 export class AdminModule { }

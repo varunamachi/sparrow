@@ -1,6 +1,44 @@
 <app-page-header
     pageName="User List"
-    [placeholder]=true
+    [placeholder]=false
 >
     Administer users
 </app-page-header>
+<p-dataTable [value]="users">
+    <p-column
+        field="id"
+        header="ID"
+    >
+    </p-column>
+    <p-column
+        field="email"
+        header="E-Mail"
+    >
+    </p-column>
+    <p-column
+        field="firstName"
+        header="First Name"
+    >
+    </p-column>
+    <p-column
+        field="lastName"
+        header="Last Name"
+    >
+    </p-column>
+    <p-column
+        field="auth"
+        header="Role"
+    >
+        <ng-template let-col let-data="rowData" pTemplate="body">
+            {{ this.fmtSrv.formatAccess(data.auth) }}
+        </ng-template>
+    </p-column>
+    <p-column
+        field="created"
+        header="Created Date"
+    >
+        <ng-template let-col let-data="rowData" pTemplate="body">
+            {{ this.fmtSrv.formatTime(data.created) }}
+        </ng-template>
+    </p-column>
+</p-dataTable>

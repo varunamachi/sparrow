@@ -8,14 +8,12 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'
 import { JwtModule } from '@auth0/angular-jwt';
 import { Router } from '@angular/router'
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http'
 
 import { AppComponent } from './app.component';
 import { PrmngModule } from "./prmng/prmng.module";
 import { SecurityModule } from './security/security.module';
 import { BasicModule } from './basic/basic.module';
-import { AuthInterceptor } from './security/auth.interceptor';
 import { routes } from './app.routing';
 import { HomeComponent } from './home/home.component';
 
@@ -42,11 +40,7 @@ import { HomeComponent } from './home/home.component';
         })
     ],
     providers: [
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
-            multi: true,
-        }
+
     ],
     bootstrap: [AppComponent]
 })

@@ -11,7 +11,9 @@
                     pInputText
                     type="text"
                     name="id"
-                    ngModel>
+                    (onblur)="checkAvailability(f)"
+                    ngModel
+                >
             </td>
         </tr>
         <tr>
@@ -21,9 +23,22 @@
                     required
                     class="form-control input-text"
                     pInputText
-                    type="text"
+                    type="email"
                     name="email"
-                    ngModel>
+                    ngModel
+                    email
+                >
+            </td>
+        </tr>
+        <tr>
+            <td>Access Level</td>
+            <td>
+                <p-dropdown
+                    [style]="{'width': '250px'}"
+                    name="auth"
+                    [options]="AUTH_LEVELS_ITEMS"
+                    ngModel
+                ></p-dropdown>
             </td>
         </tr>
         <tr>
@@ -34,7 +49,8 @@
                     pInputText
                     type="text"
                     name="firstName"
-                    ngModel>
+                    ngModel
+                >
             </td>
         </tr>
         <tr>
@@ -45,7 +61,8 @@
                     pInputText
                     type="text"
                     name="lastName"
-                    ngModel>
+                    ngModel
+                >
             </td>
         </tr>
         <tr>
@@ -59,7 +76,8 @@
                     name="password"
                     [ngModelOptions]="{standalone: true}"
                     [(ngModel)]="password"
-                    ngModel>
+                    ngModel
+                >
             </td>
         </tr>
         <tr>
@@ -72,7 +90,8 @@
                     type="password"
                     name="confirm"
                     [ngModelOptions]="{standalone: true}"
-                    [(ngModel)]="confirm">
+                    [(ngModel)]="confirm"
+                >
             </td>
         </tr>
         <tr>

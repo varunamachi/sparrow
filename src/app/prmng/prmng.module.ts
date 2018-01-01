@@ -8,6 +8,11 @@ import {
     MenuModule,
     PanelMenuModule,
     InputTextModule,
+    CalendarModule,
+    DropdownModule,
+    DataTableModule,
+    DialogModule,
+    ConfirmDialogModule,
 } from 'primeng/primeng'
 
 @NgModule({
@@ -20,6 +25,12 @@ import {
         MenuModule,
         PanelMenuModule,
         InputTextModule,
+        CalendarModule,
+        DropdownModule,
+        DataTableModule,
+        DialogModule,
+        ConfirmDialogModule,
+
     ],
     exports: [
         ButtonModule,
@@ -29,6 +40,12 @@ import {
         MenuModule,
         PanelMenuModule,
         InputTextModule,
+        CalendarModule,
+        DropdownModule,
+        DataTableModule,
+        DialogModule,
+        ConfirmDialogModule,
+
     ],
 })
 export class PrmngModule { }

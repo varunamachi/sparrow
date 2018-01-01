@@ -8,6 +8,14 @@ import { User } from '../../security/security.model';
 })
 export class UserCreateComponent implements OnInit {
 
+    readonly AUTH_LEVELS_ITEMS = [
+        // { label: "Super", value: 0 },
+        { label: "Admin", value: 1 },
+        { label: "Normal", value: 2 },
+        { label: "Monitor", value: 3 },
+        { label: "Outsider", value: 4 },
+    ];
+
     password = '';
 
     confirm = '';
@@ -18,7 +26,12 @@ export class UserCreateComponent implements OnInit {
     }
 
     createUser(f: any) {
-        const user = <User> f.value;
+        const user = <User>f.value;
+        console.log(f.value);
+    }
+
+    checkAvailability(f: any) {
+
     }
 
 }

@@ -1,3 +1,5 @@
+import { AuthInterceptor } from './auth.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard, SuperGuard, AdminGuard, NormalGuard } from './guards';
 import { BasicModule } from './../basic/basic.module';
 import { PrmngModule } from './../prmng/prmng.module';
@@ -26,6 +28,11 @@ import { FormsModule } from '@angular/forms';
         SuperGuard,
         AdminGuard,
         NormalGuard,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        }
     ]
 })
 export class SecurityModule { }

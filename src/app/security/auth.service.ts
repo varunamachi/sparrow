@@ -39,7 +39,8 @@ export class AuthService {
     }
 
     isLoggedIn(): boolean {
-        //check token for expiry??
+        //checck token expiry
+        this.user = JSON.parse(localStorage.getItem('user'));
         const loggedIn = this.user != null;
         return loggedIn;
         // return true;

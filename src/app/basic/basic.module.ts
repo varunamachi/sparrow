@@ -7,6 +7,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { MsgService } from './msg.service';
 import { MsgComponent } from './msg/msg.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
+import { FormatService } from './format.service';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { PageHeaderComponent } from './page-header/page-header.component';
         PageHeaderComponent,
     ],
     providers: [
-        MsgService
+        MsgService,
+        FormatService
     ]
 })
 export class BasicModule { }

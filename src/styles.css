@@ -109,3 +109,14 @@ html{
 .form-control.ng-touched.ng-invalid {
     border: 2px solid rgba(255, 0, 0, 0.555);
 }
+
+/* .ui-dropdown {
+    background-color: red;
+    border-color: blue;
+    padding: 0px;
+    margin: 0px;
+}
+.ui-dropdown-panel {
+    background-color: red;
+    border-color: blue;
+} */

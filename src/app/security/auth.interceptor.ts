@@ -25,7 +25,9 @@ export class AuthInterceptor implements HttpInterceptor {
                 if (error instanceof HttpErrorResponse) {
                     const herr = <HttpErrorResponse>error;
                     if (herr.status === 401 && this.router.url !== '/') {
-                        this.router.navigate['/'];
+                        localStorage.removeItem('token');
+                        localStorage.removeItem('user');
+                        this.router.navigate(['/']);
                     }
                 }
             }

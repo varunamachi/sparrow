@@ -1,3 +1,4 @@
+import { UserCreateComponent } from './user-create/user-create.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard, SuperGuard, AdminGuard, NormalGuard } from './guards';
@@ -18,9 +19,11 @@ import { FormsModule } from '@angular/forms';
     ],
     exports: [
         LoginComponent,
+        UserCreateComponent,
     ],
     declarations: [
         LoginComponent,
+        UserCreateComponent,
     ],
     providers: [
         AuthService,

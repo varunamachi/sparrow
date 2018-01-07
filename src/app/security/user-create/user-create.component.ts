@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../security/security.model';
 
 @Component({
@@ -19,6 +19,8 @@ export class UserCreateComponent implements OnInit {
     password = '';
 
     confirm = '';
+
+    @Input("admin") admin = false;
 
     constructor() { }
 

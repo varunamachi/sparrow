@@ -1,21 +1,23 @@
 <table class="ucp"><tbody>
     <form #f="ngForm" (ngSubmit)="createUser(f)">
-        <tr>
-            <td>User ID*</td>
-            <td>
-                <input
-                    required
-                    minlength="3"
-                    maxlength="10"
-                    class="form-control input-text"
-                    pInputText
-                    type="text"
-                    name="id"
-                    (onblur)="checkAvailability(f)"
-                    ngModel
-                >
-            </td>
-        </tr>
+        <ng-container *ngIf="admin">
+            <tr>
+                <td>User ID*</td>
+                <td>
+                    <input
+                        required
+                        minlength="3"
+                        maxlength="10"
+                        class="form-control input-text"
+                        pInputText
+                        type="text"
+                        name="id"
+                        (onblur)="checkAvailability(f)"
+                        ngModel
+                    >
+                </td>
+            </tr>
+        </ng-container>
         <tr>
             <td>E-Mail*</td>
             <td>
@@ -30,17 +32,19 @@
                 >
             </td>
         </tr>
-        <tr>
-            <td>Access Level</td>
-            <td>
-                <p-dropdown
-                    [style]="{'width': '250px'}"
-                    name="auth"
-                    [options]="AUTH_LEVELS_ITEMS"
-                    ngModel
-                ></p-dropdown>
-            </td>
-        </tr>
+        <ng-container *ngIf="admin">
+            <tr>
+                <td>Access Level</td>
+                <td>
+                    <p-dropdown
+                        [style]="{'width': '250px'}"
+                        name="auth"
+                        [options]="AUTH_LEVELS_ITEMS"
+                        ngModel
+                    ></p-dropdown>
+                </td>
+            </tr>
+        </ng-container>
         <tr>
             <td>First Name</td>
             <td>

@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsersComponent } from './users/users.component';
 import { EventsComponent } from './events/events.component';
-import { UserCreateComponent } from './user-create/user-create.component';
 import { FormsModule } from '@angular/forms';
 import { AdminService } from './admin.service';
 
@@ -18,12 +17,10 @@ import { AdminService } from './admin.service';
     exports: [
         UsersComponent,
         EventsComponent,
-        UserCreateComponent,
     ],
     declarations: [
         UsersComponent,
         EventsComponent,
-        UserCreateComponent,
     ],
     providers: [AdminService]
 })

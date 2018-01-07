@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
 
     public password = '';
 
+    public registerVisible = false;
+
     constructor(private router: Router,
         private auth: AuthService,
         private msgSrv: MsgService) { }
@@ -63,7 +65,7 @@ export class LoginComponent implements OnInit {
     }
 
     showRegisterDialog() {
-
+        this.registerVisible = true;
     }
 
 }

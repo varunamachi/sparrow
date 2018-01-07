@@ -40,11 +40,16 @@
         <tr><td style="padding-left: 73%;">
             <button
                 pButton
-                type="submit"
                 (click)="login()"
+                type="submit"
                 label="Login"
             ></button>
         </td></tr></tbody></table>
+        Don't have an account? -
+        <a href="#" (click)="showRegisterDialog()"> Register </a>
     </div>
 </div>
 
+<p-dialog title="Register User">
+
+</p-dialog>

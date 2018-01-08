@@ -49,6 +49,7 @@
             <td>First Name</td>
             <td>
                 <input
+                    required
                     class="form-control input-text"
                     pInputText
                     type="text"
@@ -61,6 +62,7 @@
             <td>Last Name</td>
             <td>
                 <input
+                    required
                     class="form-control input-text"
                     pInputText
                     type="text"
@@ -102,6 +104,7 @@
             <td></td>
             <td>
                 <button
+                    [disabled]="f.invalid || !passwordValid()"
                     pButton
                     submit
                     style="float: right;"

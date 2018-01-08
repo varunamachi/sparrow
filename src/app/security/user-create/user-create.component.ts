@@ -1,3 +1,5 @@
+import { SecurityService } from './../security.service';
+import { MsgService } from './../../basic/msg.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../security/security.model';
 
@@ -22,14 +24,26 @@ export class UserCreateComponent implements OnInit {
 
     @Input("admin") admin = false;
 
-    constructor() { }
+    constructor(private secSrv: SecurityService,
+        private msgSrv: MsgService) {
+
+    }
 
     ngOnInit() {
     }
 
+    passwordValid(): boolean {
+        return this.password !== '' && this.password === this.confirm;
+    }
+
     createUser(f: any) {
         const user = <User>f.value;
-        console.log(f.value);
+        if (this.password == this.confirm) {
+
+
+        } else {
+            this.msgSrv.showError("Passwords don't match")
+        }
     }
 
     checkAvailability(f: any) {

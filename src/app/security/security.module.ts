@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
+import { SecurityService } from './security.service';
 
 @NgModule({
     imports: [
@@ -26,16 +27,17 @@ import { FormsModule } from '@angular/forms';
         UserCreateComponent,
     ],
     providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        },
         AuthService,
         AuthGuard,
         SuperGuard,
         AdminGuard,
         NormalGuard,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
-            multi: true,
-        }
+        SecurityService
     ]
 })
 export class SecurityModule { }

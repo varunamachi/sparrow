@@ -1,6 +1,32 @@
 <app-page-header
     pageName="Events"
-    [placeholder]=true
+    [placeholder]=false
 >
     View and analyze events
 </app-page-header>
+
+<p-dataTable [value]="events">
+    <p-column
+        field="op"
+        header="Operation"
+    >
+    </p-column>
+    <p-column
+        field="user"
+        header="User"
+    >
+    </p-column>
+    <p-column
+        field="success"
+        header="Success?"
+    >
+    </p-column>
+    <p-column
+        field="time"
+        header="Time"
+    >
+        <ng-template let-col let-data="rowData" pTemplate="body">
+            {{ this.fmtSrv.formatTime(data.time) }}
+        </ng-template>
+    </p-column>
+</p-dataTable>

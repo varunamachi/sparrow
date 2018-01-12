@@ -39,10 +39,17 @@ export class UserCreateComponent implements OnInit {
     createUser(f: any) {
         const user = <User>f.value;
         if (this.password == this.confirm) {
-
+            this.secSrv.registerUser(user, this.password).subscribe(
+                res => {
+                    this.msgSrv.showSuccess('Registration successful, please'
+                    + ' confirm the EMail');
+                },
+                err => {
+                    this.msgSrv.showError('Registration failed');
+                });
 
         } else {
-            this.msgSrv.showError("Passwords don't match")
+            this.msgSrv.showError('Passwords don\'t match')
         }
     }
 

@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { SecurityService } from './security.service';
+import { PasswordChangeComponent } from './password-change/password-change.component';
 
 @NgModule({
     imports: [
@@ -25,6 +26,7 @@ import { SecurityService } from './security.service';
     declarations: [
         LoginComponent,
         UserCreateComponent,
+        PasswordChangeComponent,
     ],
     providers: [
         {

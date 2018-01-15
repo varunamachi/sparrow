@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
 
     public registerVisible = false;
 
-    constructor(private router: Router,
+    constructor(
+        public router: Router,
         private auth: AuthService,
         private msgSrv: MsgService) { }
 
@@ -59,7 +60,7 @@ export class LoginComponent implements OnInit {
     }
 
     onKeyEvent(event: KeyboardEvent) {
-        if(event.charCode === 13) {
+        if (event.charCode === 13) {
             this.login()
         }
     }

@@ -46,7 +46,7 @@
             </tr>
         </ng-container>
         <tr>
-            <td>First Name</td>
+            <td>First Name*</td>
             <td>
                 <input
                     required
@@ -59,7 +59,7 @@
             </td>
         </tr>
         <tr>
-            <td>Last Name</td>
+            <td>Last Name*</td>
             <td>
                 <input
                     required
@@ -71,35 +71,37 @@
                 >
             </td>
         </tr>
-        <tr>
-            <td>Password*</td>
-            <td>
-                <input
-                    required
-                    class="form-control input-text"
-                    pInputText
-                    type="password"
-                    name="password"
-                    [ngModelOptions]="{standalone: true}"
-                    [(ngModel)]="password"
-                    ngModel
-                >
-            </td>
-        </tr>
-        <tr>
-            <td>Confirm Password*</td>
-            <td>
-                <input
-                    required
-                    class="form-control input-text"
-                    pInputText
-                    type="password"
-                    name="confirm"
-                    [ngModelOptions]="{standalone: true}"
-                    [(ngModel)]="confirm"
-                >
-            </td>
-        </tr>
+        <ng-container *ngIf="admin">
+            <tr>
+                <td>Password*</td>
+                <td>
+                    <input
+                        required
+                        class="form-control input-text"
+                        pInputText
+                        type="password"
+                        name="password"
+                        [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]="password"
+                        ngModel
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td>Confirm Password*</td>
+                <td>
+                    <input
+                        required
+                        class="form-control input-text"
+                        pInputText
+                        type="password"
+                        name="confirm"
+                        [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]="confirm"
+                    >
+                </td>
+            </tr>
+        </ng-container>
         <tr>
             <td></td>
             <td>

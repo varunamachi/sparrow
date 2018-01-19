@@ -1,3 +1,4 @@
+import { Filter } from './../../basic/basic.model';
 import { SEvent } from './../admin.model';
 import { MsgService } from './../../basic/msg.service';
 import { AdminService } from './../admin.service';
@@ -20,9 +21,10 @@ export class EventsComponent implements OnInit {
 
     to = this.ENTRIES_PER_PAGE;
 
-    filter = {};
+    filter = new Filter();
 
-    constructor(public fmtSrv: FormatService,
+    constructor(
+        public fmtSrv: FormatService,
         private adminSrv: AdminService,
         private msgSrv: MsgService) {
 

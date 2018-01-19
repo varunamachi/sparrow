@@ -8,6 +8,7 @@ import { MsgService } from './msg.service';
 import { MsgComponent } from './msg/msg.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { FormatService } from './format.service';
+import { FilterPageComponent } from './filter-page/filter-page.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { FormatService } from './format.service';
         NotFoundComponent,
         MsgComponent,
         PageHeaderComponent,
+        FilterPageComponent,
     ],
     declarations: [
         HeaderComponent,
@@ -28,6 +30,7 @@ import { FormatService } from './format.service';
         NotFoundComponent,
         MsgComponent,
         PageHeaderComponent,
+        FilterPageComponent,
     ],
     providers: [
         MsgService,

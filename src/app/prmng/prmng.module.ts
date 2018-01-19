@@ -13,6 +13,7 @@ import {
     DataTableModule,
     DialogModule,
     ConfirmDialogModule,
+    PanelModule,
 } from 'primeng/primeng'
 
 @NgModule({
@@ -30,7 +31,7 @@ import {
         DataTableModule,
         DialogModule,
         ConfirmDialogModule,
-
+        PanelModule,
     ],
     exports: [
         ButtonModule,
@@ -45,7 +46,7 @@ import {
         DataTableModule,
         DialogModule,
         ConfirmDialogModule,
-
+        PanelModule,
     ],
 })
 export class PrmngModule { }

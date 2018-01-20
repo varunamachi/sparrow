@@ -14,6 +14,11 @@ import {
     DialogModule,
     ConfirmDialogModule,
     PanelModule,
+    CheckboxModule,
+    ListboxModule,
+    MultiSelectModule,
+    InputSwitchModule,
+    SelectButtonModule,
 } from 'primeng/primeng'
 
 @NgModule({
@@ -32,6 +37,11 @@ import {
         DialogModule,
         ConfirmDialogModule,
         PanelModule,
+        CheckboxModule,
+        ListboxModule,
+        MultiSelectModule,
+        InputSwitchModule,
+        SelectButtonModule,
     ],
     exports: [
         ButtonModule,
@@ -47,6 +57,11 @@ import {
         DialogModule,
         ConfirmDialogModule,
         PanelModule,
+        CheckboxModule,
+        ListboxModule,
+        MultiSelectModule,
+        InputSwitchModule,
+        SelectButtonModule,
     ],
 })
 export class PrmngModule { }

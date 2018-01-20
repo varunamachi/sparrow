@@ -1,4 +1,4 @@
-import { Filter } from './../../basic/basic.model';
+import { Filter, FilterDesc, FilterType } from './../../basic/basic.model';
 import { SEvent } from './../admin.model';
 import { MsgService } from './../../basic/msg.service';
 import { AdminService } from './../admin.service';
@@ -13,7 +13,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsComponent implements OnInit {
 
-    readonly ENTRIES_PER_PAGE = 20;
+    readonly ENTRIES_PER_PAGE = 25;
+
+    showFilter = true;
 
     events: SEvent[] = []
 
@@ -22,6 +24,26 @@ export class EventsComponent implements OnInit {
     to = this.ENTRIES_PER_PAGE;
 
     filter = new Filter();
+
+    filterDesc: FilterDesc[] = [
+        {
+            name: 'Event',
+            type: FilterType.Value,
+            data: [
+                'authentication',
+                'user create'
+            ],
+        },
+        {
+            name: 'Tags',
+            type: FilterType.Array,
+            data: [
+                'one',
+                'two',
+                'three',
+            ],
+        }
+    ]
 
     constructor(
         public fmtSrv: FormatService,

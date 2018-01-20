@@ -1,12 +1,12 @@
-<div class="ui-g-2 filter">
-    <span>
-        Filters
-    </span>
-    <span>
-        <button pButton icon="fa-bars" style="height: 12px; width: 12px;"></button>
-    </span>
-
+<div class="filter ui-g-2"
+    [hidden]=!filterVisible
+>
+    <ng-content select="[filter]"></ng-content>
 </div>
-<div class="ui-g-10 content">
-
+<div class="content" [ngClass]="{
+        'ui-g-10': filterVisible,
+        'ui-g-12': !filterVisible
+    }"
+>
+    <ng-content select="[content]"></ng-content>
 </div>

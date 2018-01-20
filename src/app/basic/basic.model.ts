@@ -1,4 +1,3 @@
-
 export interface Result {
     status: number;
     op: string;
@@ -23,7 +22,19 @@ export class ArrayMatcher {
 }
 
 export class Filter {
-    public fields = new Map<string, string>();
+    public fields = new Map<string, string[]>();
     public dates: DateRange[] = [];
     public lists: ArrayMatcher[] = [];
+}
+
+export enum FilterType {
+    Value = 'value',
+    Array = 'array',
+    DateRange = 'dateRange',
+}
+
+export interface FilterDesc  {
+    name: string;
+    type: FilterType;
+    data: string[] | DateRange | boolean;
 }

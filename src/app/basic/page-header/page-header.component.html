@@ -3,7 +3,8 @@
         {{pageName}}
     </span>
     <span class="description">
-        <ng-content></ng-content>
+        <!-- <ng-content></ng-content> -->
+        <ng-content select="[toolbar]"></ng-content>
     </span>
 </div>
 <div *ngIf="placeholder">

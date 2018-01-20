@@ -1,0 +1,52 @@
+<div *ngFor="let d of desc" [ngSwitch]="d.type">
+
+    <!-- For Single select -->
+    <p-panel
+        [header]="d.name"
+        *ngSwitchCase="'value'"
+        [toggleable]=true
+    >
+        <p-multiSelect
+            [options]="toSelectItems(d.data)"
+            [style]="{'width': '100%'}"
+            defaultLabel="Select Event Types"
+        >
+        </p-multiSelect>
+    </p-panel>
+
+    <!-- For Multiselect -->
+    <p-panel
+        [header]="d.name"
+        *ngSwitchCase="'array'"
+        [toggleable]=true
+        [collapsed]=true
+    >
+        <p-inputSwitch
+            onLabel="OR"
+            offLabel="AND"
+            [style]="{'float': 'left'}"
+        ></p-inputSwitch>
+        <label
+            style="padding-left: 5px"
+        >
+            the selected Items
+        </label>
+        <p-listbox
+            [options]="toSelectItems(d.data)"
+            [style]="{'width': '100%'}"
+            [listStyle]="{'height':'120px', 'width': '100%'}"
+            [multiple]=true
+            [checkbox]=true
+            [filter]=true
+        ></p-listbox>
+    </p-panel>
+    <!-- For date ranges -->
+    <p-panel
+        [header]="d.name"
+        *ngSwitchCase="'dateRage'"
+        [toggleable]=true
+    >
+        <!-- <app-date-range></app-date-range> -->
+    </p-panel>
+    <hr class="hz"/>
+</div>

@@ -17,9 +17,7 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-        if(this.auth.isLoggedIn()) {
-            this.router.navigate(['/home']);
-        } else {
+        if(!this.auth.isLoggedIn()) {
             this.router.navigate(['/']);
         }
     }
@@ -27,6 +25,4 @@ export class AppComponent implements OnInit {
     onHeaderTrigger() {
         this.sidebarShown = !this.sidebarShown;
     }
-
-
 }

@@ -2,31 +2,47 @@
     pageName="Events"
     [placeholder]=false
 >
-    View and analyze events
+    <span>
+        View and analyze events
+    </span>
+    <span toolbar>
+        <p-checkbox
+            binary="true"
+            label="Show Filters"
+            [(ngModel)]="showFilter"
+        ></p-checkbox>
+    </span>
 </app-page-header>
+<app-filter-page [filterVisible]="showFilter">
+    <div filter>
+        <app-filter [desc]="filterDesc"></app-filter>
+    </div>
+    <div content>
+        <p-dataTable [value]="events">
+            <p-column
+                field="op"
+                header="Operation"
+            >
+            </p-column>
+            <p-column
+                field="user"
+                header="User"
+            >
+            </p-column>
+            <p-column
+                field="success"
+                header="Success?"
+            >
+            </p-column>
+            <p-column
+                field="time"
+                header="Time"
+            >
+                <ng-template let-col let-data="rowData" pTemplate="body">
+                    {{ this.fmtSrv.formatTime(data.time) }}
+                </ng-template>
+            </p-column>
+        </p-dataTable>
+    </div>
+</app-filter-page>
 
-<p-dataTable [value]="events">
-    <p-column
-        field="op"
-        header="Operation"
-    >
-    </p-column>
-    <p-column
-        field="user"
-        header="User"
-    >
-    </p-column>
-    <p-column
-        field="success"
-        header="Success?"
-    >
-    </p-column>
-    <p-column
-        field="time"
-        header="Time"
-    >
-        <ng-template let-col let-data="rowData" pTemplate="body">
-            {{ this.fmtSrv.formatTime(data.time) }}
-        </ng-template>
-    </p-column>
-</p-dataTable>

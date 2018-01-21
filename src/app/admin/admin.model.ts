@@ -1,3 +1,5 @@
+import { User } from "../security/security.model";
+
 
 
 export interface SEvent {
@@ -7,4 +9,14 @@ export interface SEvent {
     error: string;
     time: Date;
     data: any;
+}
+
+export interface EventList {
+    total: number;
+    data: SEvent[];
+}
+
+export interface UserList {
+    total: number;
+    data: User[];
 }

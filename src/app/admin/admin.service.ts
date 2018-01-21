@@ -1,3 +1,4 @@
+import { Filter } from './../basic/basic.model';
 import { HttpClient } from '@angular/common/http';
 import { User } from './../security/security.model';
 import { Observable } from 'rxjs/Observable';
@@ -5,7 +6,7 @@ import { AuthService } from './../security/auth.service';
 import { Injectable } from '@angular/core';
 import { nurl, murl, aurl } from '../basic/url.util';
 import { Result } from '../basic/basic.model';
-import { SEvent } from './admin.model';
+import { SEvent, EventList, UserList } from './admin.model';
 
 @Injectable()
 export class AdminService {
@@ -15,19 +16,25 @@ export class AdminService {
 
     }
 
-    getUsers(from, limit: number): Observable<User[]> {
+    getUsers(
+        from: number,
+        limit: number,
+        filter: Filter): Observable<UserList> {
         const url = murl('uman/user') + '?offset=' + from + '&limit=' + limit;
         return this.http.get(url).map(
             (resp: Result) => {
                 if (resp.ok) {
-                    return <User[]>resp.data;
+                    return <UserList>resp.data;
                 }
-                return new Array<User>();
+                return { total: 0, data: [] };
             }
         )
     }
 
-    getEvents(offset, limit: number, filter: any): Observable<SEvent[]> {
+    getEvents(
+        offset: number,
+        limit: number,
+        filter: Filter): Observable<EventList> {
         const url = aurl('admin/event') +
             '?offset=' +
             offset +
@@ -37,9 +44,9 @@ export class AdminService {
         return this.http.get(url).map(
             (resp: Result) => {
                 if (resp.ok) {
-                    return <SEvent[]>resp.data;
+                    return <EventList>resp.data;
                 }
-                return new Array<SEvent>();
+                return { total: 0, data: [] };
             }
         )
     }

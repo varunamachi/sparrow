@@ -18,6 +18,12 @@
         <app-filter [desc]="filterDesc"></app-filter>
     </div>
     <div content>
+        <p-paginator
+            [rows]=ENTRIES_PER_PAGE
+            [totalRecords]=total
+            [pageLinkSize]="PAGE_SHOWN"
+            (onPageChange)="paginate($event)"
+        ></p-paginator>
         <p-dataTable [value]="events">
             <p-column
                 field="op"
@@ -31,8 +37,11 @@
             </p-column>
             <p-column
                 field="success"
-                header="Success?"
+                header="Success"
             >
+                <ng-template let-data="rowData" pTemplate="body">
+                    {{data.success ? 'Yes' : 'No' }}
+                </ng-template>
             </p-column>
             <p-column
                 field="time"

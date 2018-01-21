@@ -38,3 +38,11 @@ export interface FilterDesc  {
     type: FilterType;
     data: string[] | DateRange | boolean;
 }
+
+export interface PaginateEvent {
+    first: number;
+    rows: number;
+    page: number;
+    pageCount: number;
+
+}

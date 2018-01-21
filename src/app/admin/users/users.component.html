@@ -4,6 +4,12 @@
 >
     Administer users
 </app-page-header>
+<p-paginator
+    [rows]=ENTRIES_PER_PAGE
+    [totalRecords]=total
+    [pageLinkSize]="PAGE_SHOWN"
+    (onPageChange)="paginate($event)"
+></p-paginator>
 <p-dataTable [value]="users">
     <p-column
         field="id"

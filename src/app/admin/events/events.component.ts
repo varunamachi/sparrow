@@ -1,5 +1,5 @@
-import { Filter, FilterDesc, FilterType } from './../../basic/basic.model';
-import { SEvent } from './../admin.model';
+import { Filter, FilterDesc, FilterType, PaginateEvent } from './../../basic/basic.model';
+import { SEvent, EventList } from './../admin.model';
 import { MsgService } from './../../basic/msg.service';
 import { AdminService } from './../admin.service';
 import { FormatService } from './../../basic/format.service';
@@ -15,13 +15,15 @@ export class EventsComponent implements OnInit {
 
     readonly ENTRIES_PER_PAGE = 25;
 
-    showFilter = true;
-
-    events: SEvent[] = []
+    readonly PAGE_SHOWN = 5;
 
     from = 0;
 
-    to = this.ENTRIES_PER_PAGE;
+    total = 0;
+
+    showFilter = true;
+
+    events: SEvent[] = [];
 
     filter = new Filter();
 
@@ -42,7 +44,7 @@ export class EventsComponent implements OnInit {
                 'two',
                 'three',
             ],
-        }
+        },
     ]
 
     constructor(
@@ -57,9 +59,14 @@ export class EventsComponent implements OnInit {
     }
 
     refresh() {
-        this.adminSrv.getEvents(this.from, this.to, this.filter).subscribe(
-            (events: SEvent[]) => {
-                this.events = events;
+        // const to = this.from + this.ENTRIES_PER_PAGE;
+        this.adminSrv.getEvents(this.from,
+            this.ENTRIES_PER_PAGE,
+            this.filter).subscribe(
+            (el: EventList) => {
+                this.events = el.data;
+                console.log(el.total);
+                this.total = el.total;
             },
             err => {
                 //@TODO check what error!
@@ -68,4 +75,25 @@ export class EventsComponent implements OnInit {
         )
     }
 
+    paginate(event: PaginateEvent) {
+        this.from = event.first;
+        this.refresh();
+    }
+    // paginate(event: PaginateEvent) {
+
+    //     const last = event.first + event.rows;
+    //     const to = this.from + this.FETCH_COUNT;
+    //     console.log(event.first, last, this.from, to);
+    //     if(last < to && event.first > this.from) {
+    //         this.shown = this.events.slice(event.first, last)
+    //     } else if(last >= to) {
+    //         console.log('one');
+    //         this.from = this.from + this.FETCH_COUNT;
+    //         this.refresh();
+    //     } else if(event.first <= this.from) {
+    //         console.log('two');
+    //         this.from = this.from - this.FETCH_COUNT;
+    //         this.refresh()
+    //     }
+    // }
 }

@@ -19,6 +19,7 @@ import {
     MultiSelectModule,
     InputSwitchModule,
     SelectButtonModule,
+    PaginatorModule,
 } from 'primeng/primeng'
 
 @NgModule({
@@ -42,6 +43,7 @@ import {
         MultiSelectModule,
         InputSwitchModule,
         SelectButtonModule,
+        PaginatorModule,
     ],
     exports: [
         ButtonModule,
@@ -62,6 +64,7 @@ import {
         MultiSelectModule,
         InputSwitchModule,
         SelectButtonModule,
+        PaginatorModule,
     ],
 })
 export class PrmngModule { }

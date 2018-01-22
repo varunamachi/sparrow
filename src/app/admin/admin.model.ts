@@ -20,3 +20,8 @@ export interface UserList {
     total: number;
     data: User[];
 }
+
+export interface FilterEventModel {
+    userIDs: string[];
+    eventTypes: string[];
+}

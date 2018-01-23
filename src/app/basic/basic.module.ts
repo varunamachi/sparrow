@@ -10,6 +10,7 @@ import { PageHeaderComponent } from './page-header/page-header.component';
 import { FormatService } from './format.service';
 import { FilterPageComponent } from './filter-page/filter-page.component';
 import { FilterComponent } from './filter/filter.component';
+import { DateRangeComponent } from './date-range/date-range.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { FilterComponent } from './filter/filter.component';
         PageHeaderComponent,
         FilterPageComponent,
         FilterComponent,
+        DateRangeComponent,
     ],
     declarations: [
         HeaderComponent,
@@ -34,6 +36,7 @@ import { FilterComponent } from './filter/filter.component';
         PageHeaderComponent,
         FilterPageComponent,
         FilterComponent,
+        DateRangeComponent,
     ],
     providers: [
         MsgService,

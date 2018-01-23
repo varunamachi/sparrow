@@ -6,7 +6,7 @@ import { AuthService } from './../security/auth.service';
 import { Injectable } from '@angular/core';
 import { nurl, murl, aurl } from '../basic/url.util';
 import { Result } from '../basic/basic.model';
-import { SEvent, EventList, UserList, FilterEventModel } from './admin.model';
+import { SEvent, EventList, UserList, EventFilterModel } from './admin.model';
 
 @Injectable()
 export class AdminService {
@@ -51,12 +51,12 @@ export class AdminService {
         )
     }
 
-    getEventFilterModel(): Observable<FilterEventModel> {
+    getEventFilterModel(): Observable<EventFilterModel> {
         const url = aurl('admin/event/filterModel')
         return this.http.get(url).map(
             (resp: Result) => {
                 if (resp.ok) {
-                    return <FilterEventModel>resp.data;
+                    return <EventFilterModel>resp.data;
                 }
                 return { userIDs: [], eventTypes: [] };
             })

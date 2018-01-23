@@ -9,7 +9,7 @@
         <p-multiSelect
             [options]="toSelectItems(d.data)"
             [style]="{'width': '100%'}"
-            defaultLabel="Select Event Types"
+            defaultLabel="Select {{d.name}}"
         >
         </p-multiSelect>
     </p-panel>
@@ -43,10 +43,10 @@
     <!-- For date ranges -->
     <p-panel
         [header]="d.name"
-        *ngSwitchCase="'dateRage'"
+        *ngSwitchCase="'dateRange'"
         [toggleable]=true
     >
-        <!-- <app-date-range></app-date-range> -->
+        <app-date-range></app-date-range>
     </p-panel>
     <hr class="hz"/>
 </div>

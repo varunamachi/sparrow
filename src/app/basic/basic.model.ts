@@ -7,12 +7,9 @@ export interface Result {
     data: any;
 }
 
-export class DateRange {
-    constructor(
-        public from: Date,
-        public to: Date) {
-
-    }
+export interface DateRange {
+    from: Date;
+    to: Date;
 }
 
 export class ArrayMatcher {
@@ -33,7 +30,7 @@ export enum FilterType {
     DateRange = 'dateRange',
 }
 
-export interface FilterDesc  {
+export interface FilterDesc {
     name: string;
     type: FilterType;
     data: string[] | DateRange | boolean;

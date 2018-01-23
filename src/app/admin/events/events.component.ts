@@ -1,10 +1,10 @@
-import { Filter, FilterDesc, FilterType, PaginateEvent } from './../../basic/basic.model';
-import { SEvent, EventList } from './../admin.model';
+import { Filter, FilterDesc, FilterType, PaginateEvent, DateRange } from './../../basic/basic.model';
+import { SEvent, EventList, EventFilterModel } from './../admin.model';
 import { MsgService } from './../../basic/msg.service';
 import { AdminService } from './../admin.service';
 import { FormatService } from './../../basic/format.service';
 import { Component, OnInit } from '@angular/core';
-
+import * as moment from 'moment';
 
 @Component({
     selector: 'app-events',
@@ -27,25 +27,7 @@ export class EventsComponent implements OnInit {
 
     filter = new Filter();
 
-    filterDesc: FilterDesc[] = [
-        {
-            name: 'Event',
-            type: FilterType.Value,
-            data: [
-                'authentication',
-                'user create'
-            ],
-        },
-        {
-            name: 'Tags',
-            type: FilterType.Array,
-            data: [
-                'one',
-                'two',
-                'three',
-            ],
-        },
-    ]
+    filterDesc: FilterDesc[] = []
 
     constructor(
         public fmtSrv: FormatService,
@@ -56,6 +38,7 @@ export class EventsComponent implements OnInit {
 
     ngOnInit() {
         this.refresh();
+        this.populateFilters()
     }
 
     refresh() {
@@ -78,6 +61,33 @@ export class EventsComponent implements OnInit {
     paginate(event: PaginateEvent) {
         this.from = event.first;
         this.refresh();
+    }
+
+    populateFilters() {
+        this.adminSrv.getEventFilterModel().subscribe(
+            (res: EventFilterModel) => {
+                this.filterDesc = [
+                    {
+                        name: 'Event',
+                        type: FilterType.Value,
+                        data: res.eventTypes,
+                    },
+                    {
+                        name: 'Users',
+                        type: FilterType.Value,
+                        data: res.userIDs,
+                    },
+                    {
+                        name: 'Date Range',
+                        type: FilterType.DateRange,
+                        data: {
+                            from: new Date(),
+                            to: moment().toDate(),
+                        }
+                    }
+                ]
+            }
+        )
     }
     // paginate(event: PaginateEvent) {
 

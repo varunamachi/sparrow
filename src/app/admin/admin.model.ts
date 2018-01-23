@@ -21,7 +21,7 @@ export interface UserList {
     data: User[];
 }
 
-export interface FilterEventModel {
+export interface EventFilterModel {
     userIDs: string[];
     eventTypes: string[];
 }

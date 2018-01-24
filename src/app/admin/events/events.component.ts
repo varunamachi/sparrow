@@ -69,21 +69,33 @@ export class EventsComponent implements OnInit {
                 this.filterDesc = [
                     {
                         name: 'Event',
+                        field: 'op',
                         type: FilterType.Value,
                         data: res.eventTypes,
                     },
                     {
                         name: 'Users',
+                        field: 'user',
                         type: FilterType.Value,
                         data: res.userIDs,
                     },
                     {
                         name: 'Date Range',
+                        field: 'success',
                         type: FilterType.DateRange,
                         data: {
                             from: new Date(),
                             to: moment().toDate(),
                         }
+                    },
+                    {
+                        name: 'Is Success',
+                        field: 'time',
+                        type: FilterType.Value,
+                        data: [
+                            'Yes',
+                            'No',
+                        ]
                     }
                 ]
             }

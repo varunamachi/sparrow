@@ -4,7 +4,11 @@
             From
         </td>
         <td>
-            <p-calendar></p-calendar>
+            <p-calendar
+                [(ngModel)]="from"
+                [minDate]="min"
+                [maxDate]="to"
+            ></p-calendar>
         </td>
     </tr>
     <tr>
@@ -12,7 +16,11 @@
             To
         </td>
         <td>
-            <p-calendar></p-calendar>
+            <p-calendar
+                [(ngModel)]="to"
+                [minDate]="from"
+                [maxDate]="max"
+            ></p-calendar>
         </td>
     </tr>
 </tbody></table>

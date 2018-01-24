@@ -8,20 +8,21 @@ export interface Result {
 }
 
 export interface DateRange {
+    // name: string;
     from: Date;
     to: Date;
 }
 
 export class ArrayMatcher {
-    public name = '';
+    // public name = '';
     public matchAll = false;
     public tags: string[] = [];
 }
 
 export class Filter {
     public fields = new Map<string, string[]>();
-    public dates: DateRange[] = [];
-    public lists: ArrayMatcher[] = [];
+    public dates = new Map<string, DateRange>();
+    public lists = new Map<string, ArrayMatcher>();
 }
 
 export enum FilterType {
@@ -31,6 +32,7 @@ export enum FilterType {
 }
 
 export interface FilterDesc {
+    field: string;
     name: string;
     type: FilterType;
     data: string[] | DateRange | boolean;

@@ -1,3 +1,5 @@
+<div class="display: flex; flex-direction: column;">
+<div style="flex-shrink: 0; overflow: auto">
 <div *ngFor="let d of desc" [ngSwitch]="d.type">
 
     <!-- For Single select -->
@@ -10,6 +12,7 @@
             [options]="toSelectItems(d.data)"
             [style]="{'width': '100%'}"
             defaultLabel="Select {{d.name}}"
+            (onChange)="valueChanged(d.field, $event.value)"
         >
         </p-multiSelect>
     </p-panel>
@@ -22,9 +25,11 @@
         [collapsed]=true
     >
         <p-inputSwitch
+            #sw
             onLabel="OR"
             offLabel="AND"
             [style]="{'float': 'left'}"
+            (onChange)="matcherChanged(d.field, sw.checked,  lb.value)"
         ></p-inputSwitch>
         <label
             style="padding-left: 5px"
@@ -32,12 +37,14 @@
             the selected Items
         </label>
         <p-listbox
+            #lb
             [options]="toSelectItems(d.data)"
             [style]="{'width': '100%'}"
             [listStyle]="{'height':'120px', 'width': '100%'}"
             [multiple]=true
             [checkbox]=true
             [filter]=true
+            (onChange)="matcherChanged(d.field, sw.checked,  $event.value)"
         ></p-listbox>
     </p-panel>
     <!-- For date ranges -->
@@ -46,7 +53,11 @@
         *ngSwitchCase="'dateRange'"
         [toggleable]=true
     >
-        <app-date-range></app-date-range>
+        <app-date-range
+            (onChange)="dateRangeChanged(d.field, $event)"
+        ></app-date-range>
     </p-panel>
     <hr class="hz"/>
+</div>
+</div>
 </div>

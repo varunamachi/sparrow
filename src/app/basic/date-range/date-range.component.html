@@ -8,6 +8,7 @@
                 [(ngModel)]="from"
                 [minDate]="min"
                 [maxDate]="to"
+                (onSelect)="changed()"
             ></p-calendar>
         </td>
     </tr>
@@ -20,6 +21,7 @@
                 [(ngModel)]="to"
                 [minDate]="from"
                 [maxDate]="max"
+                (onSelect)="changed()"
             ></p-calendar>
         </td>
     </tr>

@@ -1,4 +1,4 @@
-import { FilterDesc, FilterType, Filter, ArrayMatcher } from './../basic.model';
+import { FilterDesc, FilterType, Filter, ArrayMatcher, DateRange } from './../basic.model';
 import {
     Component,
     OnInit,
@@ -20,9 +20,9 @@ export class FilterComponent implements OnInit, OnChanges {
 
     @Input("desc") desc: FilterDesc[] = [];
 
-    @Output("filter") changed = new EventEmitter();
+    @Input("filter") filter: Filter = new Filter();
 
-    @Input("filter") filter: Filter;
+    @Output("onChange") onChange = new EventEmitter();
 
     constructor() { }
 
@@ -59,5 +59,23 @@ export class FilterComponent implements OnInit, OnChanges {
             items.push({ label: str, value: str })
         })
         return items;
+    }
+
+    valueChanged(field: string, values: string[]) {
+        this.filter.fields.set(field, values);
+        this.onChange.emit(this.filter);
+    }
+
+    matcherChanged(field: string, matchAll: boolean, values: string[]) {
+        this.filter.lists.set(field, <ArrayMatcher>{
+            matchAll: matchAll,
+            tags: values
+        });
+        this.onChange.emit(this.filter);
+    }
+
+    dateRangeChanged(field: string, dateRange: DateRange) {
+        this.filter.dates.set(field, dateRange);
+        this.onChange.emit(this.filter);
     }
 }

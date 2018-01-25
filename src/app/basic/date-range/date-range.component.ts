@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as moment from 'moment'
 
 @Component({
@@ -12,25 +12,22 @@ export class DateRangeComponent implements OnInit {
 
     @Input('to') to = moment().toDate();
 
-    @Output('from_valueChange') fromChanged = new EventEmitter();
+    // @Output('from_valueChange') fromChanged = new EventEmitter();
 
-    @Output('to_valueChange') toChanged = new EventEmitter();
+    // @Output('to_valueChange') toChanged = new EventEmitter();
 
     @Input('max') max = moment().toDate();
 
     @Input('min') min = this.from;
+
+    @Output("onChange") onChange = new EventEmitter();
 
     constructor() { }
 
     ngOnInit() {
     }
 
-    onFromChanged(event) {
-
+    changed() {
+        this.onChange.emit({ from: this.from, to: this.to });
     }
-
-    onToChanged(event) {
-
-    }
-
 }

@@ -81,7 +81,7 @@ export class EventsComponent implements OnInit {
                     },
                     {
                         name: 'Date Range',
-                        field: 'success',
+                        field: 'time',
                         type: FilterType.DateRange,
                         data: {
                             from: new Date(),
@@ -90,16 +90,40 @@ export class EventsComponent implements OnInit {
                     },
                     {
                         name: 'Is Success',
-                        field: 'time',
+                        field: 'success',
                         type: FilterType.Value,
                         data: [
                             'Yes',
                             'No',
                         ]
-                    }
+                    },
+                    {
+                        name: 'Tag',
+                        field: 'tag',
+                        type: FilterType.Array,
+                        data: [
+                            'one',
+                            'two',
+                            'three',
+                        ]
+                    },
+                    {
+                        name: 'Search',
+                        field: 'search',
+                        type: FilterType.Array,
+                        data: [
+                            'k',
+                            'l',
+                            'm',
+                        ]
+                    },
                 ]
             }
         )
+    }
+
+    filterChanged(filter: Filter) {
+        console.log(filter);
     }
     // paginate(event: PaginateEvent) {
 

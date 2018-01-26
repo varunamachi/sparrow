@@ -48,7 +48,6 @@ export class EventsComponent implements OnInit {
             this.filter).subscribe(
             (el: EventList) => {
                 this.events = el.data;
-                console.log(el.total);
                 this.total = el.total;
             },
             err => {
@@ -91,55 +90,36 @@ export class EventsComponent implements OnInit {
                     {
                         name: 'Is Success',
                         field: 'success',
-                        type: FilterType.Value,
-                        data: [
-                            'Yes',
-                            'No',
-                        ]
+                        type: FilterType.Boolean,
                     },
-                    {
-                        name: 'Tag',
-                        field: 'tag',
-                        type: FilterType.Array,
-                        data: [
-                            'one',
-                            'two',
-                            'three',
-                        ]
-                    },
-                    {
-                        name: 'Search',
-                        field: 'search',
-                        type: FilterType.Array,
-                        data: [
-                            'k',
-                            'l',
-                            'm',
-                        ]
-                    },
+                    // {
+                    //     name: 'Tag',
+                    //     field: 'tag',
+                    //     type: FilterType.Array,
+                    //     data: [
+                    //         'one',
+                    //         'two',
+                    //         'three',
+                    //     ]
+                    // },
+                    // {
+                    //     name: 'Search',
+                    //     field: 'search',
+                    //     type: FilterType.Array,
+                    //     data: [
+                    //         'k',
+                    //         'l',
+                    //         'm',
+                    //     ]
+                    // },
                 ]
             }
         )
     }
 
     filterChanged(filter: Filter) {
-        console.log(filter);
+        this.from = 0;
+        this.filter = filter;
+        this.refresh();
     }
-    // paginate(event: PaginateEvent) {
-
-    //     const last = event.first + event.rows;
-    //     const to = this.from + this.FETCH_COUNT;
-    //     console.log(event.first, last, this.from, to);
-    //     if(last < to && event.first > this.from) {
-    //         this.shown = this.events.slice(event.first, last)
-    //     } else if(last >= to) {
-    //         console.log('one');
-    //         this.from = this.from + this.FETCH_COUNT;
-    //         this.refresh();
-    //     } else if(event.first <= this.from) {
-    //         console.log('two');
-    //         this.from = this.from - this.FETCH_COUNT;
-    //         this.refresh()
-    //     }
-    // }
 }

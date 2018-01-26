@@ -30,27 +30,27 @@ export class FilterComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        if (changes["desc"]) {
-            this.desc.forEach((desc: FilterDesc) => {
-                switch (desc.type) {
-                    case FilterType.Value:
-                        this.filter.fields[desc.field] = '';
-                        break;
-                    case FilterType.Array:
-                        this.filter.lists[desc.name] = {
-                            matchAll: true,
-                            tags: [],
-                        }
-                        break;
-                    case FilterType.DateRange:
-                        this.filter.dates[desc.name] = {
-                            from: moment('1980-01-01', 'YYYY-MM-DD').toDate(),
-                            to: moment().toDate()
-                        }
-                        break;
-                }
-            })
-        }
+        // if (changes["desc"]) {
+        //     this.desc.forEach((desc: FilterDesc) => {
+        //         switch (desc.type) {
+        //             case FilterType.Value:
+        //                 this.filter.fields[desc.field] = '';
+        //                 break;
+        //             case FilterType.Array:
+        //                 this.filter.lists[desc.name] = {
+        //                     matchAll: true,
+        //                     tags: [],
+        //                 }
+        //                 break;
+        //             case FilterType.DateRange:
+        //                 this.filter.dates[desc.name] = {
+        //                     from: moment('1980-01-01', 'YYYY-MM-DD').toDate(),
+        //                     to: moment().toDate()
+        //                 }
+        //                 break;
+        //         }
+        //     })
+        // }
     }
 
     toSelectItems(arr: string[]): SelectItem[] {
@@ -62,20 +62,36 @@ export class FilterComponent implements OnInit, OnChanges {
     }
 
     valueChanged(field: string, values: string[]) {
-        this.filter.fields.set(field, values);
+        // this.filter.fields.set(field, values);
+        this.filter.fields[field] = values;
         this.onChange.emit(this.filter);
     }
 
     matcherChanged(field: string, matchAll: boolean, values: string[]) {
-        this.filter.lists.set(field, <ArrayMatcher>{
+        // this.filter.lists.set(field, <ArrayMatcher>{
+        //     matchAll: matchAll,
+        //     tags: values
+        // });
+        this.filter.lists[field] = <ArrayMatcher>{
             matchAll: matchAll,
             tags: values
-        });
+        };
         this.onChange.emit(this.filter);
     }
 
     dateRangeChanged(field: string, dateRange: DateRange) {
-        this.filter.dates.set(field, dateRange);
+        // this.filter.dates.set(field, dateRange);
+        console.log(dateRange);
+        this.filter.dates[field] = dateRange;
+        this.onChange.emit(this.filter);
+    }
+
+    booleanChanged(field: string, value: any) {
+        if (value === null) {
+            delete this.filter.boolFields[field];
+        } else {
+            this.filter.boolFields[field] = value;
+        }
         this.onChange.emit(this.filter);
     }
 }

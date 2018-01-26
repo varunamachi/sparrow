@@ -20,6 +20,7 @@ import {
     InputSwitchModule,
     SelectButtonModule,
     PaginatorModule,
+    TriStateCheckboxModule,
 } from 'primeng/primeng'
 
 @NgModule({
@@ -44,6 +45,7 @@ import {
         InputSwitchModule,
         SelectButtonModule,
         PaginatorModule,
+        TriStateCheckboxModule,
     ],
     exports: [
         ButtonModule,
@@ -65,6 +67,7 @@ import {
         InputSwitchModule,
         SelectButtonModule,
         PaginatorModule,
+        TriStateCheckboxModule,
     ],
 })
 export class PrmngModule { }

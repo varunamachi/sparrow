@@ -1,5 +1,5 @@
-<div class="display: flex; flex-direction: column;">
-<div style="flex-shrink: 0; overflow: auto">
+<!-- <div class="display: flex; flex-direction: column;">
+<div style="flex-shrink: 0; overflow: auto"> -->
 <div *ngFor="let d of desc" [ngSwitch]="d.type">
 
     <!-- For Single select -->
@@ -47,7 +47,6 @@
             (onChange)="matcherChanged(d.field, sw.checked,  $event.value)"
         ></p-listbox>
     </p-panel>
-    <!-- For date ranges -->
     <p-panel
         [header]="d.name"
         *ngSwitchCase="'dateRange'"
@@ -57,7 +56,21 @@
             (onChange)="dateRangeChanged(d.field, $event)"
         ></app-date-range>
     </p-panel>
+    <p-panel
+        [header]="d.name"
+        *ngSwitchCase="'boolean'"
+        [toggleable]=true
+    >
+        <p-triStateCheckbox
+            #cb
+            (onChange)="booleanChanged(d.field, cb.value)"
+            label="{{d.field}}:
+                {{(cb.value === null || cb.value === undefined)
+                    ? 'ALL'
+                    : cb.value}}"
+        ></p-triStateCheckbox>
+    </p-panel>
     <hr class="hz"/>
 </div>
-</div>
-</div>
+<!-- </div>
+</div> -->

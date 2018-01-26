@@ -19,23 +19,31 @@ export class ArrayMatcher {
     public tags: string[] = [];
 }
 
+// export class Filter {
+//     public fields = new Map<string, string[]>();
+//     public dates = new Map<string, DateRange>();
+//     public lists = new Map<string, ArrayMatcher>();
+// }
+
 export class Filter {
-    public fields = new Map<string, string[]>();
-    public dates = new Map<string, DateRange>();
-    public lists = new Map<string, ArrayMatcher>();
+    public fields = new Object();
+    public boolFields = new Object();
+    public dates = new Object();
+    public lists = new Object();
 }
 
 export enum FilterType {
     Value = 'value',
     Array = 'array',
     DateRange = 'dateRange',
+    Boolean = 'boolean',
 }
 
 export interface FilterDesc {
     field: string;
     name: string;
     type: FilterType;
-    data: string[] | DateRange | boolean;
+    data?: string[] | DateRange | boolean[];
 }
 
 export interface PaginateEvent {

@@ -1,6 +1,19 @@
 <table class="ucp"><tbody>
     <form #f="ngForm" (ngSubmit)="createUser(f)">
-        <ng-container *ngIf="admin">
+            <ng-container *ngIf="mode === 'create'">
+                <tr>
+                    <td>Access Level</td>
+                    <td>
+                        <p-dropdown
+                            [style]="{'width': '250px'}"
+                            name="auth"
+                            [options]="AUTH_LEVELS_ITEMS"
+                            ngModel
+                        ></p-dropdown>
+                    </td>
+                </tr>
+            </ng-container>
+        <!-- <ng-container *ngIf="mode === 'create'">
             <tr>
                 <td>User ID*</td>
                 <td>
@@ -17,7 +30,7 @@
                     >
                 </td>
             </tr>
-        </ng-container>
+        </ng-container> -->
         <tr>
             <td>E-Mail*</td>
             <td>
@@ -32,19 +45,6 @@
                 >
             </td>
         </tr>
-        <ng-container *ngIf="admin">
-            <tr>
-                <td>Access Level</td>
-                <td>
-                    <p-dropdown
-                        [style]="{'width': '250px'}"
-                        name="auth"
-                        [options]="AUTH_LEVELS_ITEMS"
-                        ngModel
-                    ></p-dropdown>
-                </td>
-            </tr>
-        </ng-container>
         <tr>
             <td>First Name*</td>
             <td>
@@ -71,7 +71,7 @@
                 >
             </td>
         </tr>
-        <ng-container *ngIf="admin">
+        <ng-container *ngIf="mode === 'register'">
             <tr>
                 <td>Password*</td>
                 <td>
@@ -106,7 +106,8 @@
             <td></td>
             <td>
                 <button
-                    [disabled]="f.invalid || !passwordValid()"
+                    [disabled]="f.invalid
+                        || (mode === 'register' && !passwordValid())"
                     pButton
                     submit
                     style="float: right;"

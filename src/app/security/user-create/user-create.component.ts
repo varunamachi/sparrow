@@ -1,7 +1,7 @@
 import { SecurityService } from './../security.service';
 import { MsgService } from './../../basic/msg.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from '../../security/security.model';
+import { User, UserCreateMode } from '../../security/security.model';
 
 @Component({
     selector: 'app-user-create',
@@ -22,7 +22,7 @@ export class UserCreateComponent implements OnInit {
 
     confirm = '';
 
-    @Input("admin") admin = false;
+    @Input("mode") mode: UserCreateMode = UserCreateMode.Create;
 
     constructor(private secSrv: SecurityService,
         private msgSrv: MsgService) {
@@ -42,19 +42,14 @@ export class UserCreateComponent implements OnInit {
             this.secSrv.registerUser(user, this.password).subscribe(
                 res => {
                     this.msgSrv.showSuccess('Registration successful, please'
-                    + ' confirm the EMail');
+                        + ' confirm the EMail');
                 },
                 err => {
                     this.msgSrv.showError('Registration failed');
                 });
 
         } else {
-            this.msgSrv.showError('Passwords don\'t match')
+            this.msgSrv.showError('Passwords don\'t match');
         }
     }
-
-    checkAvailability(f: any) {
-
-    }
-
 }

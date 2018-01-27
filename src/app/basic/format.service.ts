@@ -21,7 +21,6 @@ export class FormatService {
 
     formatAccess(a: AuthLevel): string {
         const accessNum = <number>a;
-        console.log(accessNum, a);
         if(accessNum < 5) {
             return this.ACCESS_STRING[accessNum];
         }

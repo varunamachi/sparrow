@@ -3,6 +3,13 @@
     [placeholder]=false
 >
     Administer users
+    <span toolbar>
+        <button pButton
+            label="Create User"
+            (click)="showCreateUserDialog = true"
+        >
+        </button>
+    </span>
 </app-page-header>
 <p-paginator
     [rows]=ENTRIES_PER_PAGE
@@ -48,3 +55,11 @@
         </ng-template>
     </p-column>
 </p-dataTable>
+<p-dialog
+    [style]="{'overflow': 'visible'}"
+    header="Create User"
+    [(visible)]="showCreateUserDialog"
+    [modal]=true>
+    <app-user-create
+    ></app-user-create>
+</p-dialog>

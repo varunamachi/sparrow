@@ -23,5 +23,16 @@ export interface User {
 export interface Credential {
     userID: string;
     password: string;
+}
 
+export enum UserCreateMode {
+    Register = 'register',
+    Create = 'create',
+    Request = 'request'
+}
+
+export enum PasswordSetMode {
+    Set = 'set',
+    Reset = 'reset',
+    ForceReset = 'force'
 }

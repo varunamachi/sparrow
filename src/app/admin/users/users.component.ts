@@ -27,6 +27,8 @@ export class UsersComponent implements OnInit {
 
     filter = new Filter();
 
+    showCreateUserDialog = false;
+
     constructor(private adminSrv: AdminService,
         public fmtSrv: FormatService,
         private msgSrv: MsgService) { }

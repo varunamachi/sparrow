@@ -1,3 +1,4 @@
+import { SecurityModule } from './../security/security.module';
 import { BasicModule } from './../basic/basic.module';
 import { PrmngModule } from './../prmng/prmng.module';
 import { NgModule } from '@angular/core';
@@ -12,7 +13,8 @@ import { AdminService } from './admin.service';
         CommonModule,
         PrmngModule,
         BasicModule,
-        FormsModule
+        FormsModule,
+        SecurityModule,
     ],
     exports: [
         UsersComponent,

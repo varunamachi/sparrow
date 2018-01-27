@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { SecurityService } from './security.service';
 import { PasswordChangeComponent } from './password-change/password-change.component';
+import { PasswordComponent } from './password/password.component';
 
 @NgModule({
     imports: [
@@ -27,6 +28,7 @@ import { PasswordChangeComponent } from './password-change/password-change.compo
         LoginComponent,
         UserCreateComponent,
         PasswordChangeComponent,
+        PasswordComponent,
     ],
     providers: [
         {

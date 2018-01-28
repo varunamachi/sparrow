@@ -1,0 +1,19 @@
+<app-header
+    (onTrigger)="onHeaderTrigger()"
+>
+</app-header>
+<div class="ui-g spw-fill-height spw-no-pad">
+    <div
+        class="spw-sidebar"
+        [ngClass]="{'ui-g-2': sidebarShown}"
+        [hidden]="!sidebarShown">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div
+        class="spw-content"
+        [ngClass]="{'ui-g-10': sidebarShown,
+                    'ui-g-12': !sidebarShown}">
+        <router-outlet></router-outlet>
+
+    </div>
+</div>

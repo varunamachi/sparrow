@@ -16,12 +16,18 @@ import { UsersComponent } from './admin/users/users.component';
 import { EventsComponent } from './admin/events/events.component';
 import { SettingsComponent } from './super/settings/settings.component';
 import { DebugComponent } from './super/debug/debug.component';
+import { PasswordComponent } from './security/password/password.component';
+import { VerifyAccountComponent } from './security/verify-account/verify-account.component';
 
 
 export const routes = [
     {
         path: '',
         component: LoginComponent,
+    },
+    {
+        path: 'verfiy',
+        component: VerifyAccountComponent,
     },
     {
         path: 'home',

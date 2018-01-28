@@ -11,6 +11,7 @@ import { FormatService } from './format.service';
 import { FilterPageComponent } from './filter-page/filter-page.component';
 import { FilterComponent } from './filter/filter.component';
 import { DateRangeComponent } from './date-range/date-range.component';
+import { MainComponent } from './main/main.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { DateRangeComponent } from './date-range/date-range.component';
         FilterPageComponent,
         FilterComponent,
         DateRangeComponent,
+        MainComponent,
     ],
     declarations: [
         HeaderComponent,
@@ -37,6 +39,7 @@ import { DateRangeComponent } from './date-range/date-range.component';
         FilterPageComponent,
         FilterComponent,
         DateRangeComponent,
+        MainComponent,
     ],
     providers: [
         MsgService,

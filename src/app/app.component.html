@@ -1,27 +1,14 @@
 <div *ngIf="auth.isLoggedIn()" class="spw-no-pad app">
-    <app-header
-        (onTrigger)="onHeaderTrigger()"
-    >
-    </app-header>
-    <div class="ui-g spw-fill-height spw-no-pad">
-        <div
-            class="spw-sidebar"
-            [ngClass]="{'ui-g-2': sidebarShown}"
-            [hidden]="!sidebarShown">
-            <app-sidebar></app-sidebar>
-        </div>
-        <div
-            class="spw-content"
-            [ngClass]="{'ui-g-10': sidebarShown,
-                        'ui-g-12': !sidebarShown}">
-            <router-outlet></router-outlet>
-
-        </div>
-    </div>
+    <app-main></app-main>
 </div>
 
 <div *ngIf="!auth.isLoggedIn()" class="spw-no-pad app">
-    <app-login></app-login>
+    <div style="height: 100%;" *ngIf="path === '/verify'; else login">
+        <app-verify-account></app-verify-account>
+    </div>
+    <ng-template #login>
+        <app-login></app-login>
+    </ng-template>
 </div>
 
 <app-msg></app-msg>

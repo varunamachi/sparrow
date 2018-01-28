@@ -10,8 +10,8 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { SecurityService } from './security.service';
-import { PasswordChangeComponent } from './password-change/password-change.component';
 import { PasswordComponent } from './password/password.component';
+import { VerifyAccountComponent } from './verify-account/verify-account.component';
 
 @NgModule({
     imports: [
@@ -23,12 +23,14 @@ import { PasswordComponent } from './password/password.component';
     exports: [
         LoginComponent,
         UserCreateComponent,
+        PasswordComponent,
+        VerifyAccountComponent,
     ],
     declarations: [
         LoginComponent,
         UserCreateComponent,
-        PasswordChangeComponent,
         PasswordComponent,
+        VerifyAccountComponent,
     ],
     providers: [
         {

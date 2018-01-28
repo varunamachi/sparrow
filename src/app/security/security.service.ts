@@ -24,7 +24,13 @@ export class SecurityService {
         })
     }
 
-    createPassword(reqID: string, userID: string, password: string) {
-
-    }
+    createPassword(
+        verID: string,
+        userID: string,
+        password: string): Observable<Object> {
+            const url = purl('uman/user/verify/' + userID + '/' + verID);
+            return this.http.post(url, {
+                'password': password,
+            })
+        }
 }

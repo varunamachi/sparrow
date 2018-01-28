@@ -9,7 +9,9 @@ import { AuthService } from './security/auth.service';
 })
 export class AppComponent implements OnInit {
 
-    sidebarShown = true;
+    path = window.location.pathname;
+
+
 
     constructor(public auth: AuthService,
                 private router: Router) {
@@ -17,12 +19,6 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-        if(!this.auth.isLoggedIn()) {
-            this.router.navigate(['/']);
-        }
     }
 
-    onHeaderTrigger() {
-        this.sidebarShown = !this.sidebarShown;
-    }
 }

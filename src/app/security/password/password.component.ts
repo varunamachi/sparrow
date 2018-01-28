@@ -14,6 +14,8 @@ export class PasswordComponent implements OnInit {
 
     @Input('mode') mode: PasswordSetMode = PasswordSetMode.Reset;
 
+    @Input('userID') userID = '';
+
     constructor() { }
 
     ngOnInit() {

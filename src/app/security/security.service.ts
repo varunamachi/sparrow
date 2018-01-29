@@ -2,7 +2,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from './security.model';
-import { purl, murl } from '../basic/url.util';
+import { purl, murl, aurl } from '../basic/url.util';
 
 @Injectable()
 export class SecurityService {
@@ -28,9 +28,14 @@ export class SecurityService {
         verID: string,
         userID: string,
         password: string): Observable<Object> {
-            const url = purl('uman/user/verify/' + userID + '/' + verID);
-            return this.http.post(url, {
-                'password': password,
-            })
-        }
+        const url = purl('uman/user/verify/' + userID + '/' + verID);
+        return this.http.post(url, {
+            'password': password,
+        })
+    }
+
+    createUser(user: User): Observable<Object> {
+        const url = aurl('uman/user');
+        return this.http.post(url, user);
+    }
 }

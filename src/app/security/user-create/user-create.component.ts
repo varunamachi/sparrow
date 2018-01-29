@@ -1,3 +1,4 @@
+import { AuthLevel } from './../security.model';
 import { SecurityService } from './../security.service';
 import { MsgService } from './../../basic/msg.service';
 import { Component, OnInit, Input } from '@angular/core';
@@ -36,7 +37,7 @@ export class UserCreateComponent implements OnInit {
         return this.password !== '' && this.password === this.confirm;
     }
 
-    createUser(f: any) {
+    registerUser(f: any) {
         const user = <User>f.value;
         if (this.password == this.confirm) {
             this.secSrv.registerUser(user, this.password).subscribe(
@@ -52,4 +53,17 @@ export class UserCreateComponent implements OnInit {
             this.msgSrv.showError('Passwords don\'t match');
         }
     }
+
+    createUser(f: any) {
+        const user = <User>f.value;
+        this.secSrv.createUser(user).subscribe(
+            res => {
+                this.msgSrv.showSuccess('Creation successful. '
+                + 'account will be active once user confirms EMail');
+            },
+            err => {
+                this.msgSrv.showError('User creation failed');
+            });
+    }
+
 }

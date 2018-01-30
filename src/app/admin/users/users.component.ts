@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { User, AuthLevel } from '../../security/security.model';
 import { MsgService } from '../../basic/msg.service';
 import { UserList } from '../admin.model';
+import { SecurityService } from '../../security/security.service';
 
 @Component({
     selector: 'app-users',
@@ -31,7 +32,8 @@ export class UsersComponent implements OnInit {
 
     constructor(private adminSrv: AdminService,
         public fmtSrv: FormatService,
-        private msgSrv: MsgService) { }
+        private msgSrv: MsgService,
+        private secSrv: SecurityService) { }
 
     ngOnInit() {
         this.refresh();
@@ -55,6 +57,17 @@ export class UsersComponent implements OnInit {
     paginate(event: PaginateEvent) {
         this.from = event.first;
         this.refresh();
+    }
+
+    deleteUser(user: User) {
+        this.secSrv.deleteUser(user.id).subscribe(
+            (res: any) => {
+                this.msgSrv.showSuccess('User deletion successful');
+            },
+            err => {
+                this.msgSrv.showError('Failed to delete user');
+            }
+        )
     }
 
 }

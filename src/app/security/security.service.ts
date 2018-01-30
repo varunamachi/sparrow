@@ -38,4 +38,9 @@ export class SecurityService {
         const url = aurl('uman/user');
         return this.http.post(url, user);
     }
+
+    deleteUser(userID: string): Observable<Object> {
+        const url = aurl('uman/user/' + userID);
+        return this.http.delete(url);
+    }
 }

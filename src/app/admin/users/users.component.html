@@ -54,12 +54,22 @@
             {{ this.fmtSrv.formatTime(data.created) }}
         </ng-template>
     </p-column>
+    <p-column
+        header="Ops"
+    >
+        <ng-template let-col let-data="rowData" pTemplate="body">
+            <button
+                pButton
+                icon="fa-trash"
+                (click)="deleteUser(data)"
+            ></button>
+        </ng-template>
+    </p-column>
 </p-dataTable>
 <p-dialog
     [style]="{'overflow': 'visible'}"
     header="Create User"
     [(visible)]="showCreateUserDialog"
     [modal]=true>
-    <app-user-create
-    ></app-user-create>
+    <app-user-create></app-user-create>
 </p-dialog>

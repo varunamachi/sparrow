@@ -13,8 +13,8 @@ export class UserCreateComponent implements OnInit {
 
     readonly AUTH_LEVELS_ITEMS = [
         // { label: "Super", value: 0 },
-        { label: "Admin", value: 1 },
         { label: "Normal", value: 2 },
+        { label: "Admin", value: 1 },
         { label: "Monitor", value: 3 },
         { label: "Outsider", value: 4 },
     ];
@@ -39,6 +39,9 @@ export class UserCreateComponent implements OnInit {
 
     registerUser(f: any) {
         const user = <User>f.value;
+        if(!user.auth) {
+            user.auth = AuthLevel.Normal;
+        }
         if (this.password == this.confirm) {
             this.secSrv.registerUser(user, this.password).subscribe(
                 res => {
@@ -56,6 +59,9 @@ export class UserCreateComponent implements OnInit {
 
     createUser(f: any) {
         const user = <User>f.value;
+        if(!user.auth) {
+            user.auth = AuthLevel.Normal;
+        }
         this.secSrv.createUser(user).subscribe(
             res => {
                 this.msgSrv.showSuccess('Creation successful. '

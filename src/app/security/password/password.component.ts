@@ -1,9 +1,13 @@
 import {
     Component,
     OnInit,
-    Input
+    Input,
+    Output,
+    EventEmitter,
 } from '@angular/core';
 import { PasswordSetMode } from '../security.model';
+import { MsgService } from '../../basic/msg.service';
+import { SecurityService } from '../security.service';
 
 @Component({
     selector: 'app-password',
@@ -16,9 +20,25 @@ export class PasswordComponent implements OnInit {
 
     @Input('userID') userID = '';
 
-    constructor() { }
+    @Output('onSubmit') onSubmit = new EventEmitter();
+
+    constructor(
+        private msgSrv: MsgService) {
+
+    }
 
     ngOnInit() {
+    }
+
+    onFormSubmit(f: any) {
+        this.onSubmit.emit({
+            userID: this.userID,
+            data: f.value,
+        });
+    }
+
+    passwordValid(f: any) {
+        return f.value.password === f.value.confirm;
     }
 
 }

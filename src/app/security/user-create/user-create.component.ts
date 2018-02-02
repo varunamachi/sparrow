@@ -1,7 +1,13 @@
+import {
+    Component,
+    OnInit,
+    Input,
+    Output,
+    EventEmitter
+} from '@angular/core';
 import { AuthLevel } from './../security.model';
 import { SecurityService } from './../security.service';
 import { MsgService } from './../../basic/msg.service';
-import { Component, OnInit, Input } from '@angular/core';
 import { User, UserCreateMode } from '../../security/security.model';
 
 @Component({
@@ -25,6 +31,8 @@ export class UserCreateComponent implements OnInit {
 
     @Input("mode") mode: UserCreateMode = UserCreateMode.Create;
 
+    @Output("onFinished") onFinished = new EventEmitter()
+
     constructor(private secSrv: SecurityService,
         private msgSrv: MsgService) {
 
@@ -39,7 +47,7 @@ export class UserCreateComponent implements OnInit {
 
     registerUser(f: any) {
         const user = <User>f.value;
-        if(!user.auth) {
+        if (!user.auth) {
             user.auth = AuthLevel.Normal;
         }
         if (this.password == this.confirm) {
@@ -47,29 +55,35 @@ export class UserCreateComponent implements OnInit {
                 res => {
                     this.msgSrv.showSuccess('Registration successful, please'
                         + ' confirm the EMail');
+                    this.onFinished.emit({ result: true, user: user });
                 },
                 err => {
                     this.msgSrv.showError('Registration failed');
+                    this.onFinished.emit({ result: false, user: user });
                 });
 
         } else {
             this.msgSrv.showError('Passwords don\'t match');
         }
+
     }
 
     createUser(f: any) {
         const user = <User>f.value;
-        if(!user.auth) {
+        if (!user.auth) {
             user.auth = AuthLevel.Normal;
         }
         this.secSrv.createUser(user).subscribe(
             res => {
                 this.msgSrv.showSuccess('Creation successful. '
-                + 'account will be active once user confirms EMail');
+                    + 'account will be active once user confirms EMail');
+                this.onFinished.emit({ result: true, user: user });
             },
             err => {
                 this.msgSrv.showError('User creation failed');
+                this.onFinished.emit({ result: false, user: user });
             });
+
     }
 
 }

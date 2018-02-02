@@ -38,6 +38,7 @@ export class PasswordComponent implements OnInit {
     }
 
     passwordValid(f: any) {
+        console.log(f);
         return f.value.password === f.value.confirm;
     }
 

@@ -8,6 +8,7 @@
         <app-password
             [mode]="'set'"
             [userID]="userID"
+            (onSubmit)="verify($event)"
         ></app-password>
     </div>
 </div>

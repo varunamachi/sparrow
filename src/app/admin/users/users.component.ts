@@ -70,4 +70,8 @@ export class UsersComponent implements OnInit {
         )
     }
 
+    onUserCreationDone() {
+        this.showCreateUserDialog = false;
+    }
+
 }

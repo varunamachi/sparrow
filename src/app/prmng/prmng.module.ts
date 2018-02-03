@@ -22,6 +22,7 @@ import {
     PaginatorModule,
     TriStateCheckboxModule,
 } from 'primeng/primeng'
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
 @NgModule({
     imports: [
@@ -69,5 +70,8 @@ import {
         PaginatorModule,
         TriStateCheckboxModule,
     ],
+    providers: [
+        ConfirmationService,
+    ]
 })
 export class PrmngModule { }

@@ -4,7 +4,8 @@ import { User } from "../security/security.model";
 
 export interface SEvent {
     op: string;
-    user: string;
+    userID: string;
+    userName: string,
     success: boolean;
     error: string;
     time: Date;
@@ -22,6 +23,6 @@ export interface UserList {
 }
 
 export interface EventFilterModel {
-    userIDs: string[];
+    userNames: string[];
     eventTypes: string[];
 }

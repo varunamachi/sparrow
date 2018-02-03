@@ -74,9 +74,9 @@ export class EventsComponent implements OnInit {
                     },
                     {
                         name: 'Users',
-                        field: 'user',
+                        field: 'userName',
                         type: FilterType.Value,
-                        data: res.userIDs,
+                        data: res.userNames,
                     },
                     {
                         name: 'Date Range',

@@ -6,6 +6,7 @@ import { User, AuthLevel } from '../../security/security.model';
 import { MsgService } from '../../basic/msg.service';
 import { UserList } from '../admin.model';
 import { SecurityService } from '../../security/security.service';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
 @Component({
     selector: 'app-users',
@@ -33,7 +34,8 @@ export class UsersComponent implements OnInit {
     constructor(private adminSrv: AdminService,
         public fmtSrv: FormatService,
         private msgSrv: MsgService,
-        private secSrv: SecurityService) { }
+        private secSrv: SecurityService,
+        private confirmSrv: ConfirmationService) { }
 
     ngOnInit() {
         this.refresh();
@@ -60,18 +62,28 @@ export class UsersComponent implements OnInit {
     }
 
     deleteUser(user: User) {
-        this.secSrv.deleteUser(user.id).subscribe(
-            (res: any) => {
-                this.msgSrv.showSuccess('User deletion successful');
-            },
-            err => {
-                this.msgSrv.showError('Failed to delete user');
+        this.confirmSrv.confirm({
+            message: 'Do you really want to delete selected user?',
+            header: 'Delete User ' + user.firstName + ' ' + user.lastName,
+            icon: 'fa fa-question-circle',
+            accept: () => {
+                this.secSrv.deleteUser(user.id).subscribe(
+                    (res: any) => {
+                        this.msgSrv.showSuccess('User deletion successful');
+                        this.refresh()
+                    },
+                    err => {
+                        this.msgSrv.showError('Failed to delete user');
+                    }
+                )
             }
-        )
+        })
+
     }
 
     onUserCreationDone() {
         this.showCreateUserDialog = false;
+        this.refresh();
     }
 
 }

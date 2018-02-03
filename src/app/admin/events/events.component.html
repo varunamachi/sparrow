@@ -37,6 +37,18 @@
                 field="user"
                 header="User"
             >
+                <ng-template let-data="rowData" pTemplate="body">
+                    <span *ngIf="data.userName; else showID">
+                        {{data.userName}}
+                    </span>
+                    <ng-template  #showID>
+                        <span
+                            style="font-family: monospace; font-size: 11px;"
+                        >
+                            {{data.userID }}
+                        </span>
+                    </ng-template>
+                </ng-template>
             </p-column>
             <p-column
                 field="success"

@@ -58,7 +58,7 @@ export class AdminService {
                 if (resp.ok) {
                     return <EventFilterModel>resp.data;
                 }
-                return { userIDs: [], eventTypes: [] };
+                return { userNames: [], eventTypes: [] };
             })
     }
 }

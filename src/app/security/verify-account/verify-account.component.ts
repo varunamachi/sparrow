@@ -32,10 +32,11 @@ export class VerifyAccountComponent implements OnInit {
             this.verifyID, this.userID, event.data.password).subscribe(
             (res: any) => {
                 this.msgSrv.showSuccess("User successfuly veryfied")
-                this.router.navigate(['/']);
+                // this.router.navigate(['/']);
+                window.location.assign('/');
             },
             err => {
-                this.msgSrv.showSuccess("Failed to verify user")
+                this.msgSrv.showError("Failed to verify user")
             });
     }
 

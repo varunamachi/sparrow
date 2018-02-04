@@ -27,15 +27,20 @@
             [pageLinkSize]="PAGE_SHOWN"
             (onPageChange)="paginate($event)"
         ></p-paginator>
-        <p-dataTable [value]="events">
+        <p-dataTable
+            [value]="events"
+            [resizableColumns]="true"
+        >
             <p-column
                 field="op"
                 header="Operation"
+                [style]="{'width':'25%'}"
             >
             </p-column>
             <p-column
                 field="user"
                 header="User"
+                [style]="{'width':'25%'}"
             >
                 <ng-template let-data="rowData" pTemplate="body">
                     <span *ngIf="data.userName; else showID">
@@ -53,6 +58,7 @@
             <p-column
                 field="success"
                 header="Success"
+                [style]="{'width':'10%'}"
             >
                 <ng-template let-data="rowData" pTemplate="body">
                     {{data.success ? 'Yes' : 'No' }}
@@ -61,9 +67,22 @@
             <p-column
                 field="time"
                 header="Time"
+                [style]="{'width':'25%'}"
             >
                 <ng-template let-col let-data="rowData" pTemplate="body">
                     {{ this.fmtSrv.formatTime(data.time) }}
+                </ng-template>
+            </p-column>
+            <p-column
+                header="Ops"
+                [style]="{'width':'10%'}"
+            >
+                <ng-template let-col let-data="rowData" pTemplate="body">
+                    <button
+                        pButton
+                        icon="fa-info"
+                        (click)="showEventDetail(data)"
+                    ></button>
                 </ng-template>
             </p-column>
         </p-dataTable>

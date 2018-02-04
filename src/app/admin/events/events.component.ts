@@ -122,4 +122,8 @@ export class EventsComponent implements OnInit {
         this.filter = filter;
         this.refresh();
     }
+
+    showEventDetail(event: SEvent) {
+
+    }
 }

@@ -7,6 +7,7 @@ import { MsgService } from '../../basic/msg.service';
 import { UserList } from '../admin.model';
 import { SecurityService } from '../../security/security.service';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
+import { AuthService } from '../../security/auth.service';
 
 @Component({
     selector: 'app-users',
@@ -31,7 +32,9 @@ export class UsersComponent implements OnInit {
 
     showCreateUserDialog = false;
 
-    constructor(private adminSrv: AdminService,
+    constructor(
+        public auth: AuthService,
+        private adminSrv: AdminService,
         public fmtSrv: FormatService,
         private msgSrv: MsgService,
         private secSrv: SecurityService,
@@ -84,6 +87,10 @@ export class UsersComponent implements OnInit {
     onUserCreationDone() {
         this.showCreateUserDialog = false;
         this.refresh();
+    }
+
+    showUserDetails(user: User) {
+
     }
 
 }

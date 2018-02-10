@@ -32,6 +32,10 @@ export class UsersComponent implements OnInit {
 
     showCreateUserDialog = false;
 
+    user: User = null;
+
+    showDetailsDialog = false;
+
     constructor(
         public auth: AuthService,
         private adminSrv: AdminService,
@@ -90,7 +94,8 @@ export class UsersComponent implements OnInit {
     }
 
     showUserDetails(user: User) {
-
+        this.user = user;
+        this.showDetailsDialog = true;
     }
 
 }

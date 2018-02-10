@@ -21,6 +21,8 @@ import {
     SelectButtonModule,
     PaginatorModule,
     TriStateCheckboxModule,
+    TreeModule,
+    TreeNode,
 } from 'primeng/primeng'
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 

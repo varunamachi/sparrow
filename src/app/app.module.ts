@@ -36,8 +36,9 @@ import { HomeComponent } from './home/home.component';
         JwtModule.forRoot({
             config: {
                 tokenGetter: tokenGetter,
-            }
-        })
+                whitelistedDomains: ['localhost:4200']
+            },
+                    })
     ],
     providers: [
 

@@ -36,6 +36,12 @@ html{
     background-color: red;
 }
 
+/* .ui-widget-content{
+    background-color: white;
+    border: none;
+    color:red;
+} */
+
 .spw-green{
     background-color: green;
 }
@@ -110,6 +116,8 @@ html{
 .form-control.ng-touched.ng-invalid {
     border: 2px solid rgba(255, 0, 0, 0.555);
 }
+
+
 
 /* .ui-dropdown {
     background-color: red;

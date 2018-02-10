@@ -13,12 +13,14 @@ import { FilterComponent } from './filter/filter.component';
 import { DateRangeComponent } from './date-range/date-range.component';
 import { MainComponent } from './main/main.component';
 import { ObjectComponent } from './object/object.component';
+import { TreeModule } from 'primeng/primeng';
 
 
 @NgModule({
     imports: [
         CommonModule,
         PrmngModule,
+        TreeModule
     ],
     exports: [
         HeaderComponent,

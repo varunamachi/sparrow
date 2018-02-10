@@ -1,0 +1,13 @@
+.obj-trees-label{
+    font-style: bold;
+    color:#d6cfcf;
+    /* font-size: 15px; */
+    padding-right: 6px;
+}
+
+.obj-trees-data{
+    font-style: normal;
+    color:#7c7c7c;
+    /* font-size: 13px; */
+}
+

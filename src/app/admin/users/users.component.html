@@ -87,13 +87,3 @@
         (onFinished)="onUserCreationDone()"
     ></app-user-create>
 </p-dialog>
-<p-dialog
-    [style]="{'overflow': 'visible'}"
-    header="Details"
-    [(visible)]="showDetailsDialog"
-    [modal]=true
->
-    <app-object
-        [object]="user"
-    ></app-object>
-</p-dialog>

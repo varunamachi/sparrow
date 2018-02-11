@@ -5,6 +5,7 @@ import { AdminService } from './../admin.service';
 import { FormatService } from './../../basic/format.service';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { ObjectDetailService } from '../../basic/object-detail.service';
 
 @Component({
     selector: 'app-events',
@@ -32,7 +33,8 @@ export class EventsComponent implements OnInit {
     constructor(
         public fmtSrv: FormatService,
         private adminSrv: AdminService,
-        private msgSrv: MsgService) {
+        private msgSrv: MsgService,
+        private objSrv: ObjectDetailService) {
 
     }
 
@@ -124,6 +126,6 @@ export class EventsComponent implements OnInit {
     }
 
     showEventDetail(event: SEvent) {
-
+        this.objSrv.show(event);
     }
 }

@@ -1,29 +1,37 @@
 
 
-
-<p-tree
-    [value]="treeNodes"
-    [style]="{ 'width': '100%', 'height': '100%'}"
+<div
+    style="width: 600px; height: 500px;"
 >
-    <ng-template let-node  pTemplate="treeLabel">
+    <p-tree
+        [value]="treeNodes"
+        [style]="{
+            'width': '100%',
+            'height': '100%'
+        }"
+    >
+        <ng-template let-node  pTemplate="treeLabel">
 
-        <span [ngSwitch]="node.dataType">
-            <span *ngSwitchCase="'array'">[]</span>
-            <span *ngSwitchCase="'object'">{{'{}'}}</span>
-            <span *ngSwitchDefault>.</span>
-        </span>
-        <span
-            class='obj-trees-label'
-            ngDefaultControl
-        >
-            {{node.label}}:
-        </span>
-        <span
-            class='obj-trees-data'
-            ngDefaultControl
-        >
-            {{node.data}}
-        </span>
-    </ng-template>
-</p-tree>
-
+            <span
+                style="padding-right: 4px; font-family: monospace"
+                [ngSwitch]="node.dataType"
+            >
+                <span *ngSwitchCase="'array'">[]</span>
+                <span *ngSwitchCase="'object'">{{'{}'}}</span>
+                <span *ngSwitchDefault>&nbsp;.</span>
+            </span>
+            <span
+                class='obj-trees-label'
+                ngDefaultControl
+            >
+                {{node.label}}:
+            </span>
+            <span
+                class='obj-trees-data'
+                ngDefaultControl
+            >
+                {{node.data}}
+            </span>
+        </ng-template>
+    </p-tree>
+</div>

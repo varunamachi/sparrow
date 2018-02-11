@@ -14,6 +14,8 @@ import { DateRangeComponent } from './date-range/date-range.component';
 import { MainComponent } from './main/main.component';
 import { ObjectComponent } from './object/object.component';
 import { TreeModule } from 'primeng/primeng';
+import {ObjectDetailService} from './object-detail.service';
+import { ObjectDialogComponent } from './object-dialog/object-dialog.component'
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import { TreeModule } from 'primeng/primeng';
         DateRangeComponent,
         MainComponent,
         ObjectComponent,
+        ObjectDialogComponent,
     ],
     declarations: [
         HeaderComponent,
@@ -45,10 +48,12 @@ import { TreeModule } from 'primeng/primeng';
         DateRangeComponent,
         MainComponent,
         ObjectComponent,
+        ObjectDialogComponent,
     ],
     providers: [
         MsgService,
-        FormatService
+        FormatService,
+        ObjectDetailService,
     ]
 })
 export class BasicModule { }

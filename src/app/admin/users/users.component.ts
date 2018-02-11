@@ -1,3 +1,4 @@
+import { ObjectDetailService } from './../../basic/object-detail.service';
 import { Filter, PaginateEvent } from './../../basic/basic.model';
 import { FormatService } from './../../basic/format.service';
 import { AdminService } from './../admin.service';
@@ -32,17 +33,14 @@ export class UsersComponent implements OnInit {
 
     showCreateUserDialog = false;
 
-    user: User = null;
-
-    showDetailsDialog = false;
-
     constructor(
         public auth: AuthService,
         private adminSrv: AdminService,
         public fmtSrv: FormatService,
         private msgSrv: MsgService,
         private secSrv: SecurityService,
-        private confirmSrv: ConfirmationService) { }
+        private confirmSrv: ConfirmationService,
+        private objSrv: ObjectDetailService) { }
 
     ngOnInit() {
         this.refresh();
@@ -94,8 +92,7 @@ export class UsersComponent implements OnInit {
     }
 
     showUserDetails(user: User) {
-        this.user = user;
-        this.showDetailsDialog = true;
+        this.objSrv.show(user);
     }
 
 }

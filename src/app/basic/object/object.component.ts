@@ -6,6 +6,8 @@ import {
     SimpleChanges,
 } from '@angular/core';
 import { TreeNode } from 'primeng/components/common/treenode';
+import { Subscription } from 'rxjs/Subscription';
+import { ObjectDetailService } from '../object-detail.service';
 
 interface ObjectTreeNode extends TreeNode {
     dataType: string;
@@ -20,12 +22,13 @@ export class ObjectComponent implements OnInit, OnChanges {
 
     @Input('object') object: Object;
 
+
     treeNodes: ObjectTreeNode[];
 
-    constructor() { }
+    constructor() {
+    }
 
     ngOnInit() {
-        // this.treeNodes = <TreeNode[]>this.getAsTreeNode(this.object);
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -56,27 +59,11 @@ export class ObjectComponent implements OnInit, OnChanges {
                 data.dataType = "array";
             } else if(value[1] instanceof Object) {
                 data.dataType = "object";
-            }else{
+            } else{
                 data.dataType = "property";
             }
             treeNode.push(data);
         })
         return treeNode;
     }
-    // getAsTreeNode(obj: Object, x: ObjectComponent) {
-    //     let treeNode: TreeNode[] = [];
-    //     Object.entries(obj).forEach(function (value, index) {
-    //         const data = <TreeNode>{};
-    //         data.label = value[0];
-    //         data.type = 'treeLabel';
-    //         if (Object.isExtensible(value[1])) {
-    //             data.data = "";
-    //             data.children = x.getAsTreeNode(value[1], x);
-    //         } else {
-    //             data.data = ":" + value[1];
-    //         }
-    //         treeNode.push(data);
-    //     })
-    //     return treeNode;
-    // }
 }

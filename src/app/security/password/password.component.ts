@@ -42,4 +42,7 @@ export class PasswordComponent implements OnInit {
         return f.value.password === f.value.confirm;
     }
 
+    isMode(mode: string): boolean {
+        return mode === <string>this.mode;
+    }
 }

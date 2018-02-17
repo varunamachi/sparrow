@@ -43,7 +43,7 @@ export interface FilterDesc {
     field: string;
     name: string;
     type: FilterType;
-    data?: string[] | DateRange | boolean[];
+    data?: string[] | DateRange | boolean[] | number[];
 }
 
 export interface PaginateEvent {

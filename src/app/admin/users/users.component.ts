@@ -1,9 +1,9 @@
 import { ObjectDetailService } from './../../basic/object-detail.service';
-import { Filter, PaginateEvent } from './../../basic/basic.model';
+import { Filter, PaginateEvent, FilterDesc, FilterType } from './../../basic/basic.model';
 import { FormatService } from './../../basic/format.service';
 import { AdminService } from './../admin.service';
 import { Component, OnInit } from '@angular/core';
-import { User, AuthLevel } from '../../security/security.model';
+import { User, AuthLevel, UserStatus } from '../../security/security.model';
 import { MsgService } from '../../basic/msg.service';
 import { UserList } from '../admin.model';
 import { SecurityService } from '../../security/security.service';
@@ -31,6 +31,8 @@ export class UsersComponent implements OnInit {
 
     filter = new Filter();
 
+    filterDesc: FilterDesc[] = []
+
     showCreateUserDialog = false;
 
     constructor(
@@ -44,6 +46,7 @@ export class UsersComponent implements OnInit {
 
     ngOnInit() {
         this.refresh();
+        this.populateFilters();
     }
 
     refresh() {
@@ -93,6 +96,40 @@ export class UsersComponent implements OnInit {
 
     showUserDetails(user: User) {
         this.objSrv.show(user);
+    }
+
+    populateFilters() {
+        this.filterDesc = [
+            {
+                name: 'Role',
+                field: 'role',
+                type: FilterType.Value,
+                data: [
+                    AuthLevel.Super,
+                    AuthLevel.Admin,
+                    AuthLevel.Normal,
+                    AuthLevel.Monitor,
+                    AuthLevel.Outsider,
+                ],
+            },
+            {
+                name: 'Status',
+                field: 'status',
+                type: FilterType.Value,
+                data: [
+                    UserStatus.Verified,
+                    UserStatus.Active,
+                    UserStatus.Disabled,
+                    UserStatus.Flagged,
+                ],
+            },
+        ]
+    }
+
+    filterChanged(filter: Filter) {
+        this.from = 0;
+        this.filter = filter;
+        this.refresh();
     }
 
 }

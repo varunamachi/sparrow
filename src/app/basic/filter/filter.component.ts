@@ -16,7 +16,7 @@ import * as moment from 'moment'
     templateUrl: './filter.component.html',
     styleUrls: ['./filter.component.css']
 })
-export class FilterComponent implements OnInit, OnChanges {
+export class FilterComponent implements OnInit {
 
     @Input("desc") desc: FilterDesc[] = [];
 
@@ -29,34 +29,14 @@ export class FilterComponent implements OnInit, OnChanges {
     ngOnInit() {
     }
 
-    ngOnChanges(changes: SimpleChanges) {
-        // if (changes["desc"]) {
-        //     this.desc.forEach((desc: FilterDesc) => {
-        //         switch (desc.type) {
-        //             case FilterType.Value:
-        //                 this.filter.fields[desc.field] = '';
-        //                 break;
-        //             case FilterType.Array:
-        //                 this.filter.lists[desc.name] = {
-        //                     matchAll: true,
-        //                     tags: [],
-        //                 }
-        //                 break;
-        //             case FilterType.DateRange:
-        //                 this.filter.dates[desc.name] = {
-        //                     from: moment('1980-01-01', 'YYYY-MM-DD').toDate(),
-        //                     to: moment().toDate()
-        //                 }
-        //                 break;
-        //         }
-        //     })
-        // }
-    }
-
-    toSelectItems(arr: string[]): SelectItem[] {
+    toSelectItems(arr: any[]): SelectItem[] {
         const items: SelectItem[] = [];
-        arr.forEach((str: string) => {
-            items.push({ label: str, value: str })
+        arr.forEach((item: any) => {
+            if(item.label !== undefined && item.value !== undefined) {
+                items.push({ label: item.label, value: item.value })
+            } else {
+                items.push({ label: item, value: item })
+            }
         })
         return items;
     }

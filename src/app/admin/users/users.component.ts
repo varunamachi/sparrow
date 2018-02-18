@@ -9,6 +9,7 @@ import { UserList } from '../admin.model';
 import { SecurityService } from '../../security/security.service';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { AuthService } from '../../security/auth.service';
+import { SelectItem } from 'primeng/components/common/selectitem';
 
 @Component({
     selector: 'app-users',
@@ -102,25 +103,25 @@ export class UsersComponent implements OnInit {
         this.filterDesc = [
             {
                 name: 'Role',
-                field: 'role',
+                field: 'auth',
                 type: FilterType.Value,
                 data: [
-                    AuthLevel.Super,
-                    AuthLevel.Admin,
-                    AuthLevel.Normal,
-                    AuthLevel.Monitor,
-                    AuthLevel.Outsider,
+                    { value: AuthLevel.Super, label: 'Super' },
+                    { value: AuthLevel.Admin, label: 'Admin' },
+                    { value: AuthLevel.Normal, label: 'Normal' },
+                    { value: AuthLevel.Monitor, label: 'Monitor' },
+                    { value: AuthLevel.Outsider, label: 'Outsider' },
                 ],
             },
             {
                 name: 'Status',
-                field: 'status',
+                field: 'state',
                 type: FilterType.Value,
                 data: [
-                    UserStatus.Verified,
-                    UserStatus.Active,
-                    UserStatus.Disabled,
-                    UserStatus.Flagged,
+                    { value: UserStatus.Verified, label: 'Verified' },
+                    { value: UserStatus.Active, label: 'Active' },
+                    { value: UserStatus.Disabled, label: 'Disabled' },
+                    { value: UserStatus.Flagged, label: 'Flagged' },
                 ],
             },
         ]

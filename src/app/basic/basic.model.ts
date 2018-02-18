@@ -1,3 +1,5 @@
+import { SelectItem } from "primeng/components/common/selectitem";
+
 export interface Result {
     status: number;
     op: string;
@@ -43,7 +45,7 @@ export interface FilterDesc {
     field: string;
     name: string;
     type: FilterType;
-    data?: string[] | DateRange | boolean[] | number[];
+    data?: string[] | DateRange | boolean[] | number[] | SelectItem[]
 }
 
 export interface PaginateEvent {

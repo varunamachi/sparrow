@@ -12,6 +12,9 @@
             [(ngModel)]="showFilter"
         ></p-checkbox>
     </span>
+    <span message style="padding: 0px; margin: 0px; border-width: 0px;">
+        From {{from}} to {{from + ENTRIES_PER_PAGE}} of {{total}}
+    </span>
 </app-page-header>
 <app-filter-page [filterVisible]="showFilter">
     <div filter>

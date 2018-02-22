@@ -6,6 +6,9 @@
         <!-- <ng-content></ng-content> -->
         <ng-content select="[toolbar]"></ng-content>
     </span>
+    <span class="message">
+        <ng-content select="[message]"></ng-content>
+    </span>
 </div>
 <div *ngIf="placeholder">
     <span class="placeholder">

@@ -38,7 +38,7 @@ import { HomeComponent } from './home/home.component';
                 tokenGetter: tokenGetter,
                 whitelistedDomains: ['localhost:4200']
             },
-                    })
+        })
     ],
     providers: [
 

@@ -1,5 +1,5 @@
 import { Entity } from './../entity.model';
-import { Filter, FilterDesc, PaginateEvent } from './../../basic/basic.model';
+import { Filter, FilterDesc, PaginateEvent, FilterType } from './../../basic/basic.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -30,6 +30,7 @@ export class EntityListComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+        this.populateFilters();
     }
 
     refresh() {
@@ -37,7 +38,26 @@ export class EntityListComponent implements OnInit {
     }
 
     populateFilters() {
-
+        this.filterDesc = [
+            {
+                name: 'Name',
+                field: 'name',
+                type: FilterType.Value,
+                data: [],
+            },
+            {
+                name: 'Owner',
+                field: 'owner',
+                type: FilterType.Value,
+                data: [],
+            },
+            {
+                name: 'Location',
+                field: 'location',
+                type: FilterType.Value,
+                data: [],
+            },
+        ]
     }
 
     filterChanged(filter: Filter) {

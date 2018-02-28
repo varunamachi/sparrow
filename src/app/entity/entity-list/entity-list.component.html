@@ -12,7 +12,7 @@
             ></p-checkbox>
         </span>
         <button pButton
-            label="Create User"
+            label="Create Entity"
             icon = "fa-plus"
             (click)="showCreateUserDialog = true"
         >
@@ -43,6 +43,30 @@
             [value]="entities"
             [resizableColumns]="true"
         >
+            <p-column
+                field="name"
+                header="Name"
+                [style]="{'width':'25%'}"
+            >
+            </p-column>
+            <p-column
+                field="type"
+                header="Type"
+                [style]="{'width':'15%'}"
+            >
+            </p-column>
+            <p-column
+                field="owner"
+                header="Owner"
+                [style]="{'width':'25%'}"
+            >
+            </p-column>
+            <p-column
+                field="location"
+                header="Location"
+                [style]="{'width':'25%'}"
+            >
+            </p-column>
             <p-column
                 header="Ops"
                 [style]="{'width':'10%'}"

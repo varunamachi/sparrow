@@ -1,3 +1,4 @@
+import { ObjectDetailService } from './../../basic/object-detail.service';
 import { Entity } from './../entity.model';
 import { Filter, FilterDesc, PaginateEvent, FilterType } from './../../basic/basic.model';
 import { Component, OnInit } from '@angular/core';
@@ -27,7 +28,9 @@ export class EntityListComponent implements OnInit {
 
     showCreateEntityDialog = false;
 
-    constructor() { }
+    constructor(private detailsSrv: ObjectDetailService) {
+
+    }
 
     ngOnInit() {
         this.populateFilters();
@@ -77,6 +80,14 @@ export class EntityListComponent implements OnInit {
     paginate(event: PaginateEvent) {
         this.from = event.first;
         this.refresh();
+    }
+
+    deleteEntity() {
+
+    }
+
+    entityDetails(data: Entity) {
+        this.detailsSrv.show(data);
     }
 
 }

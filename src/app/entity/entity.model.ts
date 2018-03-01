@@ -16,14 +16,14 @@ export interface Entity {
 }
 
 interface Pair {
-	key: string
-	value: string
+    key: string
+    value: string
 }
 
 //Range - integer range
-interface ParamRange  {
-	min: number
-	max: number
+interface ParamRange {
+    min: number
+    max: number
 }
 
 
@@ -38,7 +38,7 @@ export interface Param {
     name: string
     type: ParamType
     desc: string
-    value: any
+    value: boolean | ParamRange | string[] | string
     range: ParamRange
     choices: Pair[]
     default: any

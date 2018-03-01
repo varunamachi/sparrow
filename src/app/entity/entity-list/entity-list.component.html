@@ -75,10 +75,12 @@
                     <button
                         pButton
                         icon="fa-trash"
+                        (click)="deleteEntity()"
                     ></button>
                     <button
                         pButton
                         icon="fa-info"
+                        (click)="entityDetails(data)"
                     ></button>
                 </ng-template>
             </p-column>

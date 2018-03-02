@@ -9,6 +9,7 @@ export interface Entity {
     variables: Param[]
     readers: string[]
     writers: string[]
+    tags: string[]
     createdAt: Date
     modifiedAt: Date
     createdBy: string

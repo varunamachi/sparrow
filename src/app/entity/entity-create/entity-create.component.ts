@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-entity-create',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EntityCreateComponent implements OnInit {
 
-    constructor() { }
+    form: FormGroup
+
+    constructor(private fb: FormBuilder) {
+        this.form = fb.group({
+            'name': ['', Validators.required],
+            'type': ['linux', Validators.required],
+            'location': ['', Validators.required],
+        });
+    }
 
     ngOnInit() {
     }

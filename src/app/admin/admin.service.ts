@@ -36,7 +36,7 @@ export class AdminService {
         offset: number,
         limit: number,
         filter: Filter): Observable<EventList> {
-        const url = aurl('admin/event') +
+        const url = aurl('event') +
             '?offset=' +
             offset +
             '&limit=' +

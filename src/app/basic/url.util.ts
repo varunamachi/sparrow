@@ -1,24 +1,69 @@
 import { APP_NAME, API_VERSION } from '../../constnats';
 import { Filter } from './basic.model';
 
-export function surl(uri: string): string {
-    return APP_NAME + '/api/' + API_VERSION + '/in/r0/' + uri;
+const SA = 'in/r0';
+const AA = 'in/r1';
+const NA = 'in/r2';
+const MA = 'in/r3';
+const PA = '';
+
+export function surl(...uri: string[]): string {
+    return _url(SA, -1, -1, null, ...uri);
 }
 
-export function aurl(uri: string): string {
-    return APP_NAME + '/api/' + API_VERSION + '/in/r1/' + uri;
+export function aurl(...uri: string[]): string {
+    return _url(AA, -1, -1, null, ...uri);
 }
 
-export function nurl(uri: string): string {
-    return APP_NAME + '/api/' + API_VERSION + '/in/r2/' + uri;
+export function nurl(...uri: string[]): string {
+    return _url(NA, -1, -1, null, ...uri);
 }
 
-export function murl(uri: string, ): string {
-    return APP_NAME + '/api/' + API_VERSION + '/in/r3/' + uri;
+export function murl(...uri: string[], ): string {
+    return _url(MA, -1, -1, null, ...uri);
 }
 
-export function purl(uri: string): string {
-    return APP_NAME + '/api/' + API_VERSION + '/' + uri;
+export function purl(...uri: string[]): string {
+    return _url(PA, -1, -1, null, ...uri);
+}
+
+export function surlx(
+    offset: number,
+    limit: number,
+    filter: Filter,
+    ...uri: string[]): string {
+    return _url(SA, offset, limit, filter, ...uri);
+}
+export function aurlx(
+    offset: number,
+    limit: number,
+    filter: Filter,
+    ...uri: string[]): string {
+    return _url(AA, offset, limit, filter, ...uri);
+}
+
+export function nurlx(
+    offset: number,
+    limit: number,
+    filter: Filter,
+    ...uri: string[]): string {
+    return _url(NA, offset, limit, filter, ...uri);
+}
+
+export function murlx(
+    offset: number,
+    limit: number,
+    filter: Filter,
+    ...uri: string[]): string {
+    return _url(MA, offset, limit, filter, ...uri);
+}
+
+export function purlx(
+    offset: number,
+    limit: number,
+    filter: Filter,
+    ...uri: string[]): string {
+    return _url(PA, offset, limit, filter, ...uri);
 }
 
 export function _url(
@@ -37,14 +82,11 @@ export function _url(
             url += '/'
         }
     });
-    if (offset >= 0) {
-        url += '?offset=' + offset;
-    }
-    if (limit > 0) {
-        url += '&limit=' + limit;
-    }
     if (filter) {
-        url += '&filter=' + JSON.stringify(filter)
+        url += '?filter=' + JSON.stringify(filter)
+    }
+    if (offset >= 0 && limit > 0) {
+        url += (filter ? '&' : '?') + 'offset=' + offset + '&limit=' + limit;
     }
     return url;
 

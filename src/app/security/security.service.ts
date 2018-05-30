@@ -28,7 +28,7 @@ export class SecurityService {
         verID: string,
         userID: string,
         password: string): Observable<Object> {
-        const url = purl('uman/user/verify/' + userID + '/' + verID);
+        const url = purl('uman/user/verify', userID, verID);
         return this.http.post(url, {
             'password': password,
         })
@@ -40,7 +40,7 @@ export class SecurityService {
     }
 
     deleteUser(userID: string): Observable<Object> {
-        const url = aurl('uman/user/' + userID);
+        const url = aurl('uman/user', userID);
         return this.http.delete(url);
     }
 }

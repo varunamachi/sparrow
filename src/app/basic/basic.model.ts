@@ -1,12 +1,12 @@
 import { SelectItem } from "primeng/components/common/selectitem";
 
-export interface Result {
+export interface Result<T> {
     status: number;
     op: string;
     msg: string;
     ok: boolean;
     error: any;
-    data: any;
+    data: T;
 }
 
 export interface DateRange {
@@ -40,12 +40,16 @@ export enum FilterType {
     DateRange = 'dateRange',
     Boolean = 'boolean',
 }
+// data?: string[] | DateRange | boolean[] | number[] | SelectItem[]
+export type FVals = string[] | DateRange | boolean[] | number[] | SelectItem[];
+export type FilterVals = Map<string, FVals>;
 
-export interface FilterDesc {
+
+export interface FilterSpec {
     field: string;
     name: string;
     type: FilterType;
-    data?: string[] | DateRange | boolean[] | number[] | SelectItem[]
+
 }
 
 export interface PaginateEvent {

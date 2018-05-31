@@ -21,11 +21,11 @@ export class AdminService {
         limit: number,
         filter: Filter): Observable<UserList> {
         const url = murlx(from, limit, null, 'uman/user');
-            + "&filter=" + JSON.stringify(filter);
+        + "&filter=" + JSON.stringify(filter);
         return this.http.get(url).map(
-            (resp: Result) => {
+            (resp: Result<UserList>) => {
                 if (resp.ok) {
-                    return <UserList>resp.data;
+                    return resp.data;
                 }
                 return { total: 0, data: [] };
             }
@@ -44,23 +44,12 @@ export class AdminService {
         //     "&filter=" + JSON.stringify(filter);
         const url = aurlx(offset, limit, filter, 'event');
         return this.http.get(url).map(
-            (resp: Result) => {
+            (resp: Result<EventList>) => {
                 if (resp.ok) {
-                    return <EventList>resp.data;
+                    return resp.data;
                 }
                 return { total: 0, data: [] };
             }
         )
-    }
-
-    getEventFilterModel(): Observable<EventFilterModel> {
-        const url = aurl('admin/event/filterModel')
-        return this.http.get(url).map(
-            (resp: Result) => {
-                if (resp.ok) {
-                    return <EventFilterModel>resp.data;
-                }
-                return { userNames: [], eventTypes: [] };
-            })
     }
 }

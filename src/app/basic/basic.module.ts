@@ -15,7 +15,8 @@ import { MainComponent } from './main/main.component';
 import { ObjectComponent } from './object/object.component';
 import { TreeModule } from 'primeng/primeng';
 import {ObjectDetailService} from './object-detail.service';
-import { ObjectDialogComponent } from './object-dialog/object-dialog.component'
+import { ObjectDialogComponent } from './object-dialog/object-dialog.component';
+import { BasicService } from './basic.service'
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { ObjectDialogComponent } from './object-dialog/object-dialog.component'
         MsgService,
         FormatService,
         ObjectDetailService,
+        BasicService,
     ]
 })
 export class BasicModule { }

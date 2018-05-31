@@ -1,4 +1,10 @@
-import { FilterDesc, FilterType, Filter, ArrayMatcher, DateRange } from './../basic.model';
+import {
+    FilterSpec,
+    FilterType,
+    Filter,
+    ArrayMatcher,
+    DateRange
+} from './../basic.model';
 import {
     Component,
     OnInit,
@@ -18,7 +24,7 @@ import * as moment from 'moment'
 })
 export class FilterComponent implements OnInit {
 
-    @Input("desc") desc: FilterDesc[] = [];
+    @Input("desc") desc: FilterSpec[] = [];
 
     @Input("filter") filter: Filter = new Filter();
 
@@ -32,7 +38,7 @@ export class FilterComponent implements OnInit {
     toSelectItems(arr: any[]): SelectItem[] {
         const items: SelectItem[] = [];
         arr.forEach((item: any) => {
-            if(item.label !== undefined && item.value !== undefined) {
+            if (item.label !== undefined && item.value !== undefined) {
                 items.push({ label: item.label, value: item.value })
             } else {
                 items.push({ label: item, value: item })

@@ -16,7 +16,8 @@ import { ObjectComponent } from './object/object.component';
 import { TreeModule } from 'primeng/primeng';
 import {ObjectDetailService} from './object-detail.service';
 import { ObjectDialogComponent } from './object-dialog/object-dialog.component';
-import { BasicService } from './basic.service'
+import { BasicService } from './basic.service';
+import { FilterService } from './filter.service'
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { BasicService } from './basic.service'
         FormatService,
         ObjectDetailService,
         BasicService,
+        FilterService,
     ]
 })
 export class BasicModule { }

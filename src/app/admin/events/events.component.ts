@@ -1,4 +1,4 @@
-import { Filter, FilterDesc, FilterType, PaginateEvent, DateRange } from './../../basic/basic.model';
+import { Filter, FilterSpec, FilterType, PaginateEvent, DateRange } from './../../basic/basic.model';
 import { SEvent, EventList, EventFilterModel } from './../admin.model';
 import { MsgService } from './../../basic/msg.service';
 import { AdminService } from './../admin.service';
@@ -28,7 +28,7 @@ export class EventsComponent implements OnInit {
 
     filter = new Filter();
 
-    filterDesc: FilterDesc[] = []
+    filterDesc: FilterSpec[] = []
 
     constructor(
         public fmtSrv: FormatService,
@@ -48,15 +48,15 @@ export class EventsComponent implements OnInit {
         this.adminSrv.getEvents(this.from,
             this.ENTRIES_PER_PAGE,
             this.filter).subscribe(
-            (el: EventList) => {
-                this.events = el.data;
-                this.total = el.total;
-            },
-            err => {
-                //@TODO check what error!
-                this.msgSrv.showError('Failed to fetch events from server');
-            }
-        )
+                (el: EventList) => {
+                    this.events = el.data;
+                    this.total = el.total;
+                },
+                err => {
+                    //@TODO check what error!
+                    this.msgSrv.showError('Failed to fetch events from server');
+                }
+            )
     }
 
     paginate(event: PaginateEvent) {
@@ -65,58 +65,58 @@ export class EventsComponent implements OnInit {
     }
 
     populateFilters() {
-        this.adminSrv.getEventFilterModel().subscribe(
-            (res: EventFilterModel) => {
-                this.filterDesc = [
-                    {
-                        name: 'Event',
-                        field: 'op',
-                        type: FilterType.Value,
-                        data: res.eventTypes,
-                    },
-                    {
-                        name: 'Users',
-                        field: 'userName',
-                        type: FilterType.Value,
-                        data: res.userNames,
-                    },
-                    {
-                        name: 'Date Range',
-                        field: 'time',
-                        type: FilterType.DateRange,
-                        data: {
-                            from: new Date(),
-                            to: moment().toDate(),
-                        }
-                    },
-                    {
-                        name: 'Is Success',
-                        field: 'success',
-                        type: FilterType.Boolean,
-                    },
-                    // {
-                    //     name: 'Tag',
-                    //     field: 'tag',
-                    //     type: FilterType.Array,
-                    //     data: [
-                    //         'one',
-                    //         'two',
-                    //         'three',
-                    //     ]
-                    // },
-                    // {
-                    //     name: 'Search',
-                    //     field: 'search',
-                    //     type: FilterType.Array,
-                    //     data: [
-                    //         'k',
-                    //         'l',
-                    //         'm',
-                    //     ]
-                    // },
-                ]
-            }
-        )
+        // this.adminSrv.getEventFilterModel().subscribe(
+        //     (res: EventFilterModel) => {
+        //         this.filterDesc = [
+        //             {
+        //                 name: 'Event',
+        //                 field: 'op',
+        //                 type: FilterType.Value,
+        //                 data: res.eventTypes,
+        //             },
+        //             {
+        //                 name: 'Users',
+        //                 field: 'userName',
+        //                 type: FilterType.Value,
+        //                 data: res.userNames,
+        //             },
+        //             {
+        //                 name: 'Date Range',
+        //                 field: 'time',
+        //                 type: FilterType.DateRange,
+        //                 data: {
+        //                     from: new Date(),
+        //                     to: moment().toDate(),
+        //                 }
+        //             },
+        //             {
+        //                 name: 'Is Success',
+        //                 field: 'success',
+        //                 type: FilterType.Boolean,
+        //             },
+        // {
+        //     name: 'Tag',
+        //     field: 'tag',
+        //     type: FilterType.Array,
+        //     data: [
+        //         'one',
+        //         'two',
+        //         'three',
+        //     ]
+        // },
+        // {
+        //     name: 'Search',
+        //     field: 'search',
+        //     type: FilterType.Array,
+        //     data: [
+        //         'k',
+        //         'l',
+        //         'm',
+        //     ]
+        // },
+        // ]
+        // }
+        // )
     }
 
     filterChanged(filter: Filter) {

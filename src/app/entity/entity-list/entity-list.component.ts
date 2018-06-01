@@ -1,6 +1,11 @@
 import { ObjectDetailService } from './../../basic/object-detail.service';
 import { Entity } from './../entity.model';
-import { Filter, FilterDesc, PaginateEvent, FilterType } from './../../basic/basic.model';
+import {
+    Filter,
+    FilterSpec,
+    PaginateEvent,
+    FilterType
+} from './../../basic/basic.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -24,7 +29,7 @@ export class EntityListComponent implements OnInit {
 
     filter = new Filter();
 
-    filterDesc: FilterDesc[] = []
+    filterDesc: FilterSpec[] = []
 
     showCreateEntityDialog = false;
 
@@ -41,26 +46,26 @@ export class EntityListComponent implements OnInit {
     }
 
     populateFilters() {
-        this.filterDesc = [
-            {
-                name: 'Name',
-                field: 'name',
-                type: FilterType.Value,
-                data: [],
-            },
-            {
-                name: 'Owner',
-                field: 'owner',
-                type: FilterType.Value,
-                data: [],
-            },
-            {
-                name: 'Location',
-                field: 'location',
-                type: FilterType.Value,
-                data: [],
-            },
-        ]
+        // this.filterDesc = [
+        //     {
+        //         name: 'Name',
+        //         field: 'name',
+        //         type: FilterType.Value,
+        //         data: [],
+        //     },
+        //     {
+        //         name: 'Owner',
+        //         field: 'owner',
+        //         type: FilterType.Value,
+        //         data: [],
+        //     },
+        //     {
+        //         name: 'Location',
+        //         field: 'location',
+        //         type: FilterType.Value,
+        //         data: [],
+        //     },
+        // ]
     }
 
     filterChanged(filter: Filter) {

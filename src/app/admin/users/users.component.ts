@@ -1,5 +1,5 @@
 import { ObjectDetailService } from './../../basic/object-detail.service';
-import { Filter, PaginateEvent, FilterDesc, FilterType } from './../../basic/basic.model';
+import { Filter, PaginateEvent, FilterSpec, FilterType } from './../../basic/basic.model';
 import { FormatService } from './../../basic/format.service';
 import { AdminService } from './../admin.service';
 import { Component, OnInit } from '@angular/core';
@@ -32,7 +32,7 @@ export class UsersComponent implements OnInit {
 
     filter = new Filter();
 
-    filterDesc: FilterDesc[] = []
+    filterDesc: FilterSpec[] = []
 
     showCreateUserDialog = false;
 
@@ -55,14 +55,14 @@ export class UsersComponent implements OnInit {
             this.from,
             this.ENTRIES_PER_PAGE,
             this.filter).subscribe(
-            (ul: UserList) => {
-                this.users = ul.data;
-                this.total = ul.total;
-            },
-            err => {
-                this.msgSrv.showError('Failed to featch user information',
-                    'Error! - Manage Users');
-            })
+                (ul: UserList) => {
+                    this.users = ul.data;
+                    this.total = ul.total;
+                },
+                err => {
+                    this.msgSrv.showError('Failed to featch user information',
+                        'Error! - Manage Users');
+                })
     }
 
     paginate(event: PaginateEvent) {
@@ -100,31 +100,31 @@ export class UsersComponent implements OnInit {
     }
 
     populateFilters() {
-        this.filterDesc = [
-            {
-                name: 'Role',
-                field: 'auth',
-                type: FilterType.Value,
-                data: [
-                    { value: AuthLevel.Super, label: 'Super' },
-                    { value: AuthLevel.Admin, label: 'Admin' },
-                    { value: AuthLevel.Normal, label: 'Normal' },
-                    { value: AuthLevel.Monitor, label: 'Monitor' },
-                    { value: AuthLevel.Outsider, label: 'Outsider' },
-                ],
-            },
-            {
-                name: 'Status',
-                field: 'state',
-                type: FilterType.Value,
-                data: [
-                    { value: UserStatus.Verified, label: 'Verified' },
-                    { value: UserStatus.Active, label: 'Active' },
-                    { value: UserStatus.Disabled, label: 'Disabled' },
-                    { value: UserStatus.Flagged, label: 'Flagged' },
-                ],
-            },
-        ]
+        // this.filterDesc = [
+        //     {
+        //         name: 'Role',
+        //         field: 'auth',
+        //         type: FilterType.Value,
+        //         data: [
+        //             { value: AuthLevel.Super, label: 'Super' },
+        //             { value: AuthLevel.Admin, label: 'Admin' },
+        //             { value: AuthLevel.Normal, label: 'Normal' },
+        //             { value: AuthLevel.Monitor, label: 'Monitor' },
+        //             { value: AuthLevel.Outsider, label: 'Outsider' },
+        //         ],
+        //     },
+        //     {
+        //         name: 'Status',
+        //         field: 'state',
+        //         type: FilterType.Value,
+        //         data: [
+        //             { value: UserStatus.Verified, label: 'Verified' },
+        //             { value: UserStatus.Active, label: 'Active' },
+        //             { value: UserStatus.Disabled, label: 'Disabled' },
+        //             { value: UserStatus.Flagged, label: 'Flagged' },
+        //         ],
+        //     },
+        // ]
     }
 
     filterChanged(filter: Filter) {

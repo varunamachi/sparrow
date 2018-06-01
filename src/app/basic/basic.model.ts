@@ -42,7 +42,7 @@ export enum FilterType {
 }
 // data?: string[] | DateRange | boolean[] | number[] | SelectItem[]
 export type FVals = string[] | DateRange | boolean[] | number[] | SelectItem[];
-export type FilterVals = Map<string, FVals>;
+// export type FilterVals = Object;
 
 
 export interface FilterSpec {

@@ -1,6 +1,6 @@
 <!-- <div class="display: flex; flex-direction: column;">
 <div style="flex-shrink: 0; overflow: auto"> -->
-<div *ngFor="let d of desc" [ngSwitch]="d.type">
+<div *ngFor="let d of _spec" [ngSwitch]="d.type">
 
     <!-- For Single select -->
     <p-panel
@@ -9,7 +9,7 @@
         [toggleable]=true
     >
         <p-multiSelect
-            [options]="toSelectItems(d.data)"
+            [options]="values[d.type]"
             [style]="{'width': '100%'}"
             defaultLabel="Select {{d.name}}"
             (onChange)="valueChanged(d.field, $event.value)"
@@ -38,7 +38,7 @@
         </label>
         <p-listbox
             #lb
-            [options]="toSelectItems(d.data)"
+            [options]="values[d.type]"
             [style]="{'width': '100%'}"
             [listStyle]="{'height':'120px', 'width': '100%'}"
             [multiple]=true

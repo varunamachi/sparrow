@@ -2,7 +2,7 @@ import {
     FilterSpec,
     FilterType,
     Filter,
-    ArrayMatcher,
+    Matcher,
     DateRange,
 } from './../basic.model';
 import {
@@ -49,17 +49,7 @@ export class FilterComponent implements OnInit {
     ngOnInit() {
     }
 
-    // toSelectItems(arr: any[]): SelectItem[] {
-    //     const items: SelectItem[] = [];
-    //     arr.forEach((item: any) => {
-    //         if (item.label !== undefined && item.value !== undefined) {
-    //             items.push({ label: item.label, value: item.value })
-    //         } else {
-    //             items.push({ label: item, value: item })
-    //         }
-    //     })
-    //     return items;
-    // }
+
 
     valueChanged(field: string, values: string[]) {
         // this.filter.fields.set(field, values);
@@ -72,9 +62,9 @@ export class FilterComponent implements OnInit {
         //     matchAll: matchAll,
         //     tags: values
         // });
-        this._filter.lists[field] = <ArrayMatcher>{
+        this._filter.lists[field] = <Matcher>{
             matchAll: matchAll,
-            tags: values
+            fields: values
         };
         this.onChange.emit(this._filter);
     }

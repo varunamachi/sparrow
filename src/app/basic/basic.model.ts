@@ -10,16 +10,15 @@ export interface Result<T> {
 }
 
 export interface DateRange {
-    // name: string;
     from: Date;
     to: Date;
 }
 
-export class ArrayMatcher {
-    // public name = '';
+export class Matcher {
     public matchAll = false;
-    public tags: string[] = [];
+    public fields: string[] = [];
 }
+
 
 // export class Filter {
 //     public fields = new Map<string, string[]>();
@@ -32,6 +31,8 @@ export class Filter {
     public boolFields = new Object();
     public dates = new Object();
     public lists = new Object();
+    public searches = new Object()
+    public constants = new Object();
 }
 
 export enum FilterType {
@@ -39,9 +40,12 @@ export enum FilterType {
     Array = 'array',
     DateRange = 'dateRange',
     Boolean = 'boolean',
+    Search = 'search',
+    Constant = 'constant'
+
 }
 // data?: string[] | DateRange | boolean[] | number[] | SelectItem[]
-export type FVals = string[] | DateRange | boolean[] | number[] | SelectItem[];
+export type FVal = string[] | DateRange | boolean[] | number[] | SelectItem[];
 // export type FilterVals = Object;
 
 
@@ -49,7 +53,7 @@ export interface FilterSpec {
     field: string;
     name: string;
     type: FilterType;
-
+    fixedVal: FVal;
 }
 
 export interface PaginateEvent {
@@ -57,5 +61,4 @@ export interface PaginateEvent {
     rows: number;
     page: number;
     pageCount: number;
-
 }

@@ -17,7 +17,9 @@ import { TreeModule } from 'primeng/primeng';
 import {ObjectDetailService} from './object-detail.service';
 import { ObjectDialogComponent } from './object-dialog/object-dialog.component';
 import { BasicService } from './basic.service';
-import { FilterService } from './filter.service'
+import { FilterService } from './filter.service';
+import { HolderComponent } from './holder/holder.component';
+import { TableComponent } from './table/table.component'
 
 
 @NgModule({
@@ -51,6 +53,8 @@ import { FilterService } from './filter.service'
         MainComponent,
         ObjectComponent,
         ObjectDialogComponent,
+        HolderComponent,
+        TableComponent,
     ],
     providers: [
         MsgService,

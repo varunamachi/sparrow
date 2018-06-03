@@ -60,6 +60,8 @@ html{
 .spw-content {
     /* height: 50%; */
     /* background-color: #7c7c7c; */
+    padding: 0px;
+    margin: 0px;
     color: #d6cfcf;
 }
 

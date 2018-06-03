@@ -49,8 +49,6 @@ export class FilterComponent implements OnInit {
     ngOnInit() {
     }
 
-
-
     valueChanged(field: string, values: string[]) {
         // this.filter.fields.set(field, values);
         this._filter.fields[field] = values;

@@ -1,0 +1,19 @@
+<div class="holder">
+    <!-- <span class="page-name">
+        {{pageName}}
+    </span>
+    <span class="description">
+        <ng-content select="[toolbar]"></ng-content>
+    </span> -->
+    <span style="width: 100%">
+        <label>
+            {{name}}
+        </label>
+        <span style="float: right">
+            <ng-content select="[ops]"></ng-content>
+        </span>
+    </span>
+    <div>
+        <ng-content></ng-content>
+    </div>
+</div>

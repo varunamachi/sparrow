@@ -28,9 +28,9 @@ export class AuthService {
     login(creds: Credential) {
         const url = purl('login')
         return this.http.post(url, creds).map(
-            (resp: Result) => {
+            (resp: Result<LoginResult>) => {
                 console.log(resp);
-                const lr = <LoginResult>resp.data;
+                const lr = resp.data;
                 localStorage.setItem('token', lr.token);
                 localStorage.setItem("user", JSON.stringify(lr.user));
                 this.user = lr.user;

@@ -53,7 +53,7 @@ export interface FilterSpec {
     field: string;
     name: string;
     type: FilterType;
-    fixedVal: FVal;
+    fixedVal?: FVal;
 }
 
 export interface PaginateEvent {

@@ -1,80 +1,99 @@
-<!-- <div class="display: flex; flex-direction: column;">
-<div style="flex-shrink: 0; overflow: auto"> -->
-    <app-holder name="Heading">
-        <span ops>wow</span>
-        Hello!!
-    </app-holder>
 <div *ngFor="let d of _spec" [ngSwitch]="d.type">
 
-    <!-- For Single select -->
-    <p-panel
-        [header]="d.name"
+    <!-- ===== V A L U E S ====== -->
+    <app-holder
+        [name]="d.name"
         *ngSwitchCase="'value'"
-        [toggleable]=true
+        [collapsible]="false"
     >
         <p-multiSelect
+            [(ngModel)]="_filter[d.field]"
             [options]="values[d.type]"
             [style]="{'width': '100%'}"
             defaultLabel="Select {{d.name}}"
-            (onChange)="valueChanged(d.field, $event.value)"
+            (onChange)="changed(d.field)"
         >
         </p-multiSelect>
-    </p-panel>
+    </app-holder>
 
-    <!-- For Multiselect -->
-    <p-panel
-        [header]="d.name"
+    <!-- ===== A R R A Y ====== -->
+    <app-holder
+        [name]="d.name"
         *ngSwitchCase="'array'"
-        [toggleable]=true
-        [collapsed]=true
+        [collapsible]="true"
+        [collapsed]="true"
     >
-        <p-inputSwitch
-            #sw
-            onLabel="OR"
-            offLabel="AND"
-            [style]="{'float': 'left'}"
-            (onChange)="matcherChanged(d.field, sw.checked,  lb.value)"
-        ></p-inputSwitch>
-        <label
-            style="padding-left: 5px"
-        >
-            the selected Items
-        </label>
+        <span ops>
+            <p-inputSwitch
+                #sw
+                [(ngModel)]="_filter[d.field].matchAll"
+                onLabel="OR"
+                offLabel="AND"
+                (onChange)="changed(d.field)"
+            ></p-inputSwitch>
+        </span>
         <p-listbox
             #lb
+            [(ngModel)]="_filter[d.field].fields"
             [options]="values[d.type]"
             [style]="{'width': '100%'}"
             [listStyle]="{'height':'120px', 'width': '100%'}"
-            [multiple]=true
-            [checkbox]=true
-            [filter]=true
-            (onChange)="matcherChanged(d.field, sw.checked,  $event.value)"
+            [multiple]="true"
+            [checkbox]="true"
+            [filter]="true"
+            (onChange)="changed(d.field)"
         ></p-listbox>
-    </p-panel>
-    <p-panel
-        [header]="d.name"
+    </app-holder>
+
+    <!-- ===== D A T E == R A N G E ====== -->
+    <app-holder
+        [name]="d.name"
         *ngSwitchCase="'dateRange'"
-        [toggleable]=true
+        [collapsible]="true"
+        [collapsed]="true"
     >
         <app-date-range
-            (onChange)="dateRangeChanged(d.field, $event)"
+            [(ngModel)]="_filter[d.field]"
+            (rangeChange)="changed(d.field)"
         ></app-date-range>
-    </p-panel>
-    <p-panel
-        [header]="d.name"
+    </app-holder>
+
+    <!-- ===== B O O L E A N ====== -->
+    <app-holder
+        [name]="d.name"
         *ngSwitchCase="'boolean'"
-        [toggleable]=true
+        [collapsible]="false"
     >
         <p-triStateCheckbox
             #cb
-            (onChange)="booleanChanged(d.field, cb.value)"
+            [(ngModel)]="_filter[d.field]"
+            (onChange)="changed(d.field)"
             label="{{d.field}}:
                 {{(cb.value === null || cb.value === undefined)
                     ? 'ALL'
                     : cb.value}}"
         ></p-triStateCheckbox>
-    </p-panel>
-    <hr class="hz"/>
+    </app-holder>
+
+    <!-- ===== S E A R C H ====== -->
+    <app-holder
+        [name]="d.name"
+        *ngSwitchCase="'boolean'"
+        [collapsible]="false"
+    >
+        <span ops>
+            <p-inputSwitch
+                #sw
+                [(ngModel)]="_filter[d.field].matchAll"
+                onLabel="OR"
+                offLabel="AND"
+                (onChange)="changed(d.field)"
+            ></p-inputSwitch>
+        </span>
+        <p-chips
+            [(ngModel)]="_filter[d.field]"
+        ></p-chips>
+    </app-holder>
+
+    <p></p>
 </div>
-<!-- </div>
-</div> -->

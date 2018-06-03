@@ -5,9 +5,9 @@
         </td>
         <td>
             <p-calendar
-                [(ngModel)]="from"
+                [(ngModel)]="range.from"
                 [minDate]="min"
-                [maxDate]="to"
+                [maxDate]="range.to"
                 (onSelect)="changed()"
             ></p-calendar>
         </td>
@@ -18,8 +18,8 @@
         </td>
         <td>
             <p-calendar
-                [(ngModel)]="to"
-                [minDate]="from"
+                [(ngModel)]="range.to"
+                [minDate]="range.from"
                 [maxDate]="max"
                 (onSelect)="changed()"
             ></p-calendar>

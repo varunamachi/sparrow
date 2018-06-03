@@ -1,0 +1,18 @@
+/* Style buttons */
+.btn {
+    color: white; /* White text */
+    border: 1px solid #2e2e2e;
+    background: #3d3d3d;
+    cursor: pointer; /* Mouse pointer on hover */
+    border-radius: 4px;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+    background-color: #494949;;
+}
+
+.btn:focus {
+    background-color: #0099e0;
+    outline: none;
+}

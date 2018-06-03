@@ -1,19 +1,23 @@
 <div class="holder">
-    <!-- <span class="page-name">
-        {{pageName}}
-    </span>
-    <span class="description">
-        <ng-content select="[toolbar]"></ng-content>
-    </span> -->
-    <span style="width: 100%">
-        <label>
+    <div style="width: 100%;">
+        <app-button
+            [icon]="collapsed ? 'fa-plus' : 'fa-minus'"
+            *ngIf="collapsible"
+            (click)="collapsed = !collapsed"
+            height="16px"
+        ></app-button>
+        <label style="padding: 0px; margin: 0px;">
             {{name}}
         </label>
-        <span style="float: right">
+        <span style="
+            float: right;
+            padding: 0px;
+            margin: 0px;"
+        >
             <ng-content select="[ops]"></ng-content>
         </span>
-    </span>
-    <div>
+    </div>
+    <div [hidden]="collapsed" style="margin-top: 4px;">
         <ng-content></ng-content>
     </div>
 </div>

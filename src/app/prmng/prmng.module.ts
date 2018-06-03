@@ -23,6 +23,8 @@ import {
     TriStateCheckboxModule,
     TreeModule,
     TreeNode,
+    ToggleButtonModule,
+    ChipsModule,
 } from 'primeng/primeng'
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
@@ -49,6 +51,8 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
         SelectButtonModule,
         PaginatorModule,
         TriStateCheckboxModule,
+        ToggleButtonModule,
+        ChipsModule,
     ],
     exports: [
         ButtonModule,
@@ -71,6 +75,8 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
         SelectButtonModule,
         PaginatorModule,
         TriStateCheckboxModule,
+        ToggleButtonModule,
+        ChipsModule,
     ],
     providers: [
         ConfirmationService,

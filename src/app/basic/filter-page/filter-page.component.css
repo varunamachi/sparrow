@@ -8,4 +8,7 @@
 .content {
     /* background-color: blue; */
     /* height: 100%; */
+    border-radius: 4px;
+    color: #7c7c7c;
+    border-color: #a81313;
 }

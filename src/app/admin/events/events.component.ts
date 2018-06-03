@@ -14,6 +14,39 @@ import { ObjectDetailService } from '../../basic/object-detail.service';
 })
 export class EventsComponent implements OnInit {
 
+    readonly FSPEC: FilterSpec[] = [
+        {
+            name: 'Event',
+            field: 'op',
+            type: FilterType.Value,
+        },
+        {
+            name: 'Users',
+            field: 'userName',
+            type: FilterType.Value,
+        },
+        {
+            name: 'Date Range',
+            field: 'time',
+            type: FilterType.DateRange,
+        },
+        {
+            name: 'Is Success',
+            field: 'success',
+            type: FilterType.Boolean,
+        },
+        {
+            name: 'Tag',
+            field: 'tag',
+            type: FilterType.Array,
+        },
+        {
+            name: 'Search',
+            field: 'search',
+            type: FilterType.Search,
+        },
+    ];
+
     readonly ENTRIES_PER_PAGE = 25;
 
     readonly PAGE_SHOWN = 5;

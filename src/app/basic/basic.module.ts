@@ -19,7 +19,8 @@ import { ObjectDialogComponent } from './object-dialog/object-dialog.component';
 import { BasicService } from './basic.service';
 import { FilterService } from './filter.service';
 import { HolderComponent } from './holder/holder.component';
-import { TableComponent } from './table/table.component'
+import { TableComponent } from './table/table.component';
+import { ButtonComponent } from './button/button.component'
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { TableComponent } from './table/table.component'
         MainComponent,
         ObjectComponent,
         ObjectDialogComponent,
+        ButtonComponent,
     ],
     declarations: [
         HeaderComponent,
@@ -55,6 +57,7 @@ import { TableComponent } from './table/table.component'
         ObjectDialogComponent,
         HolderComponent,
         TableComponent,
+        ButtonComponent,
     ],
     providers: [
         MsgService,

@@ -9,9 +9,12 @@ export class HolderComponent implements OnInit {
 
     @Input('name') name = '';
 
+    @Input('collapsible') collapsible = true;
+
+    @Input('collapsed') collapsed = false;
+
     constructor() { }
 
     ngOnInit() {
     }
-
 }

@@ -1,3 +1,4 @@
+import { FilterService } from './../filter.service';
 import {
     FilterSpec,
     FilterType,
@@ -30,12 +31,17 @@ export class FilterComponent implements OnInit {
 
     @Input("spec")
     set spec(s: FilterSpec[]) {
-        this._spec = s;
+        if (s && this._filter) {
+            this._spec = s;
+            this._filter = this.fserve.fill(this._spec, this._filter);
+        }
     }
 
     @Input("filter")
     set filter(f: Filter) {
-        this._filter = f;
+        if (f && this._spec) {
+            this._filter = this.fserve.fill(this._spec, f);
+        }
     }
 
     @Input('values') values = new Object();
@@ -44,7 +50,9 @@ export class FilterComponent implements OnInit {
 
     @Output("onChange") onChange = new EventEmitter();
 
-    constructor() { }
+    constructor(private fserve: FilterService) {
+
+    }
 
     ngOnInit() {
     }

@@ -53,8 +53,10 @@
         [collapsed]="true"
     >
         <app-date-range
+            name="dateRange"
             [(ngModel)]="_filter[d.field]"
             (rangeChange)="changed(d.field)"
+            ngDefaultControl
         ></app-date-range>
     </app-holder>
 
@@ -64,27 +66,28 @@
         *ngSwitchCase="'boolean'"
         [collapsible]="false"
     >
-        <p-triStateCheckbox
-            #cb
-            [(ngModel)]="_filter[d.field]"
-            (onChange)="changed(d.field)"
-            label="{{d.field}}:
-                {{(cb.value === null || cb.value === undefined)
-                    ? 'ALL'
-                    : cb.value}}"
-        ></p-triStateCheckbox>
+        <span ops>
+            <p-triStateCheckbox
+                #cb
+                [(ngModel)]="_filter[d.field]"
+                (onChange)="changed(d.field)"
+                label="{{(cb.value === null || cb.value === undefined)
+                        ? 'ALL'
+                        : cb.value ? 'True' : 'False' }}"
+            ></p-triStateCheckbox>
+        </span>
     </app-holder>
 
     <!-- ===== S E A R C H ====== -->
     <app-holder
         [name]="d.name"
-        *ngSwitchCase="'boolean'"
+        *ngSwitchCase="'search'"
         [collapsible]="false"
     >
         <span ops>
             <p-inputSwitch
                 #sw
-                [(ngModel)]="_filter[d.field].matchAll"
+                [(ngModel)]="_filter[d.field]"
                 onLabel="OR"
                 offLabel="AND"
                 (onChange)="changed(d.field)"
@@ -94,6 +97,5 @@
             [(ngModel)]="_filter[d.field]"
         ></p-chips>
     </app-holder>
-
     <p></p>
 </div>

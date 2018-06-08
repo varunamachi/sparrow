@@ -1,13 +1,16 @@
+import { Observable } from 'rxjs/Observable';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import {
     FilterSpec,
     Filter,
     FilterType,
     Matcher,
-    DateRange
+    DateRange,
+    Result
 } from './basic.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { murl } from './url.util';
 
 @Injectable()
 export class FilterService {
@@ -66,7 +69,7 @@ export class FilterService {
         const items: SelectItem[] = [];
         arr.forEach((item: string) => {
             items.push({
-                label: item,
+                label: '' + item,
                 value: item
             });
         })
@@ -78,5 +81,13 @@ export class FilterService {
             from: JSON.parse(obj['from']),
             to: JSON.parse(obj['to']),
         }
+    }
+
+    getFilterValues(dtype: string, fspec: FilterSpec): Observable<Object> {
+        const url = murl('gen', dtype, 'fspec') + '?fspec=' +
+            JSON.stringify(fspec);
+        return this.http.get(url).map((res: Result<Object>) => {
+            return res.data;
+        });
     }
 }

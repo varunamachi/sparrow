@@ -87,14 +87,15 @@
         <span ops>
             <p-inputSwitch
                 #sw
-                [(ngModel)]="_filter[d.field]"
+                [(ngModel)]="_filter[d.field].matchAll"
                 onLabel="OR"
                 offLabel="AND"
                 (onChange)="changed(d.field)"
             ></p-inputSwitch>
         </span>
         <p-chips
-            [(ngModel)]="_filter[d.field]"
+            [(ngModel)]="_filter[d.field].fields"
+            ngDefaultControl
         ></p-chips>
     </app-holder>
     <p></p>

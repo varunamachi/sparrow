@@ -61,37 +61,4 @@ export class FilterComponent implements OnInit {
 
     }
 
-    // valueChanged(field: string, values: string[]) {
-    //     // this.filter.fields.set(field, values);
-    //     this._filter.fields[field] = values;
-    //     this.onChange.emit(this._filter);
-    // }
-
-    // matcherChanged(field: string, matchAll: boolean, values: string[]) {
-    //     // this.filter.lists.set(field, <ArrayMatcher>{
-    //     //     matchAll: matchAll,
-    //     //     tags: values
-    //     // });
-    //     this._filter.lists[field] = <Matcher>{
-    //         matchAll: matchAll,
-    //         fields: values
-    //     };
-    //     this.onChange.emit(this._filter);
-    // }
-
-    // dateRangeChanged(field: string, dateRange: DateRange) {
-    //     // this.filter.dates.set(field, dateRange);
-    //     console.log(dateRange);
-    //     this._filter.dates[field] = dateRange;
-    //     this.onChange.emit(this._filter);
-    // }
-
-    // booleanChanged(field: string, value: any) {
-    //     if (value === null) {
-    //         delete this._filter.boolFields[field];
-    //     } else {
-    //         this._filter.boolFields[field] = value;
-    //     }
-    //     this.onChange.emit(this._filter);
-    // }
 }

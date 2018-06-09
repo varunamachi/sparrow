@@ -59,7 +59,7 @@ export class FilterComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.fserve.getFilterValues('events', this._spec).subscribe(
+        this.fserve.getFilterValues(this.dataType, this._spec).subscribe(
             (vals: Object) => {
                 this.values = this.fserve.transformVals(this._spec, vals);
             },

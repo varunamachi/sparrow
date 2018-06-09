@@ -1,3 +1,4 @@
+import { MsgService } from './../msg.service';
 import { FilterService } from './../filter.service';
 import {
     FilterSpec,
@@ -46,15 +47,26 @@ export class FilterComponent implements OnInit {
 
     @Input('values') values = new Object();
 
+    @Input('dataType') dataType = '';
+
     @Output('filterChange') filterChange = new EventEmitter();
 
     @Output("onChange") onChange = new EventEmitter();
 
-    constructor(private fserve: FilterService) {
+    constructor(private fserve: FilterService,
+        private msgSrv: MsgService) {
 
     }
 
     ngOnInit() {
+        this.fserve.getFilterValues('events', this._spec).subscribe(
+            (vals: Object) => {
+                this.values = this.fserve.transformVals(this._spec, vals);
+            },
+            err => {
+                this.msgSrv.showError('Failed to retrieve filter values');
+            }
+        )
     }
 
     changed(field: string) {

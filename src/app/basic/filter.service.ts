@@ -83,7 +83,7 @@ export class FilterService {
         }
     }
 
-    getFilterValues(dtype: string, fspec: FilterSpec): Observable<Object> {
+    getFilterValues(dtype: string, fspec: FilterSpec[]): Observable<Object> {
         const url = murl('gen', dtype, 'fspec') + '?fspec=' +
             JSON.stringify(fspec);
         return this.http.get(url).map((res: Result<Object>) => {

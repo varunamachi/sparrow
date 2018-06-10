@@ -45,9 +45,9 @@ export class FilterComponent implements OnInit {
         }
     }
 
-    @Input('values') values = new Object();
+    values = new Object();
 
-    @Input('dataType') dataType = '';
+    @Input('dataType') dataType = ''
 
     @Output('filterChange') filterChange = new EventEmitter();
 
@@ -70,7 +70,10 @@ export class FilterComponent implements OnInit {
     }
 
     changed(field: string) {
-
+        this.onChange.emit({
+            field: field,
+            filter: this._filter,
+        })
     }
 
 }

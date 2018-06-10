@@ -27,7 +27,7 @@ export class Matcher {
 // }
 
 export class Filter {
-    public fields = new Object();
+    public props = new Object();
     public boolFields = new Object();
     public dates = new Object();
     public lists = new Object();
@@ -36,7 +36,7 @@ export class Filter {
 }
 
 export enum FilterType {
-    Value = 'value',
+    Prop = 'prop',
     Array = 'array',
     DateRange = 'dateRange',
     Boolean = 'boolean',
@@ -61,4 +61,9 @@ export interface PaginateEvent {
     rows: number;
     page: number;
     pageCount: number;
+}
+
+export interface FilterEvent {
+    field: string,
+    filter: Filter,
 }

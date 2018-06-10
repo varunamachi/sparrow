@@ -1,4 +1,4 @@
-import { Filter, FilterSpec, FilterType, PaginateEvent, DateRange } from './../../basic/basic.model';
+import { Filter, FilterSpec, FilterType, PaginateEvent, DateRange, FilterEvent } from './../../basic/basic.model';
 import { SEvent, EventList, EventFilterModel } from './../admin.model';
 import { MsgService } from './../../basic/msg.service';
 import { AdminService } from './../admin.service';
@@ -18,12 +18,12 @@ export class EventsComponent implements OnInit {
         {
             name: 'Event',
             field: 'op',
-            type: FilterType.Value,
+            type: FilterType.Prop,
         },
         {
             name: 'Users',
             field: 'userName',
-            type: FilterType.Value,
+            type: FilterType.Prop,
         },
         {
             name: 'Date Range',
@@ -35,11 +35,11 @@ export class EventsComponent implements OnInit {
             field: 'success',
             type: FilterType.Boolean,
         },
-        {
-            name: 'Tag',
-            field: 'tag',
-            type: FilterType.Array,
-        },
+        // {
+        //     name: 'Tags',
+        //     field: 'tags',
+        //     type: FilterType.Array,
+        // },
         {
             name: 'Search',
             field: 'search',
@@ -152,9 +152,9 @@ export class EventsComponent implements OnInit {
         // )
     }
 
-    filterChanged(filter: Filter) {
+    filterChanged(fe: FilterEvent) {
         this.from = 0;
-        this.filter = filter;
+        this.filter = fe.filter;
         this.refresh();
     }
 

@@ -12,6 +12,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { murl } from './url.util';
 
+import * as moment from 'moment';
+
 @Injectable()
 export class FilterService {
 
@@ -21,24 +23,32 @@ export class FilterService {
         for (let fspec of fs) {
             switch (fspec.type) {
                 case FilterType.Array:
+                    if (!ft.lists[fspec.field]) {
+                        ft.lists[fspec.field] = new Matcher();
+                    }
+                    break;
                 case FilterType.Search:
-                    if (!ft[fspec.field]) {
-                        ft[fspec.field] = new Matcher();
+                    if (!ft.searches[fspec.field]) {
+                        ft.searches[fspec.field] = new Matcher();
                     }
                     break;
                 case FilterType.Boolean:
-                    if (!ft[fspec.field]) {
-                        ft[fspec.field] = null;
+                    if (!ft.boolFields[fspec.field]) {
+                        ft.boolFields[fspec.field] = null;
                     }
                     break;
                 case FilterType.DateRange:
-                    ft[fspec.field] = {
-                        from: new Date(0),
-                        to: new Date(),
+                    if (!ft.dates[fspec.field]) {
+                        ft.dates[fspec.field] = {
+                            from: new Date(0),
+                            to: new Date(),
+                        }
                     }
                     break;
-                case FilterType.Value:
-                    ft[fspec.field] = [];
+                case FilterType.Prop:
+                    if (!ft.props[fspec.field]) {
+                        ft.props[fspec.field] = [];
+                    }
                     break;
                 case FilterType.Constant:
                     ft[fspec.type] = fspec.fixedVal;
@@ -52,7 +62,7 @@ export class FilterService {
         for (let fspec of fs) {
             switch (fspec.type) {
                 case FilterType.Array:
-                case FilterType.Value:
+                case FilterType.Prop:
                     vals[fspec.field] = this.toSelectItems(values[fspec.field]);
                     break;
                 case FilterType.DateRange:
@@ -67,19 +77,21 @@ export class FilterService {
 
     toSelectItems(arr: string[]): SelectItem[] {
         const items: SelectItem[] = [];
-        arr.forEach((item: string) => {
-            items.push({
-                label: '' + item,
-                value: item
-            });
-        })
+        if (arr) {
+            arr.forEach((item: string) => {
+                items.push({
+                    label: '' + item,
+                    value: item
+                });
+            })
+        }
         return items;
     }
 
     toDateRange(obj: Object): DateRange {
         return {
-            from: JSON.parse(obj['from']),
-            to: JSON.parse(obj['to']),
+            from: moment(obj['from']).toDate(),
+            to: moment(obj['to']).toDate(),
         }
     }
 

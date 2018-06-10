@@ -3,16 +3,16 @@
     <!-- ===== V A L U E S ====== -->
     <app-holder
         [name]="d.name"
-        *ngSwitchCase="'value'"
+        *ngSwitchCase="'prop'"
         [collapsible]="false"
     >
         <p-multiSelect
-            [(ngModel)]="_filter[d.field]"
-            [options]="values[d.type]"
+            [(ngModel)]="_filter.props[d.field]"
+            [options]="values[d.field]"
             [style]="{'width': '100%'}"
-            defaultLabel="Select {{d.name}}"
             (onChange)="changed(d.field)"
-        >
+            >
+            <!-- defaultLabel="Select {{d.name}}" -->
         </p-multiSelect>
     </app-holder>
 
@@ -26,7 +26,7 @@
         <span ops>
             <p-inputSwitch
                 #sw
-                [(ngModel)]="_filter[d.field].matchAll"
+                [(ngModel)]="_filter.lists[d.field].matchAll"
                 onLabel="OR"
                 offLabel="AND"
                 (onChange)="changed(d.field)"
@@ -34,8 +34,8 @@
         </span>
         <p-listbox
             #lb
-            [(ngModel)]="_filter[d.field].fields"
-            [options]="values[d.type]"
+            [(ngModel)]="_filter.lists[d.field].fields"
+            [options]="values[d.field]"
             [style]="{'width': '100%'}"
             [listStyle]="{'height':'120px', 'width': '100%'}"
             [multiple]="true"
@@ -54,7 +54,7 @@
     >
         <app-date-range
             name="dateRange"
-            [(ngModel)]="_filter[d.field]"
+            [(ngModel)]="_filter.dates[d.field]"
             (rangeChange)="changed(d.field)"
             ngDefaultControl
         ></app-date-range>
@@ -69,7 +69,7 @@
         <span ops>
             <p-triStateCheckbox
                 #cb
-                [(ngModel)]="_filter[d.field]"
+                [(ngModel)]="_filter.boolFields[d.field]"
                 (onChange)="changed(d.field)"
                 label="{{(cb.value === null || cb.value === undefined)
                         ? 'ALL'
@@ -87,14 +87,14 @@
         <span ops>
             <p-inputSwitch
                 #sw
-                [(ngModel)]="_filter[d.field].matchAll"
+                [(ngModel)]="_filter.searches[d.field].matchAll"
                 onLabel="OR"
                 offLabel="AND"
                 (onChange)="changed(d.field)"
             ></p-inputSwitch>
         </span>
         <p-chips
-            [(ngModel)]="_filter[d.field].fields"
+            [(ngModel)]="_filter.searches[d.field].fields"
             ngDefaultControl
         ></p-chips>
     </app-holder>

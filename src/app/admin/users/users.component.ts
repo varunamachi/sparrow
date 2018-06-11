@@ -1,5 +1,5 @@
 import { ObjectDetailService } from './../../basic/object-detail.service';
-import { Filter, PaginateEvent, FilterSpec, FilterType } from './../../basic/basic.model';
+import { Filter, PaginateEvent, FilterSpec, FilterType, FilterEvent } from './../../basic/basic.model';
 import { FormatService } from './../../basic/format.service';
 import { AdminService } from './../admin.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,6 +18,36 @@ import { SelectItem } from 'primeng/components/common/selectitem';
 })
 export class UsersComponent implements OnInit {
 
+    readonly FSPEC: FilterSpec[] = [
+        {
+            name: 'Name',
+            field: 'fullName',
+            type: FilterType.Prop,
+        },
+        {
+            name: 'Role',
+            field: 'auth',
+            type: FilterType.Static,
+            staticVals: [
+                { value: AuthLevel.Super, label: 'Super' },
+                { value: AuthLevel.Admin, label: 'Admin' },
+                { value: AuthLevel.Normal, label: 'Normal' },
+                { value: AuthLevel.Monitor, label: 'Monitor' },
+                { value: AuthLevel.Outsider, label: 'Outsider' },
+            ]
+        },
+        {
+            name: 'Created',
+            field: 'created',
+            type: FilterType.DateRange,
+        },
+        {
+            name: 'Modified',
+            field: 'modified',
+            type: FilterType.DateRange,
+        },
+    ];
+
     users: User[] = [];
 
     readonly ENTRIES_PER_PAGE = 25;
@@ -32,8 +62,6 @@ export class UsersComponent implements OnInit {
 
     filter = new Filter();
 
-    filterDesc: FilterSpec[] = []
-
     showCreateUserDialog = false;
 
     constructor(
@@ -47,7 +75,6 @@ export class UsersComponent implements OnInit {
 
     ngOnInit() {
         this.refresh();
-        this.populateFilters();
     }
 
     refresh() {
@@ -99,37 +126,9 @@ export class UsersComponent implements OnInit {
         this.objSrv.show(user);
     }
 
-    populateFilters() {
-        // this.filterDesc = [
-        //     {
-        //         name: 'Role',
-        //         field: 'auth',
-        //         type: FilterType.Value,
-        //         data: [
-        //             { value: AuthLevel.Super, label: 'Super' },
-        //             { value: AuthLevel.Admin, label: 'Admin' },
-        //             { value: AuthLevel.Normal, label: 'Normal' },
-        //             { value: AuthLevel.Monitor, label: 'Monitor' },
-        //             { value: AuthLevel.Outsider, label: 'Outsider' },
-        //         ],
-        //     },
-        //     {
-        //         name: 'Status',
-        //         field: 'state',
-        //         type: FilterType.Value,
-        //         data: [
-        //             { value: UserStatus.Verified, label: 'Verified' },
-        //             { value: UserStatus.Active, label: 'Active' },
-        //             { value: UserStatus.Disabled, label: 'Disabled' },
-        //             { value: UserStatus.Flagged, label: 'Flagged' },
-        //         ],
-        //     },
-        // ]
-    }
-
-    filterChanged(filter: Filter) {
+    filterChanged(fe: FilterEvent) {
         this.from = 0;
-        this.filter = filter;
+        this.filter = fe.filter;
         this.refresh();
     }
 

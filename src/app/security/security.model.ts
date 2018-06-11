@@ -14,6 +14,7 @@ export interface User {
     auth: AuthLevel;
     firstName: string;
     lastName: string;
+    fullName: string;
     props: Object;
     created: Date;
     modified: Date;

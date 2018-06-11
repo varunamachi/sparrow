@@ -20,8 +20,7 @@ export class AdminService {
         from: number,
         limit: number,
         filter: Filter): Observable<UserList> {
-        const url = murlx(from, limit, null, 'uman/user');
-        + "&filter=" + JSON.stringify(filter);
+        const url = murlx(from, limit, filter, 'uman/user');
         return this.http.get(url).map(
             (resp: Result<UserList>) => {
                 if (resp.ok) {

@@ -41,19 +41,21 @@ export enum FilterType {
     DateRange = 'dateRange',
     Boolean = 'boolean',
     Search = 'search',
-    Constant = 'constant'
-
+    Constant = 'constant',
+    Static = 'static',
 }
 // data?: string[] | DateRange | boolean[] | number[] | SelectItem[]
 export type FVal = string[] | DateRange | boolean[] | number[] | SelectItem[];
 // export type FilterVals = Object;
 
+export type LableProvider = (item: any) => string;
 
 export interface FilterSpec {
     field: string;
     name: string;
     type: FilterType;
     fixedVal?: FVal;
+    staticVals?: SelectItem[];
 }
 
 export interface PaginateEvent {
@@ -66,4 +68,25 @@ export interface PaginateEvent {
 export interface FilterEvent {
     field: string,
     filter: Filter,
+}
+
+export enum ColType {
+    Value = 'value',
+    Date = 'date',
+    Formatted = 'formatted',
+    Boolean = 'boolean',
+    Array = 'array',
+    Ops = 'ops',
+}
+
+export type ColFmt = (item: any) => string;
+export type ColAction = (item: any) => void;
+
+export interface ColSpec {
+    title: string;
+    field: string;
+    type: ColType;
+    width: string;
+    formatter?: ColFmt;
+    actions?: ColAction[];
 }

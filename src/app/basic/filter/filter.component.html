@@ -15,6 +15,20 @@
             <!-- defaultLabel="Select {{d.name}}" -->
         </p-multiSelect>
     </app-holder>
+    <app-holder
+        [name]="d.name"
+        *ngSwitchCase="'static'"
+        [collapsible]="false"
+    >
+        <p-multiSelect
+            [(ngModel)]="_filter.props[d.field]"
+            [options]="values[d.field]"
+            [style]="{'width': '100%'}"
+            (onChange)="changed(d.field)"
+            >
+            <!-- defaultLabel="Select {{d.name}}" -->
+        </p-multiSelect>
+    </app-holder>
 
     <!-- ===== A R R A Y ====== -->
     <app-holder

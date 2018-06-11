@@ -65,6 +65,9 @@ export class FilterService {
                 case FilterType.Prop:
                     vals[fspec.field] = this.toSelectItems(values[fspec.field]);
                     break;
+                case FilterType.Static:
+                    vals[fspec.field] = fspec.staticVals;
+                    break;
                 case FilterType.DateRange:
                     vals[fspec.field] = this.toDateRange(values[fspec.field]);
                     break;

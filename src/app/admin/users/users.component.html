@@ -28,8 +28,9 @@
 <app-filter-page [filterVisible]="showFilter">
     <div filter>
         <app-filter
-            [spec]="filterDesc"
+            [spec]="FSPEC"
             (onChange)="filterChanged($event)"
+            dataType="users"
         ></app-filter>
     </div>
     <div content>

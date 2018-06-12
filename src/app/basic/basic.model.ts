@@ -80,7 +80,11 @@ export enum ColType {
 }
 
 export type ColFmt = (item: any) => string;
-export type ColAction = (item: any) => void;
+export interface ColAction {
+    icon: string;
+    action: (item: any) => void;
+    label?: string;
+}
 
 export interface ColSpec {
     title: string;

@@ -25,7 +25,11 @@ import {
     TreeNode,
     ToggleButtonModule,
     ChipsModule,
+
 } from 'primeng/primeng'
+import {
+    TableModule,
+} from 'primeng/table'
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
 @NgModule({
@@ -53,6 +57,7 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
         TriStateCheckboxModule,
         ToggleButtonModule,
         ChipsModule,
+        TableModule,
     ],
     exports: [
         ButtonModule,
@@ -77,6 +82,7 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
         TriStateCheckboxModule,
         ToggleButtonModule,
         ChipsModule,
+        TableModule,
     ],
     providers: [
         ConfirmationService,

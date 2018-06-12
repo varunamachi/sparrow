@@ -1,3 +1,51 @@
-<p>
-  table works!
-</p>
+<p-table [columns]="specs" [value]="items">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns" [style]="'width:' + col.width">
+                {{col.title}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns" [ngSwitch]="col.type">
+                <span *ngSwitchCase="'value'">
+                    {{item[col.field]}}
+                </span>
+                <span *ngSwitchCase="'date'">
+                    {{item[col.field] | date: 'dd MMM yyyy HH:mm:ss'}}
+                </span>
+                <span *ngSwitchCase="'formatted'">
+                    {{col.formatter ? col.formatter(item) : item[col.field]}}
+                </span>
+                <span *ngSwitchCase="'boolean'">
+                    <span class="bool" *ngIf="item[col.field]; else fls">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        TRUE
+                    </span>
+                    <ng-container #fls>
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                        FALSE
+                    </ng-container>
+                </span>
+                <span *ngSwitchCase="'array'">
+                    <span *ngFor="let cmp of item[col.field]; let i = index">
+                        <i class="fa fa-times"
+                           aria-hidden="true"
+                           *ngIf="i < item[col.field].length - 1"
+                        ></i>
+                        {{cmp}}
+                    </span>
+                </span>
+                <span *ngSwitchCase="'ops'">
+                    <button
+                        pButton
+                        *ngFor="let ca of item[col.field]"
+                        [icon]="ca.icon"
+                        (click)="ca.action(item)"
+                    ></button>
+                </span>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

@@ -8,17 +8,18 @@ export enum AuthLevel {
 }
 
 export interface User {
-    _id: string;
+    _id?: string;
     id: string;
     email: string;
     auth: AuthLevel;
     firstName: string;
     lastName: string;
     fullName: string;
-    props: Object;
-    created: Date;
-    modified: Date;
-    pwdExpiry: Date;
+    props?: Object;
+    created?: Date;
+    modified?: Date;
+    pwdExpiry?: Date;
+    state?: string;
 }
 
 export interface Credential {

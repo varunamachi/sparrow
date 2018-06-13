@@ -11,7 +11,7 @@ export class ButtonComponent implements OnInit {
 
     @Input('label') label = '';
 
-    @Input('height') height = '16px';
+    @Input('height') height = '20px';
 
     @Input('onClick') onClick = new EventEmitter();
 

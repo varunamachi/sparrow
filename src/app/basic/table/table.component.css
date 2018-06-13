@@ -1,3 +1,9 @@
 .bool {
     font-family: 'Consolas', 'Ubuntu Mono', 'Courier New', Courier, monospace
 }
+
+.header {
+    /* font-weight: normal; */
+    text-align: left;
+    background-color: #3d3d3d !important;
+}

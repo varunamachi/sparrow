@@ -1,7 +1,7 @@
 <button
     class="btn"
     (click)="onClick.emit($event)"
-    [style]="'height:' + height"
+    [ngStyle]="{'height':  height}"
 >
     <i  class="fa {{icon}}"></i>
     {{label}}

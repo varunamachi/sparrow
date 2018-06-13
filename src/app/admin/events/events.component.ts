@@ -1,4 +1,4 @@
-import { Filter, FilterSpec, FilterType, PaginateEvent, DateRange, FilterEvent } from './../../basic/basic.model';
+import { Filter, FilterSpec, FilterType, PaginateEvent, DateRange, FilterEvent, ColSpec, ColType } from './../../basic/basic.model';
 import { SEvent, EventList, EventFilterModel } from './../admin.model';
 import { MsgService } from './../../basic/msg.service';
 import { AdminService } from './../admin.service';
@@ -46,6 +46,49 @@ export class EventsComponent implements OnInit {
             type: FilterType.Search,
         },
     ];
+
+    readonly COLSPEC: ColSpec[] = [
+        {
+            title: 'Operation',
+            field: 'op',
+            type: ColType.Value,
+            width: '35%',
+        },
+        {
+            title: 'User',
+            type: ColType.Custom,
+            width: '30%',
+            valueGetter: (event: SEvent) => {
+                return event.userName ? event.userName : event.userID;
+            }
+        },
+        {
+            title: 'Success?',
+            field: 'success',
+            type: ColType.Boolean,
+            width: '10%',
+        },
+        {
+            title: 'Time',
+            field: 'time',
+            type: ColType.Date,
+            width: '30%',
+        },
+        {
+            title: 'Ops ',
+            type: ColType.Ops,
+            width: '5%',
+            actions: [
+                {
+                    icon: 'fa-info',
+                    toolTip: 'Show event details',
+                    action: (event: SEvent) => {
+                        this.objSrv.show(event);
+                    }
+                }
+            ]
+        }
+    ]
 
     readonly ENTRIES_PER_PAGE = 25;
 

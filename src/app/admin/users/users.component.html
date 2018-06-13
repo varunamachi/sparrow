@@ -40,7 +40,12 @@
             [pageLinkSize]="PAGE_SHOWN"
             (onPageChange)="paginate($event)"
         ></p-paginator>
-        <p-dataTable
+        <app-table
+            [specs]="COLSPEC"
+            [items]="users"
+        ></app-table>
+
+        <!-- <p-dataTable
             [value]="users"
             [resizableColumns]="true"
         >
@@ -101,7 +106,7 @@
                     ></button>
                 </ng-template>
             </p-column>
-        </p-dataTable>
+        </p-dataTable> -->
     </div>
 </app-filter-page>
 

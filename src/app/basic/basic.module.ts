@@ -42,6 +42,7 @@ import { ButtonComponent } from './button/button.component'
         ObjectComponent,
         ObjectDialogComponent,
         ButtonComponent,
+        TableComponent,
     ],
     declarations: [
         HeaderComponent,

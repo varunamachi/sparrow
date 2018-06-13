@@ -25,6 +25,7 @@ import {
     TreeNode,
     ToggleButtonModule,
     ChipsModule,
+    TooltipModule,
 
 } from 'primeng/primeng'
 import {
@@ -58,6 +59,7 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
         ToggleButtonModule,
         ChipsModule,
         TableModule,
+        TooltipModule,
     ],
     exports: [
         ButtonModule,
@@ -83,6 +85,7 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
         ToggleButtonModule,
         ChipsModule,
         TableModule,
+        TooltipModule,
     ],
     providers: [
         ConfirmationService,

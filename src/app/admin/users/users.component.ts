@@ -1,5 +1,5 @@
 import { ObjectDetailService } from './../../basic/object-detail.service';
-import { Filter, PaginateEvent, FilterSpec, FilterType, FilterEvent } from './../../basic/basic.model';
+import { Filter, PaginateEvent, FilterSpec, FilterType, FilterEvent, ColSpec, ColType } from './../../basic/basic.model';
 import { FormatService } from './../../basic/format.service';
 import { AdminService } from './../admin.service';
 import { Component, OnInit } from '@angular/core';
@@ -47,6 +47,66 @@ export class UsersComponent implements OnInit {
             type: FilterType.DateRange,
         },
     ];
+
+    readonly COLSPEC: ColSpec[] = [
+        {
+            title: 'First Name',
+            field: 'firstName',
+            type: ColType.Value,
+            width: '20%',
+        },
+        {
+            title: 'Last Name',
+            field: 'lastName',
+            type: ColType.Value,
+            width: '20%',
+        },
+        {
+            title: 'Role',
+            type: ColType.Custom,
+            valueGetter: (item: User) => {
+                switch(item.auth) {
+                    case AuthLevel.Super: return 'Super';
+                    case AuthLevel.Admin: return 'Admin';
+                    case AuthLevel.Normal: return 'Normal';
+                    case AuthLevel.Monitor: return 'Monitor';
+                    case AuthLevel.Outsider: return 'Outsider';
+                }
+            },
+            width: '15%',
+        },
+        {
+            title: 'Status',
+            field: 'state',
+            type: ColType.Value,
+            width: '15%',
+        },
+        {
+            title: 'Created On',
+            field: 'created',
+            type: ColType.Date,
+            width: '30%',
+        },
+        {
+            title: 'Actions',
+            type: ColType.Ops,
+            width: '10%',
+            actions: [
+                {
+                    icon: 'fa-trash',
+                    toolTip: 'Delete user',
+                    action: (user: User) => { this.deleteUser(user); },
+                },
+                {
+                    icon: 'fa-info',
+                    toolTip: 'Show user details',
+                    action: (user: User) => {
+                        this.objSrv.show(user);
+                    }
+                }
+            ]
+        },
+    ]
 
     users: User[] = [];
 

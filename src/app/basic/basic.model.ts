@@ -73,24 +73,27 @@ export interface FilterEvent {
 export enum ColType {
     Value = 'value',
     Date = 'date',
-    Formatted = 'formatted',
     Boolean = 'boolean',
     Array = 'array',
     Ops = 'ops',
+    Custom = 'custom',
 }
 
-export type ColFmt = (item: any) => string;
+export type ValueGetter = (item: any) => string;
+
 export interface ColAction {
     icon: string;
     action: (item: any) => void;
+    disabled?: (item: any) => boolean;
     label?: string;
+    toolTip?: string;
 }
 
 export interface ColSpec {
     title: string;
-    field: string;
+    field?: string;
     type: ColType;
     width: string;
-    formatter?: ColFmt;
+    valueGetter?: ValueGetter;
     actions?: ColAction[];
 }

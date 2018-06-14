@@ -20,7 +20,8 @@ import { BasicService } from './basic.service';
 import { FilterService } from './filter.service';
 import { HolderComponent } from './holder/holder.component';
 import { TableComponent } from './table/table.component';
-import { ButtonComponent } from './button/button.component'
+import { ButtonComponent } from './button/button.component';
+import { FilteredTableComponent } from './filtered-table/filtered-table.component'
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { ButtonComponent } from './button/button.component'
         HolderComponent,
         TableComponent,
         ButtonComponent,
+        FilteredTableComponent,
     ],
     providers: [
         MsgService,

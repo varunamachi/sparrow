@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { SelectItem } from "primeng/components/common/selectitem";
 
 export interface Result<T> {
@@ -97,3 +98,9 @@ export interface ColSpec {
     valueGetter?: ValueGetter;
     actions?: ColAction[];
 }
+
+export type ItemGetter = (offst: number,
+    lmt: number,
+    filter: Filter) => Observable<any[]>;
+
+export type ItemCountGetter = (filter: Filter) => Observable<number>;

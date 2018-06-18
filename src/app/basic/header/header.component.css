@@ -7,7 +7,7 @@
     background-color: #2a3336;
     color: #d6cfcf;
     overflow: hidden;
-    border: #2a333686 1px solid;
+    border: 1px solid #2a333686;
 }
 
 .banner a {

@@ -1,4 +1,11 @@
-<p-table [columns]="specs" [value]="items">
+<p-table
+    [columns]="specs"
+    [value]="items"
+    [selectionMode]="selectionMode"
+    ([selection])="selection"
+    [dataKey]="key"
+    (selectionChange)="onSelect()"
+>
     <ng-template pTemplate="header" let-columns>
         <tr>
             <th *ngFor="let col of columns"

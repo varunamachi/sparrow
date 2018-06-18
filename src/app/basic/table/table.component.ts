@@ -1,5 +1,5 @@
 import { ColSpec } from './../basic.model';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'app-table',
@@ -12,9 +12,21 @@ export class TableComponent implements OnInit {
 
     @Input('items') items: any[] = [];
 
+    @Input('selectionMode') selectionMode: string = 'multiple';
+
+    @Input('selection') selection: any;
+
+    @Input('key') key = '_id';
+
+    @Output('selectionChange') selectionChange = new EventEmitter();
+
     constructor() { }
 
     ngOnInit() {
+    }
+
+    onSelect() {
+        this.selectionChange.emit(this.selection);
     }
 
 }

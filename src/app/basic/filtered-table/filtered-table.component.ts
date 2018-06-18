@@ -7,7 +7,7 @@ import {
     Filter,
     FilterEvent
 } from './../basic.model';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'app-filtered-table',
@@ -25,6 +25,14 @@ export class FilteredTableComponent implements OnInit {
     @Input('itemCoungGetter') itemCntGetter: ItemCountGetter = null;
 
     @Input('filter') filter = new Filter();
+
+    @Input('selectionMode') selectionMode: string = 'multiple';
+
+    @Input('selection') selection: any = null;
+
+    @Input('key') key = '_id';
+
+    @Output('selectionChange') selectionChange = new EventEmitter();
 
     items: any[] = [];
 
@@ -61,4 +69,7 @@ export class FilteredTableComponent implements OnInit {
         }
     }
 
+    onSelect() {
+        this.selectionChange.emit(this.selection);
+    }
 }

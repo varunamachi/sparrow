@@ -12,8 +12,12 @@
             [totalRecords]=total
             [pageLinkSize]="5"
             (onPageChange)="paginate($event)"
-        ></p-paginator>
+            ></p-paginator>
         <app-table
+            [selectionMode]="selectionMode"
+            ([selection])="selection"
+            [key]="key"
+            (selectionChange)="onSelect()"
             [specs]="colspec"
             [items]="items"
         ></app-table>

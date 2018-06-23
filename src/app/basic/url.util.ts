@@ -8,23 +8,23 @@ const MA = 'in/r3';
 const PA = '';
 
 export function surl(...uri: string[]): string {
-    return _url(SA, -1, -1, null, ...uri);
+    return _url(SA, null, null, null, ...uri);
 }
 
 export function aurl(...uri: string[]): string {
-    return _url(AA, -1, -1, null, ...uri);
+    return _url(AA, null, null, null, ...uri);
 }
 
 export function nurl(...uri: string[]): string {
-    return _url(NA, -1, -1, null, ...uri);
+    return _url(NA, null, null, null, ...uri);
 }
 
-export function murl(...uri: string[], ): string {
-    return _url(MA, -1, -1, null, ...uri);
+export function murl(...uri: string[] ): string {
+    return _url(MA, null, null, null, ...uri);
 }
 
 export function purl(...uri: string[]): string {
-    return _url(PA, -1, -1, null, ...uri);
+    return _url(PA, null, null, null, ...uri);
 }
 
 export function surlx(
@@ -85,7 +85,7 @@ export function _url(
     if (filter) {
         url += '?filter=' + JSON.stringify(filter)
     }
-    if (offset >= 0 && limit > 0) {
+    if (offset && limit) {
         url += (filter ? '&' : '?') + 'offset=' + offset + '&limit=' + limit;
     }
     return url;

@@ -104,3 +104,8 @@ export type ItemGetter = (offst: number,
     filter: Filter) => Observable<any[]>;
 
 export type ItemCountGetter = (filter: Filter) => Observable<number>;
+
+export interface CountList {
+    data: any[];
+    totalCount: number;
+}

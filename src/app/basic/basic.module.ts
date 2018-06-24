@@ -44,6 +44,7 @@ import { FilteredTableComponent } from './filtered-table/filtered-table.componen
         ObjectDialogComponent,
         ButtonComponent,
         TableComponent,
+        FilteredTableComponent,
     ],
     declarations: [
         HeaderComponent,

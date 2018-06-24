@@ -16,84 +16,13 @@
         From {{from}} to {{from + ENTRIES_PER_PAGE}} of {{total}}
     </span>
 </app-page-header>
-<app-filter-page [filterVisible]="showFilter">
-    <div filter>
-        <app-filter
-            [spec]="FSPEC"
-            dataType="events"
-            (onChange)="filterChanged($event)"
-        ></app-filter>
-    </div>
-    <div content>
-        <p-paginator
-            [rows]=ENTRIES_PER_PAGE
-            [totalRecords]=total
-            [pageLinkSize]="PAGE_SHOWN"
-            (onPageChange)="paginate($event)"
-        ></p-paginator>
-        <app-table
-            [specs]="COLSPEC"
-            [items]="events"
-        ></app-table>
-        <!-- <p-dataTable
-            [value]="events"
-            [resizableColumns]="true"
-        >
-            <p-column
-                field="op"
-                header="Operation"
-                [style]="{'width':'25%'}"
-            >
-            </p-column>
-            <p-column
-                field="user"
-                header="User"
-                [style]="{'width':'25%'}"
-            >
-                <ng-template let-data="rowData" pTemplate="body">
-                    <span *ngIf="data.userName; else showID">
-                        {{data.userName}}
-                    </span>
-                    <ng-template  #showID>
-                        <span
-                            style="font-family: monospace; font-size: 11px;"
-                        >
-                            {{data.userID }}
-                        </span>
-                    </ng-template>
-                </ng-template>
-            </p-column>
-            <p-column
-                field="success"
-                header="Success"
-                [style]="{'width':'10%'}"
-            >
-                <ng-template let-data="rowData" pTemplate="body">
-                    {{data.success ? 'Yes' : 'No' }}
-                </ng-template>
-            </p-column>
-            <p-column
-                field="time"
-                header="Time"
-                [style]="{'width':'25%'}"
-            >
-                <ng-template let-col let-data="rowData" pTemplate="body">
-                    {{ this.fmtSrv.formatTime(data.time) }}
-                </ng-template>
-            </p-column>
-            <p-column
-                header="Ops"
-                [style]="{'width':'10%'}"
-            >
-                <ng-template let-col let-data="rowData" pTemplate="body">
-                    <button
-                        pButton
-                        icon="fa-info"
-                        (click)="showEventDetail(data)"
-                    ></button>
-                </ng-template>
-            </p-column>
-        </p-dataTable> -->
-    </div>
-</app-filter-page>
+
+<app-filtered-table
+    [colspec]="COLSPEC"
+    [fspec]="FSPEC"
+    sortField="-time"
+    dataType="events"
+>
+</app-filtered-table>
+
 

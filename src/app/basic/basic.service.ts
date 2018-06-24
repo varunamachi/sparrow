@@ -19,8 +19,10 @@ export class BasicService {
     getItems(dataType: string,
         offset: number,
         limit: number,
-        filter: Filter): Observable<any[]> {
-        const url = murlx(offset, limit, filter, 'gen', dataType, 'list');
+        filter: Filter,
+        sortField: string): Observable<any[]> {
+        const url = murlx(offset, limit, filter, 'gen', dataType, 'list') +
+            "&sortField=" + sortField;
         return this.http.get(url).map((res: Result<any>) => {
             return res.data;
         });
@@ -29,8 +31,10 @@ export class BasicService {
     getItemsWithCount(dataType: string,
         offset: number,
         limit: number,
-        filter: Filter): Observable<CountList> {
-        const url = murlx(offset, limit, filter, 'gen', dataType);
+        filter: Filter,
+        sortField: string): Observable<CountList> {
+        const url = murlx(offset, limit, filter, 'gen', dataType) +
+            "&sortField=" + sortField;
         return this.http.get(url).map((res: Result<CountList>) => {
             return res.data;
         });

@@ -35,6 +35,8 @@ export class FilteredTableComponent implements OnInit {
 
     @Input('dataType') dataType = '';
 
+    @Input('sortField') sortField = '';
+
     @Input('key') key = '_id';
 
     @Output('selectionChange') selectionChange = new EventEmitter();
@@ -64,13 +66,14 @@ export class FilteredTableComponent implements OnInit {
     }
 
     refresh(from: number, count = false) {
-        if (this.dataType) {
+        if (!this.itemGetter) {
             if (count) {
                 this.genSrv.getItemsWithCount(this.dataType,
                     from,
                     this.perPage,
-                    this.filter).subscribe((res: CountList) => {
-                        this.total = res.totalCount;
+                    this.filter,
+                    this.sortField).subscribe((res: CountList) => {
+                        this.total = res.total;
                         this.items = res.data;
 
                     }, err => {
@@ -80,7 +83,8 @@ export class FilteredTableComponent implements OnInit {
                 this.genSrv.getItems(this.dataType,
                     from,
                     this.perPage,
-                    this.filter).subscribe((res: any[]) => {
+                    this.filter,
+                    this.sortField).subscribe((res: any[]) => {
                         this.items = res;
                     }, err => {
                         this.msgSrv.showError('Failed to fetch data & count');

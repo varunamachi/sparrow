@@ -85,7 +85,7 @@ export function _url(
     if (filter) {
         url += '?filter=' + JSON.stringify(filter)
     }
-    if (offset && limit) {
+    if (offset !== null && limit !== null) {
         url += (filter ? '&' : '?') + 'offset=' + offset + '&limit=' + limit;
     }
     return url;

@@ -107,5 +107,5 @@ export type ItemCountGetter = (filter: Filter) => Observable<number>;
 
 export interface CountList {
     data: any[];
-    totalCount: number;
+    total: number;
 }

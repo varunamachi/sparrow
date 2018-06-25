@@ -20,75 +20,18 @@
         <button pButton
             label="Refresh"
             icon = "fa-refresh"
-            (click)="refresh()"
+            (click)="ftable?.refresh()"
         >
         </button>
     </span>
 </app-page-header>
-<app-filter-page [filterVisible]="showFilter">
-    <div filter>
-        <app-filter
-            [spec]="filterDesc"
-            (onChange)="filterChanged($event)"
-        ></app-filter>
-    </div>
-    <div content>
-        <p-paginator
-            [rows]=ENTRIES_PER_PAGE
-            [totalRecords]=total
-            [pageLinkSize]="PAGE_SHOWN"
-            (onPageChange)="paginate($event)"
-        ></p-paginator>
-        <p-dataTable
-            [value]="entities"
-            [resizableColumns]="true"
-        >
-            <p-column
-                field="name"
-                header="Name"
-                [style]="{'width':'25%'}"
-            >
-            </p-column>
-            <p-column
-                field="type"
-                header="Type"
-                [style]="{'width':'15%'}"
-            >
-            </p-column>
-            <p-column
-                field="owner"
-                header="Owner"
-                [style]="{'width':'25%'}"
-            >
-            </p-column>
-            <p-column
-                field="location"
-                header="Location"
-                [style]="{'width':'25%'}"
-            >
-            </p-column>
-            <p-column
-                header="Ops"
-                [style]="{'width':'10%'}"
-            >
-                <ng-template let-col let-data="rowData" pTemplate="body">
-                    <button
-                        pButton
-                        icon="fa-trash"
-                        (click)="deleteEntity()"
-                    ></button>
-                    <button
-                        pButton
-                        icon="fa-info"
-                        (click)="entityDetails(data)"
-                    ></button>
-                </ng-template>
-            </p-column>
-        </p-dataTable>
-    </div>
-</app-filter-page>
-
-
+<app-filtered-table
+    [colspec]="COLSPEC"
+    [fspec]="FSPEC"
+    sortField="-createdAt"
+    dataType="users"
+>
+</app-filtered-table>
 <p-dialog
     [style]="{'overflow': 'visible'}"
     header="Create User"

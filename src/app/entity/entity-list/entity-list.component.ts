@@ -4,9 +4,12 @@ import {
     Filter,
     FilterSpec,
     PaginateEvent,
-    FilterType
+    FilterType,
+    ColSpec,
+    ColType
 } from './../../basic/basic.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FilteredTableComponent } from '../../basic/filtered-table/filtered-table.component';
 
 @Component({
     selector: 'app-entity-list',
@@ -15,84 +18,96 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EntityListComponent implements OnInit {
 
-    entities: Entity
+    readonly FSPEC: FilterSpec[] = [
+        {
+            name: 'Name',
+            field: 'name',
+            type: FilterType.Prop,
+        },
+        {
+            name: 'Type',
+            field: 'type',
+            type: FilterType.Prop,
+        },
+        {
+            name: 'Tags',
+            field: 'tags',
+            type: FilterType.Array,
+        },
+        {
+            name: 'Created',
+            field: 'createdAt',
+            type: FilterType.DateRange,
+        },
+    ];
 
-    readonly ENTRIES_PER_PAGE = 25;
+    readonly COLSPEC: ColSpec[] = [
+        {
+            title: 'Name',
+            field: 'name',
+            type: ColType.Value,
+            width: '30%',
+        },
+        {
+            title: 'Type',
+            field: 'type',
+            type: ColType.Value,
+            width: '20%',
+        },
+        {
+            title: 'Owner',
+            field: 'owner',
+            type: ColType.Value,
+            width: '20%',
+        },
+        {
+            title: 'Location',
+            field: 'location',
+            type: ColType.Value,
+            width: '30%',
+        },
+        {
+            title: 'Actions',
+            type: ColType.Ops,
+            width: '10%',
+            actions: [
+                {
+                    icon: 'fa-trash',
+                    toolTip: 'Delete Entity',
+                    action: (entity: Entity) => { this.deleteEntity(entity); },
+                },
+                {
+                    icon: 'fa-info',
+                    toolTip: 'Show user details',
+                    action: (entity: Entity) => {
+                        this.objSrv.show(entity);
+                    }
+                }
+            ]
+        },
+    ]
 
-    readonly PAGE_SHOWN = 5;
-
-    from = 0;
-
-    total = 0;
+    @ViewChild(FilteredTableComponent) ftable: FilteredTableComponent;
 
     showFilter = true;
 
-    filter = new Filter();
-
-    filterDesc: FilterSpec[] = []
-
     showCreateEntityDialog = false;
 
-    constructor(private detailsSrv: ObjectDetailService) {
+    constructor(private objSrv: ObjectDetailService) {
 
     }
 
     ngOnInit() {
-        this.populateFilters();
-    }
-
-    refresh() {
-
-    }
-
-    populateFilters() {
-        // this.filterDesc = [
-        //     {
-        //         name: 'Name',
-        //         field: 'name',
-        //         type: FilterType.Value,
-        //         data: [],
-        //     },
-        //     {
-        //         name: 'Owner',
-        //         field: 'owner',
-        //         type: FilterType.Value,
-        //         data: [],
-        //     },
-        //     {
-        //         name: 'Location',
-        //         field: 'location',
-        //         type: FilterType.Value,
-        //         data: [],
-        //     },
-        // ]
-    }
-
-    filterChanged(filter: Filter) {
-        this.from = 0;
-        this.filter = filter;
-        this.refresh();
     }
 
     onEntityCreationDone() {
         this.showCreateEntityDialog = false;
-        this.refresh();
+        this.ftable.refresh();
     }
 
-    showEntityDetails(entity: any) {
-    }
 
-    paginate(event: PaginateEvent) {
-        this.from = event.first;
-        this.refresh();
-    }
+    deleteEntity(entity: Entity) {
 
-    deleteEntity() {
-
-    }
-
-    entityDetails(data: Entity) {
-        this.detailsSrv.show(data);
     }
 
 }

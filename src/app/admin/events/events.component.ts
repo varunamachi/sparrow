@@ -106,18 +106,9 @@ export class EventsComponent implements OnInit {
 
     filterDesc: FilterSpec[] = []
 
-    constructor(
-        public fmtSrv: FormatService,
-        private adminSrv: AdminService,
-        private msgSrv: MsgService,
-        private objSrv: ObjectDetailService) {
+    constructor(private objSrv: ObjectDetailService) { }
 
-    }
-
-    ngOnInit() {
-        // this.refresh();
-        // this.populateFilters()
-    }
+    ngOnInit() { }
 
     showEventDetail(event: SEvent) {
         this.objSrv.show(event);

@@ -1,15 +1,17 @@
+import { FilteredTableComponent } from './../../basic/filtered-table/filtered-table.component';
 import { ObjectDetailService } from './../../basic/object-detail.service';
-import { Filter, PaginateEvent, FilterSpec, FilterType, FilterEvent, ColSpec, ColType } from './../../basic/basic.model';
+import { FilterSpec,
+         FilterType,
+         ColSpec,
+         ColType } from './../../basic/basic.model';
 import { FormatService } from './../../basic/format.service';
 import { AdminService } from './../admin.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User, AuthLevel, UserStatus } from '../../security/security.model';
 import { MsgService } from '../../basic/msg.service';
-import { UserList } from '../admin.model';
 import { SecurityService } from '../../security/security.service';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { AuthService } from '../../security/auth.service';
-import { SelectItem } from 'primeng/components/common/selectitem';
 
 @Component({
     selector: 'app-users',
@@ -108,19 +110,9 @@ export class UsersComponent implements OnInit {
         },
     ]
 
-    users: User[] = [];
-
-    readonly ENTRIES_PER_PAGE = 25;
-
-    readonly PAGE_SHOWN = 5;
-
-    from = 0;
-
-    total = 0;
+    @ViewChild(FilteredTableComponent) ftable: FilteredTableComponent;
 
     showFilter = true;
-
-    filter = new Filter();
 
     showCreateUserDialog = false;
 
@@ -134,27 +126,6 @@ export class UsersComponent implements OnInit {
         private objSrv: ObjectDetailService) { }
 
     ngOnInit() {
-        this.refresh();
-    }
-
-    refresh() {
-        this.adminSrv.getUsers(
-            this.from,
-            this.ENTRIES_PER_PAGE,
-            this.filter).subscribe(
-                (ul: UserList) => {
-                    this.users = ul.data;
-                    this.total = ul.total;
-                },
-                err => {
-                    this.msgSrv.showError('Failed to featch user information',
-                        'Error! - Manage Users');
-                })
-    }
-
-    paginate(event: PaginateEvent) {
-        this.from = event.first;
-        this.refresh();
     }
 
     deleteUser(user: User) {
@@ -166,7 +137,7 @@ export class UsersComponent implements OnInit {
                 this.secSrv.deleteUser(user.id).subscribe(
                     (res: any) => {
                         this.msgSrv.showSuccess('User deletion successful');
-                        this.refresh()
+                        this.ftable.refresh();
                     },
                     err => {
                         this.msgSrv.showError('Failed to delete user');
@@ -179,17 +150,11 @@ export class UsersComponent implements OnInit {
 
     onUserCreationDone() {
         this.showCreateUserDialog = false;
-        this.refresh();
+        this.ftable.refresh();
     }
 
     showUserDetails(user: User) {
         this.objSrv.show(user);
-    }
-
-    filterChanged(fe: FilterEvent) {
-        this.from = 0;
-        this.filter = fe.filter;
-        this.refresh();
     }
 
 }

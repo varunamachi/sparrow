@@ -53,7 +53,7 @@ export class FilteredTableComponent implements OnInit {
         private msgSrv: MsgService) { }
 
     ngOnInit() {
-        this.refresh(0, true);
+        this.refresh();
     }
 
     paginate(pe: PaginateEvent) {
@@ -62,10 +62,10 @@ export class FilteredTableComponent implements OnInit {
 
     filterChanged(event: FilterEvent) {
         this.filter = event.filter;
-        this.refresh(0, true)
+        this.refresh()
     }
 
-    refresh(from: number, count = false) {
+    refresh(from: number = 0, count = true) {
         if (!this.itemGetter) {
             if (count) {
                 this.genSrv.getItemsWithCount(this.dataType,

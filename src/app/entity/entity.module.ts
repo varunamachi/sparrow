@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrmngModule } from './../prmng/prmng.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,6 +13,8 @@ import { EntityCreateComponent } from './entity-create/entity-create.component';
         CommonModule,
         PrmngModule,
         BasicModule,
+        FormsModule,
+        ReactiveFormsModule,
     ],
     exports: [
         EntityListComponent,

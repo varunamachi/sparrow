@@ -78,7 +78,7 @@ export class EntityListComponent implements OnInit {
                 },
                 {
                     icon: 'fa-info',
-                    toolTip: 'Show user details',
+                    toolTip: 'Show entity details',
                     action: (entity: Entity) => {
                         this.objSrv.show(entity);
                     }

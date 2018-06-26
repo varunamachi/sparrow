@@ -29,7 +29,7 @@
     [colspec]="COLSPEC"
     [fspec]="FSPEC"
     sortField="-createdAt"
-    dataType="users"
+    dataType="entities"
 >
 </app-filtered-table>
 <p-dialog
@@ -38,8 +38,8 @@
     [(visible)]="showCreateEntityDialog"
     [modal]=true
 >
-    <!-- <app-user-create
-        (onFinished)="onEntityCreationDone()"
-    ></app-user-create> -->
+    <app-entity-create
+        (done)="onEntityCreationDone()"
+    ></app-entity-create>
 </p-dialog>
 

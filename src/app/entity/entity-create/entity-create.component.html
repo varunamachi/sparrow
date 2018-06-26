@@ -1,3 +1,52 @@
-<p>
-    entity-create works!
-</p>
+
+<table class="ucp"><tbody>
+    <form [formGroup]="form" (ngSubmit)="onCreate(form)">
+        <tr>
+            <td>Name</td>
+            <td>
+                <input
+                    pInputText
+                    class="form-control input-text"
+                    type="text"
+                    formControlName="name"
+                >
+            </td>
+        </tr>
+        <tr>
+            <td>Type</td>
+            <td>
+                <input
+                    pInputText
+                    class="form-control input-text"
+                    type="text"
+                    formControlName="type"
+                >
+            </td>
+        </tr>
+        <tr>
+            <td>Location</td>
+            <td>
+                <input
+                    pInputText
+                    class="form-control input-text"
+                    type="text"
+                    formControlName="location"
+                >
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button
+                    [disabled]="form.invalid"
+                    pButton
+                    submit
+                    style="float: right;"
+                    type="submit"
+                    label="Submit"
+                >
+                </button>
+            </td>
+        </tr>
+    </form>
+</tbody></table>

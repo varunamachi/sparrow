@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
     styleUrls: ['./entity-create.component.css']
 })
 export class EntityCreateComponent implements OnInit {
+
+    @Output('done') done = new EventEmitter();
 
     form: FormGroup
 
@@ -19,6 +21,10 @@ export class EntityCreateComponent implements OnInit {
     }
 
     ngOnInit() {
+    }
+
+    onCreate(f: FormGroup) {
+        this.done.emit()
     }
 
 }

@@ -1,10 +1,12 @@
 
-<table class="ucp"><tbody>
+<table id="tab">
+<tbody>
     <form [formGroup]="form" (ngSubmit)="onCreate(form)">
         <tr>
-            <td>Name</td>
-            <td>
+            <td style="width: 100px">Name</td>
+            <td style="width: 400px">
                 <input
+                    style="width: 100%"
                     pInputText
                     class="form-control input-text"
                     type="text"
@@ -13,10 +15,11 @@
             </td>
         </tr>
         <tr>
-            <td>Type</td>
-            <td>
+            <td style="width: 100px">Type</td>
+            <td style="width: 400px">
                 <input
                     pInputText
+                    style="width: 100%"
                     class="form-control input-text"
                     type="text"
                     formControlName="type"
@@ -24,10 +27,11 @@
             </td>
         </tr>
         <tr>
-            <td>Location</td>
-            <td>
+            <td style="width: 100px">Location</td>
+            <td style="width: 400px">
                 <input
                     pInputText
+                    style="width: 100%"
                     class="form-control input-text"
                     type="text"
                     formControlName="location"
@@ -35,8 +39,8 @@
             </td>
         </tr>
         <tr>
-            <td></td>
-            <td>
+            <td style="width: 100px"></td>
+            <td style="width: 400px">
                 <button
                     [disabled]="form.invalid"
                     pButton

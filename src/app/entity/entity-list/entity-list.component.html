@@ -28,13 +28,14 @@
 <app-filtered-table
     [colspec]="COLSPEC"
     [fspec]="FSPEC"
+    [showFilter]="showFilter"
     sortField="-createdAt"
     dataType="entities"
 >
 </app-filtered-table>
 <p-dialog
     [style]="{'overflow': 'visible'}"
-    header="Create User"
+    header="Create Entity"
     [(visible)]="showCreateEntityDialog"
     [modal]=true
 >

@@ -39,11 +39,11 @@ export class FilteredTableComponent implements OnInit {
 
     @Input('key') key = '_id';
 
+    @Input('showFilter') showFilter = true;
+
     @Output('selectionChange') selectionChange = new EventEmitter();
 
     items: any[] = [];
-
-    showFilter = true;
 
     total = 0;
 

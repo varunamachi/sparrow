@@ -1,19 +1,19 @@
 
 
 export interface Entity {
-    _id: string
+    _id?: string
     name: string
     type: string
     location: string
-    owner: string
-    variables: Param[]
-    readers: string[]
-    writers: string[]
-    tags: string[]
-    createdAt: Date
-    modifiedAt: Date
-    createdBy: string
-    modifiedBy: string
+    ownerID: string
+    variables?: Param[]
+    readers?: string[]
+    writers?: string[]
+    tags?: string[]
+    createdAt?: Date
+    modifiedAt?: Date
+    createdBy?: string
+    modifiedBy?: string
 }
 
 interface Pair {

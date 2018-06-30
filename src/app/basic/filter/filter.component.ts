@@ -59,14 +59,7 @@ export class FilterComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.fserve.getFilterValues(this.dataType, this._spec).subscribe(
-            (vals: Object) => {
-                this.values = this.fserve.transformVals(this._spec, vals);
-            },
-            err => {
-                this.msgSrv.showError('Failed to retrieve filter values');
-            }
-        )
+        this.loadValues
     }
 
     changed(field: string) {
@@ -76,4 +69,14 @@ export class FilterComponent implements OnInit {
         })
     }
 
+    loadValues() {
+        this.fserve.getFilterValues(this.dataType, this._spec).subscribe(
+            (vals: Object) => {
+                this.values = this.fserve.transformVals(this._spec, vals);
+            },
+            err => {
+                this.msgSrv.showError('Failed to retrieve filter values');
+            }
+        )
+    }
 }

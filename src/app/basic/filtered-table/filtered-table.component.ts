@@ -1,3 +1,4 @@
+import { FilterComponent } from './../filter/filter.component';
 import { MsgService } from './../msg.service';
 import { BasicService } from './../basic.service';
 import {
@@ -10,7 +11,7 @@ import {
     FilterEvent,
     CountList
 } from './../basic.model';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 
 @Component({
     selector: 'app-filtered-table',
@@ -18,6 +19,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     styleUrls: ['./filtered-table.component.css']
 })
 export class FilteredTableComponent implements OnInit {
+
+    @ViewChild(FilterComponent) filterComp: FilterComponent;
 
     @Input('colspec') colspec: ColSpec[] = [];
 
@@ -113,5 +116,10 @@ export class FilteredTableComponent implements OnInit {
 
     onSelect() {
         this.selectionChange.emit(this.selection);
+    }
+
+    refreshAll() {
+        this.refresh();
+        this.filterComp.loadValues();
     }
 }

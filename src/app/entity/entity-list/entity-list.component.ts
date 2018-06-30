@@ -1,9 +1,9 @@
+import { MsgService } from './../../basic/msg.service';
+import { BasicService } from './../../basic/basic.service';
 import { ObjectDetailService } from './../../basic/object-detail.service';
 import { Entity } from './../entity.model';
 import {
-    Filter,
     FilterSpec,
-    PaginateEvent,
     FilterType,
     ColSpec,
     ColType
@@ -17,6 +17,8 @@ import { FilteredTableComponent } from '../../basic/filtered-table/filtered-tabl
     styleUrls: ['./entity-list.component.css']
 })
 export class EntityListComponent implements OnInit {
+
+    dataType = 'entity';
 
     readonly FSPEC: FilterSpec[] = [
         {
@@ -93,16 +95,26 @@ export class EntityListComponent implements OnInit {
 
     showCreateEntityDialog = false;
 
-    constructor(private objSrv: ObjectDetailService) {
+    constructor(
+        private genSrv: BasicService,
+        private objSrv: ObjectDetailService,
+        private msgSrv: MsgService) {
 
     }
 
     ngOnInit() {
     }
 
-    onEntityCreationDone() {
+    onEntityCreationDone(item: Entity) {
         this.showCreateEntityDialog = false;
-        this.ftable.refresh();
+        this.genSrv.createItem(this.dataType, item).subscribe(() => {
+            this.msgSrv.showSuccess('Entity created');
+            this.ftable.refreshAll();
+        },
+        err => {
+            this.msgSrv.showError('Failed to create entity');
+        })
+
     }
 
 

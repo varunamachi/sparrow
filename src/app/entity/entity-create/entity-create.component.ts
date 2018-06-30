@@ -1,3 +1,4 @@
+import { AuthService } from './../../security/auth.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -12,7 +13,9 @@ export class EntityCreateComponent implements OnInit {
 
     form: FormGroup
 
-    constructor(private fb: FormBuilder) {
+    constructor(
+        private authSrv: AuthService,
+        private fb: FormBuilder) {
         this.form = fb.group({
             'name': ['', Validators.required],
             'type': ['linux', Validators.required],
@@ -24,7 +27,14 @@ export class EntityCreateComponent implements OnInit {
     }
 
     onCreate(f: FormGroup) {
-        this.done.emit()
+        this.done.emit({
+            name: f.value.name,
+            type: f.value.type,
+            location: f.value.location,
+            ownerID: this.authSrv.user.id,
+            ownerName: this.authSrv.user.fullName,
+        })
+        // this.form.reset();
     }
 
 }

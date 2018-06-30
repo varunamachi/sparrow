@@ -150,7 +150,7 @@ export class UsersComponent implements OnInit {
 
     onUserCreationDone() {
         this.showCreateUserDialog = false;
-        this.ftable.refresh();
+        this.ftable.refreshAll();
     }
 
     showUserDetails(user: User) {

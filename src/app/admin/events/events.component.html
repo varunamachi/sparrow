@@ -6,11 +6,19 @@
         View and analyze events
     </span>
     <span toolbar>
-        <p-checkbox
-            binary="true"
-            label="Filters"
-            [(ngModel)]="showFilter"
-        ></p-checkbox>
+        <span style="padding-right: 15px">
+            <p-checkbox
+                binary="true"
+                label="Filters"
+                [(ngModel)]="showFilter"
+            ></p-checkbox>
+        </span>
+        <button pButton
+            label="Refresh"
+            icon = "fa-refresh"
+            (click)="ftable?.refreshAll()"
+        >
+        </button>
     </span>
     <span message style="padding: 0px; margin: 0px; border-width: 0px;">
         From {{from}} to {{from + ENTRIES_PER_PAGE}} of {{total}}

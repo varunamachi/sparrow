@@ -1,10 +1,7 @@
+import { FilteredTableComponent } from './../../basic/filtered-table/filtered-table.component';
 import { Filter, FilterSpec, FilterType, PaginateEvent, DateRange, FilterEvent, ColSpec, ColType } from './../../basic/basic.model';
-import { SEvent, EventList, EventFilterModel } from './../admin.model';
-import { MsgService } from './../../basic/msg.service';
-import { AdminService } from './../admin.service';
-import { FormatService } from './../../basic/format.service';
-import { Component, OnInit } from '@angular/core';
-import * as moment from 'moment';
+import { SEvent } from './../admin.model';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ObjectDetailService } from '../../basic/object-detail.service';
 
 @Component({
@@ -13,6 +10,8 @@ import { ObjectDetailService } from '../../basic/object-detail.service';
     styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
+
+    @ViewChild(FilteredTableComponent) ftable: FilteredTableComponent;
 
     readonly FSPEC: FilterSpec[] = [
         {

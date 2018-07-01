@@ -7,6 +7,7 @@ import { EntityMonitorComponent } from './entity-monitor/entity-monitor.componen
 import { EntityConfigureComponent } from './entity-configure/entity-configure.component';
 import { BasicModule } from '../basic/basic.module';
 import { EntityCreateComponent } from './entity-create/entity-create.component';
+import { EntityService } from './entity.service';
 
 @NgModule({
     imports: [
@@ -26,6 +27,7 @@ import { EntityCreateComponent } from './entity-create/entity-create.component';
         EntityMonitorComponent,
         EntityConfigureComponent,
         EntityCreateComponent,
-    ]
+    ],
+    providers: [EntityService]
 })
 export class EntityModule { }

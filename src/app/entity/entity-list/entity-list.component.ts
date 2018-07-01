@@ -1,3 +1,5 @@
+import { EntityService } from './../entity.service';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { MsgService } from './../../basic/msg.service';
 import { BasicService } from './../../basic/basic.service';
 import { ObjectDetailService } from './../../basic/object-detail.service';
@@ -74,6 +76,11 @@ export class EntityListComponent implements OnInit {
             width: '10%',
             actions: [
                 {
+                    icon: 'fa-key',
+                    toolTip: 'Generate auth secret',
+                    action: (entity: Entity) => { this.generateSecret(entity); },
+                },
+                {
                     icon: 'fa-trash',
                     toolTip: 'Delete Entity',
                     action: (entity: Entity) => { this.deleteEntity(entity); },
@@ -84,7 +91,15 @@ export class EntityListComponent implements OnInit {
                     action: (entity: Entity) => {
                         this.objSrv.show(entity);
                     }
-                }
+                },
+                // {
+                //     icon: 'fa-key',
+                //     toolTip: 'Show entity secret dialog',
+                //     action: (entity: Entity) => {
+                //         this.secret = 'c722c55f-207a-4538-bdb8-4214ef98feb7';
+                //         this.showSecret = true;
+                //     }
+                // }
             ]
         },
     ]
@@ -95,10 +110,16 @@ export class EntityListComponent implements OnInit {
 
     showCreateEntityDialog = false;
 
+    secret: string;
+
+    showSecret: boolean;
+
     constructor(
         private genSrv: BasicService,
         private objSrv: ObjectDetailService,
-        private msgSrv: MsgService) {
+        private msgSrv: MsgService,
+        private confirmSrv: ConfirmationService,
+        private entitySrv: EntityService) {
 
     }
 
@@ -110,8 +131,7 @@ export class EntityListComponent implements OnInit {
         this.genSrv.createItem(this.dataType, item).subscribe(() => {
             this.msgSrv.showSuccess('Entity created');
             this.ftable.refreshAll();
-        },
-        err => {
+        }, err => {
             this.msgSrv.showError('Failed to create entity');
         })
 
@@ -119,7 +139,36 @@ export class EntityListComponent implements OnInit {
 
 
     deleteEntity(entity: Entity) {
+        this.confirmSrv.confirm({
+            message: 'Do you really want to delete the entity',
+            accept: () => {
+                this.genSrv.deleteItem(this.dataType, entity._id).subscribe(
+                    () => {
+                        this.msgSrv.showSuccess('Entity successfuly deleted');
+                        this.ftable.refreshAll();
+                    }, err => {
+                        this.msgSrv.showError('Failed to delete entity');
+                    });
+            },
+        });
+    }
 
+    generateSecret(entity: Entity) {
+        this.confirmSrv.confirm({
+            message: 'If you generate secret, previous secret is invalidated.' +
+                ' Do you want to continue?',
+            accept: () => {
+                this.entitySrv.generateSecret(entity).subscribe(
+                    (secret: string) => {
+                        this.secret = secret;
+                        this.showSecret = true;
+                    }, err => {
+                        this.msgSrv.showError(
+                            'Failed to generate entity secret');
+                    }
+                )
+            },
+        });
     }
 
 }

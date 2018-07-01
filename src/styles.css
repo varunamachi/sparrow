@@ -6,6 +6,7 @@
 /* @import url('https://fonts.googleapis.com/css?family=Titillium+Web'); */
 @import url('https://fonts.googleapis.com/css?family=Lobster');
 @import url('https://fonts.googleapis.com/css?family=Monda');
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 
 body{
     padding: 0px;
@@ -120,6 +121,9 @@ html{
     border: 2px solid rgba(255, 0, 0, 0.555);
 }
 
+.monospace {
+    font-family: 'Source Code Pro', monospace !important;
+}
 
 
 /* .ui-dropdown {

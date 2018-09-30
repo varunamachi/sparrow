@@ -11,12 +11,12 @@ export class EntityCreateComponent implements OnInit {
 
     @Output('done') done = new EventEmitter();
 
-    form: FormGroup
+    fm: FormGroup
 
     constructor(
         private authSrv: AuthService,
         private fb: FormBuilder) {
-        this.form = fb.group({
+        this.fm = fb.group({
             'name': ['', Validators.required],
             'type': ['linux', Validators.required],
             'location': ['', Validators.required],

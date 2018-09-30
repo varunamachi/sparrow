@@ -1,0 +1,79 @@
+<app-page-header
+    pageName="Entity List"
+    [placeholder]=false
+>
+    List of entities
+    <span toolbar>
+        <span style="padding-right: 15px">
+            <p-checkbox
+                binary="true"
+                label="Filters"
+                [(ngModel)]="showFilter"
+            ></p-checkbox>
+        </span>
+        <button pButton
+            label="Create Entity"
+            icon = "fa-plus"
+            (click)="showCreateEntityDialog = true"
+        >
+        </button>
+        <button pButton
+            label="Refresh"
+            icon = "fa-refresh"
+            (click)="ftable?.refreshAll()"
+        >
+        </button>
+    </span>
+</app-page-header>
+<app-filtered-table
+    [colspec]="COLSPEC"
+    [fspec]="FSPEC"
+    [showFilter]="showFilter"
+    sortField="-createdAt"
+    [dataType]="dataType"
+>
+</app-filtered-table>
+<!-- <p-dialog
+    [style]="{'overflow': 'visible'}"
+    header="Create Entity"
+    [(visible)]="showCreateEntityDialog"
+    [modal]=true
+>
+    <app-entity-create
+        (done)="onEntityCreationDone($event)"
+    ></app-entity-create>
+</p-dialog> -->
+
+<p-dialog
+    [style]="{'overflow': 'visible'}"
+    header="Entity Auth Secret"
+    [(visible)]="showSecret"
+    [modal]=true
+>
+    <div style="padding: 5px; word-wrap: normal; margin-bottom: 10px;">
+        Use the below text as entity secret. If you forget this you'll will
+        have to regenerate the secret.
+    </div>
+    <input
+        style="width: 94%;"
+        class="monospace"
+        pTextInput
+        [disabled]="true"
+        [ngModel]="secret"
+        type="text"
+    >
+    <button
+        pButton
+        icon="fa-copy"
+        pTooltip="Copy secret"
+    ></button>
+    <p-footer>
+        <button
+            pButton
+            style="float: right;"
+            label="Ok"
+            (click)="secret = ''; showSecret = false;"
+        ></button>
+    </p-footer>
+</p-dialog>
+

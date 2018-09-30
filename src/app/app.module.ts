@@ -1,3 +1,4 @@
+import { KpxModule } from './kpx/kpx.module';
 import { SuperModule } from './super/super.module';
 import { AdminModule } from './admin/admin.module';
 import { EntityModule } from './entity/entity.module';
@@ -30,9 +31,10 @@ import { HomeComponent } from './home/home.component';
         HttpClientModule,
         BasicModule,
         SecurityModule,
-        EntityModule,
         AdminModule,
         SuperModule,
+        EntityModule,
+        KpxModule,
         JwtModule.forRoot({
             config: {
                 tokenGetter: tokenGetter,

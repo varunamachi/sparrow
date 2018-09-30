@@ -72,7 +72,7 @@ export function _url(
     limit: number,
     filter: Filter,
     ...comps: string[]): string {
-    let url = APP_NAME + '/api/' + API_VERSION + '/';
+    let url = '/api/' + API_VERSION + '/';
     if (access) {
         url += access + '/';
     }
@@ -89,5 +89,5 @@ export function _url(
         url += (filter ? '&' : '?') + 'offset=' + offset + '&limit=' + limit;
     }
     return url;
-
 }
+

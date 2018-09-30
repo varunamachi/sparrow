@@ -1,7 +1,7 @@
-<table class="ucp"><tbody>
-    <form #f="ngForm" (ngSubmit)="createUser(f)">
-            <ng-container *ngIf="mode === 'create'">
-                <tr>
+<form #f="ngForm" (ngSubmit)="createUser(f)">
+    <table class="ucp"><tbody>
+        <ng-container *ngIf="mode === 'create'">
+        <tr>
                     <td>Access Level</td>
                     <td>
                         <p-dropdown
@@ -13,24 +13,6 @@
                     </td>
                 </tr>
             </ng-container>
-        <!-- <ng-container *ngIf="mode === 'create'">
-            <tr>
-                <td>User ID*</td>
-                <td>
-                    <input
-                        required
-                        minlength="3"
-                        maxlength="10"
-                        class="form-control input-text"
-                        pInputText
-                        type="text"
-                        name="id"
-                        (onblur)="checkAvailability(f)"
-                        ngModel
-                    >
-                </td>
-            </tr>
-        </ng-container> -->
         <tr>
             <td>E-Mail*</td>
             <td>
@@ -117,5 +99,5 @@
                 </button>
             </td>
         </tr>
-    </form>
-</tbody></table>
+    </tbody></table>
+</form>

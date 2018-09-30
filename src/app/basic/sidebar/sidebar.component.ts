@@ -44,6 +44,21 @@ export class SidebarComponent implements OnInit {
             ],
         },
         {
+            label: 'KMV Proxy',
+            icon: 'fa-space-shuttle',
+            level: AuthLevel.Admin,
+            expanded: true,
+            items: new Array<AuthMenuItem>(),
+            candidates: [
+                {
+                    label: 'List',
+                    icon: 'fa-list-ul',
+                    level: AuthLevel.Admin,
+                    routerLink: ['/agent/list']
+                },
+            ],
+        },
+        {
             label: 'Admin',
             icon: 'fa-shield',
             level: AuthLevel.Admin,

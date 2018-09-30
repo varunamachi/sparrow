@@ -1,3 +1,4 @@
+import { AgentListComponent } from './kpx/agent-list/agent-list.component';
 import { LoginComponent } from './security/login/login.component';
 import {
     AuthGuard,
@@ -34,6 +35,8 @@ export const routes = [
         component: HomeComponent,
         canActivate: [AuthGuard],
     },
+
+    //*** entity
     {
         path: 'entity/list',
         component: EntityListComponent,
@@ -49,6 +52,25 @@ export const routes = [
         component: EntityConfigureComponent,
         canActivate: [AuthGuard, NormalGuard],
     },
+
+    //*** entity
+    {
+        path: 'agent/list',
+        component: AgentListComponent,
+        canActivate: [AuthGuard, AdminGuard],
+    },
+    // {
+    //     path: 'agent/monitor',
+    //     component: EntityMonitorComponent,
+    //     canActivate: [AuthGuard],
+    // },
+    // {
+    //     path: 'agent/configure',
+    //     component: EntityConfigureComponent,
+    //     canActivate: [AuthGuard, NormalGuard],
+    // },
+
+    //*** admin
     {
         path: 'admin/users',
         component: UsersComponent,
@@ -59,6 +81,8 @@ export const routes = [
         component: EventsComponent,
         canActivate: [AuthGuard, AdminGuard],
     },
+
+    //*** super
     {
         path: 'super/settings',
         component: SettingsComponent,

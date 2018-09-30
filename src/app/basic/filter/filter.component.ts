@@ -59,7 +59,7 @@ export class FilterComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loadValues
+        this.loadValues();
     }
 
     changed(field: string) {

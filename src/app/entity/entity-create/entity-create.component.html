@@ -1,7 +1,5 @@
-
-<table id="tab">
-<tbody>
-    <form [formGroup]="form" (ngSubmit)="onCreate(form)">
+<form [formGroup]="fm" (ngSubmit)="onCreate(fm)">
+    <table id="tab"><tbody>
         <tr>
             <td style="width: 100px">Name</td>
             <td style="width: 400px">
@@ -42,7 +40,7 @@
             <td style="width: 100px"></td>
             <td style="width: 400px">
                 <button
-                    [disabled]="form.invalid"
+                    [disabled]="fm.invalid"
                     pButton
                     submit
                     style="float: right;"
@@ -52,5 +50,5 @@
                 </button>
             </td>
         </tr>
-    </form>
-</tbody></table>
+    </tbody></table>
+<!-- </form> -->

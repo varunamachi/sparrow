@@ -110,6 +110,8 @@
         <p-chips
             [(ngModel)]="_filter.searches[d.field].fields"
             ngDefaultControl
+            (onAdd)="changed(d.field)"
+            (onRemove)="changed(d.field)"
         ></p-chips>
     </app-holder>
     <p></p>

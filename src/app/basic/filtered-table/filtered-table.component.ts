@@ -69,8 +69,10 @@ export class FilteredTableComponent implements OnInit {
     }
 
     refresh(from: number = 0, count = true) {
+        console.log(JSON.stringify(this.filter));
         if (!this.itemGetter) {
             if (count) {
+                console.log("one");
                 this.genSrv.getItemsWithCount(this.dataType,
                     from,
                     this.perPage,
@@ -78,11 +80,11 @@ export class FilteredTableComponent implements OnInit {
                     this.sortField).subscribe((res: CountList) => {
                         this.total = res.total;
                         this.items = res.data;
-
                     }, err => {
                         this.msgSrv.showError('Failed to fetch data & count');
                     });
             } else {
+                console.log("two");
                 this.genSrv.getItems(this.dataType,
                     from,
                     this.perPage,
@@ -95,6 +97,7 @@ export class FilteredTableComponent implements OnInit {
             }
         } else {
             if (count) {
+                console.log("three");
                 this.itemCntGetter(this.filter).flatMap((res: number) => {
                     this.total = res;
                     return this.itemGetter(from, this.perPage, this.filter);
@@ -104,6 +107,7 @@ export class FilteredTableComponent implements OnInit {
                     this.msgSrv.showError('Failed to fetch data & count');
                 });
             } else {
+                console.log("four");
                 this.itemGetter(from, this.perPage, this.filter).subscribe(
                     (res: any[]) => {
                         this.items = res;

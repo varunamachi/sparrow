@@ -92,9 +92,9 @@ export interface ColAction {
 
 export interface ColSpec {
     title: string;
-    field?: string;
     type: ColType;
     width: string;
+    field?: string;
     valueGetter?: ValueGetter;
     actions?: ColAction[];
 }

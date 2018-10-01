@@ -1,3 +1,4 @@
+import { Agent, AgentPlatform } from './../kpx.model';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { MsgService } from './../../basic/msg.service';
 import { ObjectDetailService } from './../../basic/object-detail.service';
@@ -5,7 +6,6 @@ import { BasicService } from './../../basic/basic.service';
 import { FilteredTableComponent } from './../../basic/filtered-table/filtered-table.component';
 import { FilterType, FilterSpec, ColType, ColSpec } from './../../basic/basic.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Agent } from '../kpx.model';
 
 @Component({
     selector: 'app-agent-list',
@@ -23,14 +23,9 @@ export class AgentListComponent implements OnInit {
             type: FilterType.Prop,
         },
         {
-            name: 'Type',
+            name: 'Platform',
             field: 'type',
             type: FilterType.Prop,
-        },
-        {
-            name: 'Tags',
-            field: 'tags',
-            type: FilterType.Array,
         },
         {
             name: 'Created',
@@ -47,9 +42,19 @@ export class AgentListComponent implements OnInit {
             width: '30%',
         },
         {
-            title: 'Type',
-            field: 'type',
-            type: ColType.Value,
+            title: 'Platform',
+            field: 'platform',
+            type: ColType.Custom,
+            valueGetter: (item: Agent) => {
+                switch (item.platform) {
+                    case AgentPlatform.Android: return 'Android';
+                    case AgentPlatform.IOS: return 'IOS';
+                    case AgentPlatform.Linux: return 'Linux';
+                    case AgentPlatform.Windows: return 'Windows';
+                    case AgentPlatform.OSX: return 'OSX';
+                }
+                return "Unknown";
+            },
             width: '20%',
         },
         {
@@ -57,12 +62,6 @@ export class AgentListComponent implements OnInit {
             field: 'owner',
             type: ColType.Value,
             width: '20%',
-        },
-        {
-            title: 'Location',
-            field: 'location',
-            type: ColType.Value,
-            width: '30%',
         },
         {
             title: 'Actions',
@@ -80,7 +79,7 @@ export class AgentListComponent implements OnInit {
                     icon: 'fa-trash',
                     toolTip: 'Delete',
                     action: (agent: Agent) => {
-                        this.deleteEntity(agent);
+                        this.delete(agent);
                     },
                 },
                 {
@@ -127,7 +126,7 @@ export class AgentListComponent implements OnInit {
     // }
 
 
-    deleteEntity(agent: Agent) {
+    delete(agent: Agent) {
         // this.confirmSrv.confirm({
         //     message: 'Do you really want to delete the entity',
         //     accept: () => {

@@ -48,7 +48,6 @@ export class BasicService {
     }
 
     createItem(dataType: string, data: any): Observable<void> {
-        console.log(data);
         const url = nurl('gen', dataType);
         return this.http.post(url, data).map((res: Result<void>) => {});
     }

@@ -83,11 +83,12 @@
         <span ops>
             <p-triStateCheckbox
                 #cb
-                [(ngModel)]="_filter.boolFields[d.field]"
+                [style]="{'font-family': 'monospace'}"
+                [(ngModel)]="_filter.bools[d.field]"
                 (onChange)="changed(d.field)"
                 label="{{(cb.value === null || cb.value === undefined)
-                        ? 'ALL'
-                        : cb.value ? 'True' : 'False' }}"
+                        ? 'A L L&nbsp;'
+                        : cb.value ? 'TRUE&nbsp;' : 'FALSE' }}"
             ></p-triStateCheckbox>
         </span>
     </app-holder>

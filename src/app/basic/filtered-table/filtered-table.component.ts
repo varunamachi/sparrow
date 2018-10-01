@@ -52,7 +52,8 @@ export class FilteredTableComponent implements OnInit {
 
     perPage = 20;
 
-    constructor(private genSrv: BasicService,
+    constructor(
+        private genSrv: BasicService,
         private msgSrv: MsgService) { }
 
     ngOnInit() {
@@ -69,7 +70,7 @@ export class FilteredTableComponent implements OnInit {
     }
 
     refresh(from: number = 0, count = true) {
-        console.log(JSON.stringify(this.filter));
+        console.log(this.filter);
         if (!this.itemGetter) {
             if (count) {
                 console.log("one");

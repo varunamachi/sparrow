@@ -33,8 +33,8 @@ export class FilterService {
                     }
                     break;
                 case FilterType.Boolean:
-                    if (!ft.boolFields[fspec.field]) {
-                        ft.boolFields[fspec.field] = null;
+                    if (!ft.bools[fspec.field]) {
+                        ft.bools[fspec.field] = null;
                     }
                     break;
                 case FilterType.DateRange:

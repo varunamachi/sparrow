@@ -29,7 +29,7 @@ export class Matcher {
 
 export class Filter {
     public props = new Object();
-    public boolFields = new Object();
+    public bools = new Object();
     public dates = new Object();
     public lists = new Object();
     public searches = new Object()

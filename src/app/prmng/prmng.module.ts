@@ -22,10 +22,10 @@ import {
     PaginatorModule,
     TriStateCheckboxModule,
     TreeModule,
-    TreeNode,
     ToggleButtonModule,
     ChipsModule,
     TooltipModule,
+    InputMaskModule,
 
 } from 'primeng/primeng'
 import {
@@ -60,6 +60,8 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
         ChipsModule,
         TableModule,
         TooltipModule,
+        TreeModule,
+        InputMaskModule,
     ],
     exports: [
         ButtonModule,
@@ -86,6 +88,8 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
         ChipsModule,
         TableModule,
         TooltipModule,
+        TreeModule,
+        InputMaskModule,
     ],
     providers: [
         ConfirmationService,

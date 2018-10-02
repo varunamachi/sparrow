@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BasicModule } from './../basic/basic.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,6 +11,8 @@ import { AgentCreateComponent } from './agent-create/agent-create.component';
         CommonModule,
         PrmngModule,
         BasicModule,
+        FormsModule,
+        ReactiveFormsModule,
     ],
     declarations: [
         AgentListComponent,

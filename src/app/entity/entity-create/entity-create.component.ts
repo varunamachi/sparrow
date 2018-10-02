@@ -34,7 +34,6 @@ export class EntityCreateComponent implements OnInit {
             ownerID: this.authSrv.user.id,
             ownerName: this.authSrv.user.fullName,
         })
-        // this.form.reset();
     }
 
 }

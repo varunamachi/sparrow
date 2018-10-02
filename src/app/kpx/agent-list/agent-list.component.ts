@@ -91,7 +91,7 @@ export class AgentListComponent implements OnInit {
                 },
             ]
         },
-    ]
+    ];
 
     @ViewChild(FilteredTableComponent) ftable: FilteredTableComponent;
 
@@ -127,6 +127,7 @@ export class AgentListComponent implements OnInit {
 
 
     delete(agent: Agent) {
+
         // this.confirmSrv.confirm({
         //     message: 'Do you really want to delete the entity',
         //     accept: () => {
@@ -157,6 +158,10 @@ export class AgentListComponent implements OnInit {
         //         )
         //     },
         // });
+    }
+
+    onAgentCreate(event) {
+
     }
 
 }

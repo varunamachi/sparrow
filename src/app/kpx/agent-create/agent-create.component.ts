@@ -1,15 +1,53 @@
-import { Component, OnInit } from '@angular/core';
+import { AgentPlatform } from './../kpx.model';
+import { AuthService } from './../../security/auth.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { SecurityService } from '../../security/security.service';
 
 @Component({
-  selector: 'app-agent-create',
-  templateUrl: './agent-create.component.html',
-  styleUrls: ['./agent-create.component.css']
+    selector: 'app-agent-create',
+    templateUrl: './agent-create.component.html',
+    styleUrls: ['./agent-create.component.css']
 })
 export class AgentCreateComponent implements OnInit {
 
-  constructor() { }
+    @Output('done') done = new EventEmitter();
 
-  ngOnInit() {
-  }
+    readonly PLATFORMS = [
+        { label: 'Android', value: AgentPlatform.Android },
+        { label: 'IOS', value: AgentPlatform.IOS },
+        { label: 'Linux', value: AgentPlatform.Linux },
+        { label: 'Windows', value: AgentPlatform.Windows },
+        { label: 'OSX', value: AgentPlatform.OSX },
+    ];
 
+    fm: FormGroup
+
+    constructor(
+        private authSrv: AuthService,
+        private secSrv: SecurityService,
+        private fb: FormBuilder) {
+        this.fm = fb.group({
+            'name': ['', Validators.required],
+            'platform': [0],
+            'desc': ['', Validators.required],
+            'owner': [null, Validators.required],
+            'ownerEmail': [null, Validators.required],
+        });
+    }
+
+    ngOnInit() {
+        // this.secSrv.
+    }
+
+    onCreate(f: FormGroup) {
+        this.done.emit({
+            name: f.value.name,
+            type: f.value.type,
+            location: f.value.location,
+            ownerID: this.authSrv.user.id,
+            ownerName: this.authSrv.user.fullName,
+        })
+        // this.form.reset();
+    }
 }

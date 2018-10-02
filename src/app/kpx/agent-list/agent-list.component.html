@@ -1,6 +1,6 @@
 <app-page-header
     pageName="Entity List"
-    [placeholder]=false
+    [placeholder]="false"
 >
     List of entities
     <span toolbar>
@@ -33,16 +33,16 @@
     [dataType]="dataType"
 >
 </app-filtered-table>
-<!-- <p-dialog
+<p-dialog
     [style]="{'overflow': 'visible'}"
     header="Create Entity"
     [(visible)]="showCreateEntityDialog"
     [modal]=true
 >
-    <app-entity-create
-        (done)="onEntityCreationDone($event)"
-    ></app-entity-create>
-</p-dialog> -->
+    <app-agent-create
+        (done)="onAgentCreate($event)"
+    ></app-agent-create>
+</p-dialog>
 
 <p-dialog
     [style]="{'overflow': 'visible'}"

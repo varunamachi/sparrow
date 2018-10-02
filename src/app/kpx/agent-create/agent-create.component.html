@@ -1,3 +1,86 @@
-<p>
-  agent-create works!
-</p>
+<form [formGroup]="fm" (ngSubmit)="onCreate(fm)">
+    <table id="tab"><tbody>
+        <tr>
+            <td style="width: 100px">Name</td>
+            <td style="width: 400px">
+                <input
+                    pInputText
+                    style="width: 100%"
+                    class="form-control input-text"
+                    type="text"
+                    formControlName="name"
+                >
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 100px">Platform</td>
+            <td style="width: 400px">
+                <!-- <input
+                    pInputText
+                    style="width: 100%"
+                    class="form-control input-text"
+                    type="text"
+                    formControlName="type"
+                > -->
+                <p-dropdown
+                    [options]="PLATFORMS"
+                    [autoWidth]="false"
+                    formControlName="platform"
+                    [style]="{'width': '100%'}"
+                    appendTo="body"
+                ></p-dropdown>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 100px">Description</td>
+            <td style="width: 400px">
+                <input
+                    pInputText
+                    style="width: 100%"
+                    class="form-control input-text"
+                    type="text"
+                    formControlName="desc"
+                >
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 100px">Owner</td>
+            <td style="width: 400px">
+                <input
+                    pInputText
+                    style="width: 100%"
+                    class="form-control input-text"
+                    type="text"
+                    formControlName="owner"
+                >
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 100px">Owner Email</td>
+            <td style="width: 400px">
+                <input
+                    pInputText
+                    style="width: 100%"
+                    class="form-control input-text"
+                    type="email"
+                    formControlName="ownerEmail"
+                    email="true"
+                >
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 100px"></td>
+            <td style="width: 400px">
+                <button
+                    [disabled]="fm.invalid"
+                    pButton
+                    submit
+                    style="float: right;"
+                    type="submit"
+                    label="Submit"
+                >
+                </button>
+            </td>
+        </tr>
+    </tbody></table>
+<!-- </form> -->

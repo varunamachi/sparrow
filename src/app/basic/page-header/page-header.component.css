@@ -1,14 +1,12 @@
 .page-header {
-    /* background-color: #828d9286; */
-    background-color: #2a3336;
+    /* background-color: #2a3336; */
+    background-image: linear-gradient(to right,
+        #2a3336,
+        #2a3336a4);
     color: white;
     padding: 5px;
-    border-bottom: 1px solid #2e2e2e;
-    /* border-left: 1px inset #2e2e2e2f; */
-    border-left: 1px solid #7dffd4;
-    height: 25px;
-    /* border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; */
+    /* border-bottom: 1px solid #7dffd42f; */
+    height: 27px;
     margin-right: 5px;
     vertical-align: middle;
 }

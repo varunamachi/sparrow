@@ -4,7 +4,7 @@
     height: 50px;
     margin: 0px;
     padding: 0px;
-    background-color: #2a3336;
+    background-color: #000000;
     color: #d6cfcf;
     overflow: hidden;
     border: 1px solid #2a333686;
@@ -15,7 +15,7 @@
     border-width: 0px;
     font-size: 36px;
     font-family: 'Lobster', cursive;
-    color: #d6cfcf;
+    color: #7dffd4;
     font-weight: normal;
 }
 

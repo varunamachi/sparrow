@@ -11,6 +11,8 @@ export class PageHeaderComponent implements OnInit {
 
     @Input('placeholder') placeholder = false;
 
+    @Input('icon') icon = 'fa fa-paper-plane'
+
     constructor() { }
 
     ngOnInit() {

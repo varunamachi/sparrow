@@ -51,7 +51,7 @@ export class SidebarComponent implements OnInit {
             items: new Array<AuthMenuItem>(),
             candidates: [
                 {
-                    label: 'List',
+                    label: 'Agent List',
                     icon: 'fa-list-ul',
                     level: AuthLevel.Admin,
                     routerLink: ['/agent/list']

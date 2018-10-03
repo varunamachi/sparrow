@@ -1,12 +1,16 @@
 .page-header {
-    background-color: #2a333686;
+    /* background-color: #828d9286; */
+    background-color: #2a3336;
     color: white;
     padding: 5px;
-    border: 1px solid #2a333686;;
-    height: 32px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom: 1px solid #2e2e2e;
+    /* border-left: 1px inset #2e2e2e2f; */
+    border-left: 1px solid #7dffd4;
+    height: 25px;
+    /* border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px; */
     margin-right: 5px;
+    vertical-align: middle;
 }
 
 .description {
@@ -16,9 +20,14 @@
 
 .page-name {
     font-size: 20x;
-    padding-right: 30px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .message {
     float: right;
+}
+
+.placeholder {
+    padding: 10px;
 }

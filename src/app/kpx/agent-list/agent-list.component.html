@@ -13,9 +13,9 @@
             ></p-checkbox>
         </span>
         <button pButton
-            label="Create Entity"
+            label="Create Agent"
             icon = "fa-plus"
-            (click)="showCreateEntityDialog = true"
+            (click)="showCreateDialog = true"
         >
         </button>
         <button pButton
@@ -36,8 +36,8 @@
 </app-filtered-table>
 <p-dialog
     [style]="{'overflow': 'visible'}"
-    header="Create Entity"
-    [(visible)]="showCreateEntityDialog"
+    header="Create Agent"
+    [(visible)]="showCreateDialog"
     [modal]=true
 >
     <app-agent-create
@@ -47,7 +47,7 @@
 
 <p-dialog
     [style]="{'overflow': 'visible'}"
-    header="Entity Auth Secret"
+    header="Agent Auth Secret"
     [(visible)]="showSecret"
     [modal]=true
 >

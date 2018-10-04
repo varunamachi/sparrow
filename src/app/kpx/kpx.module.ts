@@ -1,3 +1,4 @@
+import { KpxService } from './kpx.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BasicModule } from './../basic/basic.module';
 import { NgModule } from '@angular/core';
@@ -17,6 +18,9 @@ import { AgentCreateComponent } from './agent-create/agent-create.component';
     declarations: [
         AgentListComponent,
         AgentCreateComponent
+    ],
+    providers: [
+        KpxService,
     ]
 })
 export class KpxModule { }

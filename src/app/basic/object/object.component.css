@@ -1,13 +1,15 @@
 .obj-trees-label{
     font-weight: bold;
-    color: #9ed6eb;
+    color: #5db497;
     /* font-size: 15px; */
     padding-right: 6px;
+    font-family: 'Source Code Pro','Courier New', Courier, monospace;
 }
 
 .obj-trees-data{
     font-style: normal;
     color: white;
+    font-family: 'Source Code Pro','Courier New', Courier, monospace;
     /* font-size: 13px; */
 }
 

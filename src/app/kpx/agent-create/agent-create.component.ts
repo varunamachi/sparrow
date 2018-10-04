@@ -44,9 +44,9 @@ export class AgentCreateComponent implements OnInit {
         this.done.emit({
             name: f.value.name,
             type: f.value.type,
-            location: f.value.location,
-            ownerID: this.authSrv.user.id,
-            ownerName: this.authSrv.user.fullName,
+            desc: f.value.desc,
+            owner: f.value.owner,
+            ownerEmail: f.value.ownerEmail,
         })
         // this.form.reset();
     }

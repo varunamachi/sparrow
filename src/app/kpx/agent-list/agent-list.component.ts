@@ -1,3 +1,4 @@
+import { KpxService } from './../kpx.service';
 import { Agent, AgentPlatform } from './../kpx.model';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { MsgService } from './../../basic/msg.service';
@@ -97,7 +98,7 @@ export class AgentListComponent implements OnInit {
 
     showFilter = true;
 
-    showCreateEntityDialog = false;
+    showCreateDialog = false;
 
     secret: string;
 
@@ -107,6 +108,7 @@ export class AgentListComponent implements OnInit {
         private genSrv: BasicService,
         private objSrv: ObjectDetailService,
         private msgSrv: MsgService,
+        private kpxSrv: KpxService,
         private confirmSrv: ConfirmationService) {
 
     }
@@ -114,54 +116,47 @@ export class AgentListComponent implements OnInit {
     ngOnInit() {
     }
 
-    // onEntityCreationDone(item: Entity) {
-    //     this.showCreateEntityDialog = false;
-    //     this.genSrv.createItem(this.dataType, item).subscribe(() => {
-    //         this.msgSrv.showSuccess('Entity created');
-    //         this.ftable.refreshAll();
-    //     }, err => {
-    //         this.msgSrv.showError('Failed to create entity');
-    //     })
-
-    // }
-
-
     delete(agent: Agent) {
-
-        // this.confirmSrv.confirm({
-        //     message: 'Do you really want to delete the entity',
-        //     accept: () => {
-        //         this.genSrv.deleteItem(this.dataType, entity._id).subscribe(
-        //             () => {
-        //                 this.msgSrv.showSuccess('Entity successfuly deleted');
-        //                 this.ftable.refreshAll();
-        //             }, err => {
-        //                 this.msgSrv.showError('Failed to delete entity');
-        //             });
-        //     },
-        // });
+        this.confirmSrv.confirm({
+            message: 'Do you really want to delete the entity',
+            accept: () => {
+                this.genSrv.deleteItem(this.dataType, agent._id).subscribe(
+                    () => {
+                        this.msgSrv.showSuccess('Entity successfuly deleted');
+                        this.ftable.refreshAll();
+                    }, err => {
+                        this.msgSrv.showError('Failed to delete entity');
+                    });
+            },
+        });
     }
 
     generateSecret(agent: Agent) {
-        // this.confirmSrv.confirm({
-        //     message: 'If you generate secret, previous secret is invalidated.' +
-        //         ' Do you want to continue?',
-        //     accept: () => {
-        //         this.entitySrv.generateSecret(entity).subscribe(
-        //             (secret: string) => {
-        //                 this.secret = secret;
-        //                 this.showSecret = true;
-        //             }, err => {
-        //                 this.msgSrv.showError(
-        //                     'Failed to generate entity secret');
-        //             }
-        //         )
-        //     },
-        // });
+        this.confirmSrv.confirm({
+            message: 'If you generate secret, previous secret is invalidated.' +
+                ' Do you want to continue?',
+            accept: () => {
+                this.kpxSrv.generateSecret(agent).subscribe(
+                    (secret: string) => {
+                        this.secret = secret;
+                        this.showSecret = true;
+                    }, err => {
+                        this.msgSrv.showError(
+                            'Failed to generate entity secret');
+                    }
+                )
+            },
+        });
     }
 
-    onAgentCreate(event) {
-
+    onAgentCreate(agent: Agent) {
+        this.showCreateDialog = false;
+        this.genSrv.createItem(this.dataType, agent).subscribe(() => {
+            this.msgSrv.showSuccess('Entity created');
+            this.ftable.refreshAll();
+        }, err => {
+            this.msgSrv.showError('Failed to create entity');
+        })
     }
 
 }

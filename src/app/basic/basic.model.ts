@@ -97,7 +97,7 @@ export interface ColSpec {
     field?: string;
     valueGetter?: ValueGetter;
     actions?: ColAction[];
-}
+} 
 
 export type ItemGetter = (offst: number,
     lmt: number,
@@ -108,4 +108,9 @@ export type ItemCountGetter = (filter: Filter) => Observable<number>;
 export interface CountList {
     data: any[];
     total: number;
+}
+
+export interface FilterVal {
+    _id: FVal;
+    count: number;
 }

@@ -63,16 +63,21 @@ export class FilterComponent implements OnInit {
     }
 
     changed(field: string) {
+        this.loadValues();
         this.onChange.emit({
             field: field,
-            filter: this._filter,
+            filter: this._filter, 
         })
     }
 
     loadValues() {
-        this.fserve.getFilterValues(this.dataType, this._spec).subscribe(
+        const filter = this._filter ? this._filter : null;
+        this.fserve.getFilterValuesX(
+            this.dataType, 
+            filter, 
+            this._spec).subscribe(
             (vals: Object) => {
-                this.values = this.fserve.transformVals(this._spec, vals);
+                this.values = this.fserve.transformValsX(this._spec, vals);
             },
             err => {
                 this.msgSrv.showError('Failed to retrieve filter values');

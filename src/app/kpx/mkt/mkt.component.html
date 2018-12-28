@@ -1,0 +1,30 @@
+<app-page-header
+    pageName="Markets"
+    [placeholder]="false"
+    icon="fa fa-map-marker"
+>
+    List of entities
+    <span toolbar>
+        <span style="padding-right: 15px">
+            <p-checkbox
+                binary="true"
+                label="Filters"
+                [(ngModel)]="showFilter"
+            ></p-checkbox>
+        </span>
+        <button pButton
+            label="Refresh"
+            icon = "fa-refresh"
+            (click)="ftable?.refreshAll()"
+        >
+        </button>
+    </span>
+</app-page-header>
+<app-filtered-table
+    [colspec]="COLSPEC"
+    [fspec]="FSPEC"
+    [showFilter]="showFilter"
+    sortField="name"
+    [dataType]="dataType"
+> 
+</app-filtered-table>

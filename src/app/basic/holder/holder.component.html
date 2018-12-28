@@ -1,11 +1,11 @@
 <div class="holder">
     <div style="width: 100%;">
-        <app-button
+        <button
+            pButton
             [icon]="collapsed ? 'fa-plus' : 'fa-minus'"
             *ngIf="collapsible"
             (click)="collapsed = !collapsed"
-            height="20px"
-        ></app-button>
+        ></button>
         <label style="padding: 0px; margin: 0px;">
             {{name}}
         </label>

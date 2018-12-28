@@ -51,10 +51,34 @@ export class SidebarComponent implements OnInit {
             items: new Array<AuthMenuItem>(),
             candidates: [
                 {
+                    label: 'Extraction Sessions',
+                    icon: 'fa fa-clock-o',
+                    level: AuthLevel.Admin,
+                    routerLink: ['/kpx/exs']
+                },
+                {
+                    label: 'Commodities',
+                    icon: 'fa fa-truck',
+                    level: AuthLevel.Admin,
+                    routerLink: ['/kpx/cmt']
+                },
+                {
+                    label: 'Markets',
+                    icon: 'fa fa-map-marker',
+                    level: AuthLevel.Admin,
+                    routerLink: ['/kpx/mkt']
+                },
+                {
+                    label: 'Prices',
+                    icon: 'fa fa-money',
+                    level: AuthLevel.Admin,
+                    routerLink: ['/kpx/prices']
+                },
+                {
                     label: 'Agent List',
                     icon: 'fa-list-ul',
                     level: AuthLevel.Admin,
-                    routerLink: ['/agent/list']
+                    routerLink: ['/kpx/agents']
                 },
             ],
         },

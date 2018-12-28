@@ -50,7 +50,7 @@ export class FilteredTableComponent implements OnInit {
 
     total = 0;
 
-    perPage = 20;
+    @Input('perPage') perPage = 20;
 
     constructor(
         private genSrv: BasicService,

@@ -19,6 +19,10 @@ import { SettingsComponent } from './super/settings/settings.component';
 import { DebugComponent } from './super/debug/debug.component';
 import { PasswordComponent } from './security/password/password.component';
 import { VerifyAccountComponent } from './security/verify-account/verify-account.component';
+import { ExSessionComponent } from './kpx/ex-session/ex-session.component';
+import { CmtComponent } from './kpx/cmt/cmt.component';
+import { MktComponent } from './kpx/mkt/mkt.component';
+import { PricesComponent } from './kpx/prices/prices.component';
 
 
 export const routes = [
@@ -52,23 +56,31 @@ export const routes = [
         component: EntityConfigureComponent,
         canActivate: [AuthGuard, NormalGuard],
     },
-
-    //*** entity
     {
-        path: 'agent/list',
+        path: 'kpx/agents',
         component: AgentListComponent,
         canActivate: [AuthGuard, AdminGuard],
     },
-    // {
-    //     path: 'agent/monitor',
-    //     component: EntityMonitorComponent,
-    //     canActivate: [AuthGuard],
-    // },
-    // {
-    //     path: 'agent/configure',
-    //     component: EntityConfigureComponent,
-    //     canActivate: [AuthGuard, NormalGuard],
-    // },
+    {
+        path: 'kpx/exs',
+        component: ExSessionComponent,
+        canActivate: [AuthGuard, AdminGuard],
+    }, 
+    {
+        path: 'kpx/cmt',
+        component: CmtComponent,
+        canActivate: [AuthGuard, AdminGuard],
+    }, 
+    {
+        path: 'kpx/mkt',
+        component: MktComponent,
+        canActivate: [AuthGuard, AdminGuard],
+    }, 
+    {
+        path: 'kpx/prices',
+        component: PricesComponent,
+        canActivate: [AuthGuard, AdminGuard],
+    }, 
 
     //*** admin
     {

@@ -22,6 +22,9 @@
                 <span *ngSwitchCase="'value'">
                     {{item[col.field]}}
                 </span>
+                <span *ngSwitchCase="'arrayLength'">
+                    {{item[col.field].length}}
+                </span>
                 <span *ngSwitchCase="'date'">
                     {{item[col.field] | date: 'dd MMM yyyy HH:mm:ss'}}
                 </span>

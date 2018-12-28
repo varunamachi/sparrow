@@ -13,6 +13,10 @@ export class HolderComponent implements OnInit {
 
     @Input('collapsed') collapsed = false;
 
+    @Input('onReset') onReset: () => {};
+
+    @Input('onNegate') onNegate: () => {};
+
     constructor() { }
 
     ngOnInit() {

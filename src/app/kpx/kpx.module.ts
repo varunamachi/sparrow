@@ -6,6 +6,10 @@ import { CommonModule } from '@angular/common';
 import { PrmngModule } from '../prmng/prmng.module';
 import { AgentListComponent } from './agent-list/agent-list.component';
 import { AgentCreateComponent } from './agent-create/agent-create.component';
+import { ExSessionComponent } from './ex-session/ex-session.component';
+import { CmtComponent } from './cmt/cmt.component';
+import { MktComponent } from './mkt/mkt.component';
+import { PricesComponent } from './prices/prices.component';
 
 @NgModule({
     imports: [
@@ -17,7 +21,11 @@ import { AgentCreateComponent } from './agent-create/agent-create.component';
     ],
     declarations: [
         AgentListComponent,
-        AgentCreateComponent
+        AgentCreateComponent,
+        ExSessionComponent,
+        CmtComponent,
+        MktComponent,
+        PricesComponent
     ],
     providers: [
         KpxService,

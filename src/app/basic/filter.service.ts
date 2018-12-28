@@ -109,13 +109,16 @@ export class FilterService {
 
     // -- -- -- -- -- -- -- -- --
 
-    getFilterValuesX(dtype: string, filter: Filter, fspec: FilterSpec[]):
+    getFilterValuesX(
+        dtype: string,
+        field: string,
+        fspec: FilterSpec[],
+        filter: Filter):
         Observable<Object> {
         const flstr = encodeURIComponent(JSON.stringify(filter));
         const fsstr = encodeURIComponent(JSON.stringify(fspec));
-        const url = murl('gen', dtype, 'fvals') + '?fspec=' +
+        const url = murl('gen', dtype, 'fvals', field) + '?fspec=' +
             fsstr + "&filter=" + flstr;
-        console.log("url", url);
         return this.http.get(url).map((res: Result<Object>) => {
             return res.data;
         });
@@ -125,7 +128,6 @@ export class FilterService {
         const items: SelectItem[] = [];
         if (arr) {
             arr.forEach((item: FilterVal) => {
-                console.log(item)
                 items.push({
                     label: '' + item._id,
                     value: item._id,
@@ -135,23 +137,31 @@ export class FilterService {
         return items;
     }
 
-    transformValsX(fs: FilterSpec[], values: Object): Object {
+    transformValsX(
+        field: string,
+        fs: FilterSpec[],
+        oldVals: Object,
+        values: Object): Object {
         const vals = new Object();
         for (let fspec of fs) {
-            switch (fspec.type) {
-                case FilterType.Array:
-                case FilterType.Prop:
-                    vals[fspec.field] = this.toSelectItemsX(
-                        values[fspec.field]);
-                    break;
-                case FilterType.Static:
-                    vals[fspec.field] = fspec.staticVals;
-                    break;
-                // case FilterType.DateRange:
-                //     vals[fspec.field] = this.toDateRange(values[fspec.field]);
-                //     break;
-                default:
-                    vals[fspec.field] = values[fspec.field];
+            if (fspec.field != field) {
+                switch (fspec.type) {
+                    case FilterType.Array:
+                    case FilterType.Prop:
+                        vals[fspec.field] = this.toSelectItemsX(
+                            values[fspec.field]);
+                        break;
+                    case FilterType.Static:
+                        vals[fspec.field] = fspec.staticVals;
+                        break;
+                    // case FilterType.DateRange:
+                    //     vals[fspec.field] = this.toDateRange(values[fspec.field]);
+                    //     break;
+                    default:
+                        vals[fspec.field] = values[fspec.field];
+                }
+            } else {
+                vals[fspec.field] = oldVals[fspec.field];
             }
         }
         return vals;

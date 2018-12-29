@@ -77,6 +77,7 @@ export enum ColType {
     Boolean = 'boolean',
     Array = 'array',
     ArrayLength = 'arrayLength',
+    MapLength = 'mapLength',
     Ops = 'ops',
     Custom = 'custom',
 }

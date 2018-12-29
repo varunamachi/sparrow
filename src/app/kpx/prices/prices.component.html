@@ -20,11 +20,25 @@
         </button>
     </span>
 </app-page-header>
+<div class="ui-g">
+    <div class="ui-g-4"></div>
+    <div class="ui-g-6">
+        Commodity: 
+        <p-dropdown
+            [filter]="true"
+            [autoWidth]="false"
+            [style]="{'width': '80%'}"
+            [options]="commodities"
+            [(ngModel)]="dataType"
+        ></p-dropdown>
+    </div>
+
+</div>
 <app-filtered-table
     [colspec]="COLSPEC"
     [fspec]="FSPEC"
     [showFilter]="showFilter"
-    sortField="-startedAt"
+    sortField="-date"
     [dataType]="dataType"
 >
 </app-filtered-table>

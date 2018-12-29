@@ -64,7 +64,7 @@ export class FilterComponent implements OnInit {
         this.onChange.emit({
             field: field,
             filter: this._filter,
-        })
+        });
     }
 
     loadValues(field = '') {

@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FilterSpec, FilterType, ColSpec, ColType } from '../../basic/basic.model';
+import { FilterSpec, FilterType, ColSpec, ColType, Filter } from '../../basic/basic.model';
 import { FilteredTableComponent } from '../../basic/filtered-table/filtered-table.component';
 import { BasicService } from '../../basic/basic.service';
 import { ObjectDetailService } from '../../basic/object-detail.service';
 import { MsgService } from '../../basic/msg.service';
 import { KpxService } from '../kpx.service';
-import { ConfirmationService } from 'primeng/primeng';
+import { ConfirmationService, SelectItem } from 'primeng/primeng';
 
 @Component({
   selector: 'app-prices',
@@ -13,8 +13,6 @@ import { ConfirmationService } from 'primeng/primeng';
   styleUrls: ['./prices.component.css']
 })
 export class PricesComponent implements OnInit {
-
-  dataType = 'ARECANUT';
 
   readonly FSPEC: FilterSpec[] = [
     {
@@ -55,9 +53,9 @@ export class PricesComponent implements OnInit {
       width: '20%',
     },
     {
-      title: 'Updated At',
-      field: 'updatedAt',
-      type: ColType.Date,
+      title: '# Stats',
+      field: 'statsEn',
+      type: ColType.MapLength,
       width: '15%',
     },
     {
@@ -86,6 +84,10 @@ export class PricesComponent implements OnInit {
 
   showSecret: boolean;
 
+  commodities: SelectItem[] = [];
+
+  dataType = 'ARECANUT';
+
   constructor(
     private genSrv: BasicService,
     private objSrv: ObjectDetailService,
@@ -96,6 +98,26 @@ export class PricesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.kpxSrv.getCommodityColNames().subscribe(
+      (objs: Object[]) => {
+        const items: SelectItem[] = [];
+        objs.forEach((obj: Object) => {
+          items.push({
+            label: obj['colName'],
+            value: obj['colName'],
+          })
+        })
+        this.commodities = items;
+      },
+      err => {
+        this.msgSrv.showError('Prices', 'Failed to fetch cmt col names');
+      }
+    )
   }
+
+  // onCommodityChange(value: string) {
+  //   this.dataType = value;
+  //   this.ftable.refresh(0, true);
+  // }
 
 }

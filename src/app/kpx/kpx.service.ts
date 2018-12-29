@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Agent } from './kpx.model';
 import { Injectable } from '@angular/core';
-import { aurl } from '../basic/url.util';
+import { aurl, murl } from '../basic/url.util';
 
 @Injectable()
 export class KpxService {
@@ -16,5 +16,12 @@ export class KpxService {
         (res: Result<string>) => {
             return res.data;
         });
+  }
+
+  getCommodityColNames(): Observable<Object[]> {
+    const url = murl("cmtColNames")
+    return this.http.get(url).map((res: Result<Object[]>) => {
+      return res.data;
+    });
   }
 }

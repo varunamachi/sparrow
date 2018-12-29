@@ -29,4 +29,8 @@ export class TableComponent implements OnInit {
         this.selectionChange.emit(this.selection);
     }
 
+    numProps(obj: Object) {
+        return Object.keys(obj).length
+    }
+
 }

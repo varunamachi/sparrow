@@ -11,7 +11,14 @@ import {
     FilterEvent,
     CountList
 } from './../basic.model';
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    Input,
+    Output,
+    EventEmitter,
+    ViewChild
+} from '@angular/core';
 
 @Component({
     selector: 'app-filtered-table',
@@ -35,29 +42,36 @@ export class FilteredTableComponent implements OnInit {
     @Input('selectionMode') selectionMode: string = 'multiple';
 
     @Input('selection') selection: any = null;
-
-    @Input('dataType') dataType = '';
-
+    
     @Input('sortField') sortField = '';
-
+    
     @Input('key') key = '_id';
-
+    
     @Input('showFilter') showFilter = true;
-
+    
     @Output('selectionChange') selectionChange = new EventEmitter();
-
+    
+    @Input('perPage') perPage = 20;
+    
+    @Input('dataType')
+    set dataType(dt: string) {
+        this._dataType = dt;
+        this.refresh(0, true);
+        this.filterComp.loadValues();
+    }
+    
+    _dataType = '';
+    
     items: any[] = [];
 
     total = 0;
-
-    @Input('perPage') perPage = 20;
 
     constructor(
         private genSrv: BasicService,
         private msgSrv: MsgService) { }
 
     ngOnInit() {
-        this.refresh();
+        // this.refresh();
     }
 
     paginate(pe: PaginateEvent) {
@@ -70,11 +84,10 @@ export class FilteredTableComponent implements OnInit {
     }
 
     refresh(from: number = 0, count = true) {
-        console.log(this.filter);
+        // console.log(this.filter);
         if (!this.itemGetter) {
             if (count) {
-                console.log("one");
-                this.genSrv.getItemsWithCount(this.dataType,
+                this.genSrv.getItemsWithCount(this._dataType,
                     from,
                     this.perPage,
                     this.filter,
@@ -85,8 +98,7 @@ export class FilteredTableComponent implements OnInit {
                         this.msgSrv.showError('Failed to fetch data & count');
                     });
             } else {
-                console.log("two");
-                this.genSrv.getItems(this.dataType,
+                this.genSrv.getItems(this._dataType,
                     from,
                     this.perPage,
                     this.filter,
@@ -98,7 +110,6 @@ export class FilteredTableComponent implements OnInit {
             }
         } else {
             if (count) {
-                console.log("three");
                 this.itemCntGetter(this.filter).flatMap((res: number) => {
                     this.total = res;
                     return this.itemGetter(from, this.perPage, this.filter);
@@ -108,7 +119,6 @@ export class FilteredTableComponent implements OnInit {
                     this.msgSrv.showError('Failed to fetch data & count');
                 });
             } else {
-                console.log("four");
                 this.itemGetter(from, this.perPage, this.filter).subscribe(
                     (res: any[]) => {
                         this.items = res;

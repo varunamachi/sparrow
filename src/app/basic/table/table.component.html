@@ -25,6 +25,9 @@
                 <span *ngSwitchCase="'arrayLength'">
                     {{item[col.field].length}}
                 </span>
+                <span *ngSwitchCase="'mapLength'">
+                    {{numProps(item[col.field])}}
+                </span>
                 <span *ngSwitchCase="'date'">
                     {{item[col.field] | date: 'dd MMM yyyy HH:mm:ss'}}
                 </span>

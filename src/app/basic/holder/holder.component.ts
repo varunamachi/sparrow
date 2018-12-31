@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'app-holder',
@@ -13,9 +13,13 @@ export class HolderComponent implements OnInit {
 
     @Input('collapsed') collapsed = false;
 
-    @Input('onReset') onReset: () => {};
+    @Input('showNegator') showNegator = true;
 
-    @Input('onNegate') onNegate: () => {};
+    @Input('negate') negate = false;
+
+    @Output('negateChange') negateChange = new EventEmitter();
+
+    @Output('onReset') onReset = new EventEmitter();
 
     constructor() { }
 

@@ -57,7 +57,7 @@ export class FilteredTableComponent implements OnInit {
     set dataType(dt: string) {
         this._dataType = dt;
         this.refresh(0, true);
-        this.filterComp.loadValues();
+        // this.filterComp.loadValues();
     }
     
     _dataType = '';
@@ -78,8 +78,7 @@ export class FilteredTableComponent implements OnInit {
         this.refresh(pe.first, false)
     }
 
-    filterChanged(event: FilterEvent) {
-        this.filter = event.filter;
+    filterChanged(filter: Filter) {
         this.refresh()
     }
 

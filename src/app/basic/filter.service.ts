@@ -21,6 +21,9 @@ export class FilterService {
     constructor(private http: HttpClient) { }
 
     fill(fs: FilterSpec[], ft: Filter): Filter {
+        if (!(fs && ft)) {
+            return this.defaultFill(fs);
+        }
         for (let fspec of fs) {
             switch (fspec.type) {
                 case FilterType.Array:
@@ -50,6 +53,35 @@ export class FilterService {
                     if (!ft.props[fspec.field]) {
                         ft.props[fspec.field] = [];
                     }
+                    break;
+                case FilterType.Constant:
+                    ft[fspec.type] = fspec.fixedVal;
+            }
+        }
+        return ft;
+    }
+
+    defaultFill(fs: FilterSpec[]): Filter {
+        const ft = new Filter();
+        for (let fspec of fs) {
+            switch (fspec.type) {
+                case FilterType.Array:
+                    ft.lists[fspec.field] = new Matcher();
+                    break;
+                case FilterType.Search:
+                    ft.searches[fspec.field] = new Matcher();
+                    break;
+                case FilterType.Boolean:
+                    ft.bools[fspec.field] = null;
+                    break;
+                case FilterType.DateRange:
+                    ft.dates[fspec.field] = {
+                        from: new Date(0),
+                        to: new Date(),
+                    }
+                    break;
+                case FilterType.Prop:
+                    ft.props[fspec.field] = [];
                     break;
                 case FilterType.Constant:
                     ft[fspec.type] = fspec.fixedVal;

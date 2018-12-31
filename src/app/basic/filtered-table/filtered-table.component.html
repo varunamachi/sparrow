@@ -2,7 +2,8 @@
     <div filter>
         <app-filter
             [spec]="fspec"
-            (onChange)="filterChanged($event)"
+            [(filter)]="filter"
+            (filterChange)="filterChanged($event)"
             [dataType]="_dataType"
         ></app-filter>
     </div>

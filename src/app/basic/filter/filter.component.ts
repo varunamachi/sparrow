@@ -44,11 +44,17 @@ export class FilterComponent implements OnInit {
 
     values = new Object();
 
-    @Input('dataType') dataType = ''
+    _dataType = '';
+
+    @Input('dataType')
+    set dataType(dt: string) {
+        this._dataType = dt;
+        this.loadValues();
+    }
 
     @Output('filterChange') filterChange = new EventEmitter();
 
-    @Output("onChange") onChange = new EventEmitter();
+    // @Output('filterChange') onChanged = new EventEmitter();
 
     constructor(private fserve: FilterService,
         private msgSrv: MsgService) {
@@ -56,35 +62,31 @@ export class FilterComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loadValues();
     }
 
     changed(field: string) {
         this.loadValues(field);
-        this.onChange.emit({
-            field: field,
-            filter: this._filter,
-        });
+        this.filterChange.emit(this._filter);
     }
 
     loadValues(field = '') {
         const filter = this._filter ? this._filter : null;
         this.fserve.getFilterValuesX(
-            this.dataType,
+            this._dataType,
             field,
             this._spec,
             filter).subscribe(
                 (vals: Object) => {
                     this.values = this.fserve.transformValsX(
                         field,
-                        this._spec, 
+                        this._spec,
                         this.values,
                         vals);
-                    
+
                 },
                 err => {
                     this.msgSrv.showError('Failed to retrieve filter values');
                 }
-            )
+            );
     }
 }

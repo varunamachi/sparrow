@@ -1,5 +1,5 @@
-<div class="holder">
-    <div style="width: 100%;">
+<div class="holder" style="width: 95%;">
+    <div style="width: 98%;">
         <button
             pButton
             [icon]="collapsed ? 'fa-plus' : 'fa-minus'"
@@ -9,13 +9,58 @@
         <label style="padding: 0px; margin: 0px;">
             {{name}}
         </label>
-        <span style="
-            float: right;
-            padding: 0px;
-            margin: 0px;"
-        >
-            <ng-content select="[ops]"></ng-content>
-        </span>
+            <span class="resetter">
+                <app-icon-button
+                    icon="fa fa-refresh"
+                    color="none"
+                    tooltip="Reset this filter"
+                    (onClick)="onReset.emit()"
+                ></app-icon-button>
+            </span>
+            <span class="modifier" 
+                *ngIf="filterType === 'prop' || filterType === 'static'">
+                <app-icon-button
+                    [icon]="modifier === 'none' ? 'fa fa-circle' 
+                                                : 'fa fa-dot-circle-o'"
+                    [color]="modifier === 'none' ? 'red' 
+                                                 : 'inherit'"
+                    tooltip="Reset this filter"
+                    (onClick)="onModifierChanged()"
+                ></app-icon-button>
+            </span>
+            <span class="modifier" 
+                *ngIf="filterType === 'array' || filterType === 'search'">
+                <p-dropdown
+                    appendTo="body"
+                    [(ngModel)]="modifier"
+                    [options]="ARRAY_OPTS"
+                    (onChange)="onModifierChanged()"
+                >
+                    <ng-template let-opt pTemplate="item">
+                        <span class="ui-g">
+                            <span class="ui-g-3">
+                                {{opt.label}}
+                            </span>
+                            <span class="ui-g-9">
+                                {{opt.desc}}
+                            </span>
+                        </span>
+                        
+                    </ng-template>
+                    <ng-template let-opt pTemplate="selectedItem">
+                        {{opt.label}}
+                    </ng-template>
+                </p-dropdown>
+            </span>
+            <p *ngIf="filterType === 'array' || filterType === 'search'"></p>            
+            <span style="
+                float: right;
+                padding: 0px;
+                margin: 0px;"
+            >
+                <ng-content select="[ops]"></ng-content>
+            </span>
+
     </div>
     <div [hidden]="collapsed" style="margin-top: 4px;">
         <ng-content></ng-content>

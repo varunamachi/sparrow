@@ -5,28 +5,46 @@
         [name]="d.name"
         *ngSwitchCase="'prop'"
         [collapsible]="false"
+        (onReset)="onReset(d.field)"
+        [(modifier)]="_filter.props[d.field].strategy"
+        (modifierChange)="changed(d.field)"
+        filterType="prop"
     >
         <p-multiSelect
-            [(ngModel)]="_filter.props[d.field]"
+            [(ngModel)]="_filter.props[d.field].fields"
             [options]="values[d.field]"
             [style]="{'width': '100%'}"
             (onChange)="changed(d.field)"
-            >
-            <!-- defaultLabel="Select {{d.name}}" -->
+            appendTo="body"
+        >
+            <ng-template let-opt pTemplate="item" >
+                <span style="width: 250px; display: inline-block">
+                    <span>
+                        {{opt.label}} 
+                    </span>
+                    <span style="float: right;">
+                        {{opt.count}}
+                    </span>
+                </span>
+            </ng-template>
         </p-multiSelect>
     </app-holder>
-    <app-holder
+    <app-holder 
         [name]="d.name"
         *ngSwitchCase="'static'"
         [collapsible]="false"
+        (onReset)="onReset(d.field)"
+        (modifierChange)="changed(d.field)"
+        [(modifier)]="_filter.props[d.field].strategy"
+
+        filterType="static"
     >
         <p-multiSelect
-            [(ngModel)]="_filter.props[d.field]"
+            [(ngModel)]="_filter.props[d.field].fields"
             [options]="values[d.field]"
             [style]="{'width': '100%'}"
             (onChange)="changed(d.field)"
         >
-            <!-- defaultLabel="Select {{d.name}}" -->
         </p-multiSelect>
     </app-holder>
 
@@ -36,16 +54,11 @@
         *ngSwitchCase="'array'"
         [collapsible]="true"
         [collapsed]="true"
+        (onReset)="onReset(d.field)"
+        filterType="array"
+        (modifierChange)="changed(d.field)"
+        [(modifier)]="_filter.lists[d.field].strategy"
     >
-        <span ops>
-            <p-inputSwitch
-                #sw
-                [(ngModel)]="_filter.lists[d.field].matchAll"
-                onLabel="OR"
-                offLabel="AND"
-                (onChange)="changed(d.field)"
-            ></p-inputSwitch>
-        </span>
         <p-listbox
             #lb
             [(ngModel)]="_filter.lists[d.field].fields"
@@ -65,6 +78,8 @@
         *ngSwitchCase="'dateRange'"
         [collapsible]="true"
         [collapsed]="true"
+        (onReset)="onReset(d.field)"
+        filterType="dateRange"
     >
         <app-date-range
             name="dateRange"
@@ -79,6 +94,8 @@
         [name]="d.name"
         *ngSwitchCase="'boolean'"
         [collapsible]="false"
+        (onReset)="onReset(d.field)"
+        filterType="boolean"
     >
         <span ops>
             <p-triStateCheckbox
@@ -98,16 +115,11 @@
         [name]="d.name"
         *ngSwitchCase="'search'"
         [collapsible]="false"
+        (onReset)="onReset(d.field)"
+        [(modifier)]="_filter.searches[d.field].strategy"
+        (modifierChange)="changed(d.field)"
+        filterType="search"
     >
-        <span ops>
-            <p-inputSwitch
-                #sw
-                [(ngModel)]="_filter.searches[d.field].matchAll"
-                onLabel="OR"
-                offLabel="AND"
-                (onChange)="changed(d.field)"
-            ></p-inputSwitch>
-        </span>
         <p-chips
             [(ngModel)]="_filter.searches[d.field].fields"
             ngDefaultControl

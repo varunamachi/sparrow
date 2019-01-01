@@ -8,6 +8,7 @@ import {
     DateRange,
     Result,
     FilterVal,
+    ItemWithCount,
 } from './basic.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -50,8 +51,9 @@ export class FilterService {
                     }
                     break;
                 case FilterType.Prop:
+                case FilterType.Static:
                     if (!ft.props[fspec.field]) {
-                        ft.props[fspec.field] = [];
+                        ft.props[fspec.field] = new Matcher();
                     }
                     break;
                 case FilterType.Constant:
@@ -81,7 +83,7 @@ export class FilterService {
                     }
                     break;
                 case FilterType.Prop:
-                    ft.props[fspec.field] = [];
+                    ft.props[fspec.field] = new Matcher();
                     break;
                 case FilterType.Constant:
                     ft[fspec.type] = fspec.fixedVal;
@@ -156,13 +158,14 @@ export class FilterService {
         });
     }
 
-    toSelectItemsX(arr: FilterVal[]): SelectItem[] {
-        const items: SelectItem[] = [];
+    toSelectItemsX(arr: FilterVal[]): ItemWithCount[] {
+        const items: ItemWithCount[] = [];
         if (arr) {
             arr.forEach((item: FilterVal) => {
                 items.push({
                     label: '' + item._id,
                     value: item._id,
+                    count: item.count,
                 });
             })
         }
@@ -197,5 +200,36 @@ export class FilterService {
             }
         }
         return vals;
+    }
+
+    reset(specs: FilterSpec[], filter: Filter, field: string): Filter {
+        const ft = new Filter();
+        for (let fspec of specs) {
+            if (fspec.field == field) {
+                switch (fspec.type) {
+                    case FilterType.Array:
+                        ft.lists[fspec.field] = new Matcher();
+                        break;
+                    case FilterType.Search:
+                        ft.searches[fspec.field] = new Matcher();
+                        break;
+                    case FilterType.Boolean:
+                        ft.bools[fspec.field] = null;
+                        break;
+                    case FilterType.DateRange:
+                        ft.dates[fspec.field] = {
+                            from: new Date(0),
+                            to: new Date(),
+                        }
+                        break;
+                    case FilterType.Prop:
+                        ft.props[fspec.field] = new Matcher();
+                        break;
+                    case FilterType.Constant:
+                        ft[fspec.type] = fspec.fixedVal;
+                }
+            }
+        }
+        return ft;
     }
 }

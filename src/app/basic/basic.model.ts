@@ -1,6 +1,10 @@
 import { Observable } from 'rxjs/Observable';
 import { SelectItem } from "primeng/components/common/selectitem";
 
+export interface ItemWithCount extends SelectItem {
+    count: number;
+}
+
 export interface Result<T> {
     status: number;
     op: string;
@@ -15,10 +19,21 @@ export interface DateRange {
     to: Date;
 }
 
+export enum MatchStrategy {
+    One = 'one',
+    All = 'all',
+    None = 'none',
+}
+
 export class Matcher {
-    public matchAll = false;
+    public strategy: MatchStrategy = MatchStrategy.One;
     public fields: string[] = [];
 }
+
+// export class PropSelector {
+//     public negate = false;
+//     public fields: string[] = [];
+// }
 
 
 // export class Filter {
@@ -45,9 +60,13 @@ export enum FilterType {
     Constant = 'constant',
     Static = 'static',
 }
-// data?: string[] | DateRange | boolean[] | number[] | SelectItem[]
-export type FVal = string[] | DateRange | boolean[] | number[] | SelectItem[];
-// export type FilterVals = Object;
+export type FVal =
+    string[]
+    | DateRange
+    | boolean[]
+    | number[]
+    | SelectItem[]
+    | ItemWithCount[];
 
 export type LableProvider = (item: any) => string;
 
@@ -99,7 +118,7 @@ export interface ColSpec {
     field?: string;
     valueGetter?: ValueGetter;
     actions?: ColAction[];
-} 
+}
 
 export type ItemGetter = (offst: number,
     lmt: number,

@@ -89,4 +89,9 @@ export class FilterComponent implements OnInit {
                 }
             );
     }
+
+    onReset(field: string) {
+        this.filter = this.fserve.reset(this._spec, this._filter, field);
+        this.changed(field);
+    }
 }

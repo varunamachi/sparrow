@@ -21,7 +21,8 @@ import { FilterService } from './filter.service';
 import { HolderComponent } from './holder/holder.component';
 import { TableComponent } from './table/table.component';
 import { ButtonComponent } from './button/button.component';
-import { FilteredTableComponent } from './filtered-table/filtered-table.component'
+import { FilteredTableComponent } from './filtered-table/filtered-table.component';
+import { IconButtonComponent } from './icon-button/icon-button.component'
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { FilteredTableComponent } from './filtered-table/filtered-table.componen
         ButtonComponent,
         TableComponent,
         FilteredTableComponent,
+        IconButtonComponent,
     ],
     declarations: [
         HeaderComponent,
@@ -62,6 +64,7 @@ import { FilteredTableComponent } from './filtered-table/filtered-table.componen
         TableComponent,
         ButtonComponent,
         FilteredTableComponent,
+        IconButtonComponent,
     ],
     providers: [
         MsgService,

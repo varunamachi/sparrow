@@ -14,18 +14,29 @@
             [(ngModel)]="_filter.props[d.field].fields"
             [options]="values[d.field]"
             [style]="{'width': '100%'}"
+            [panelStyle]="{minWidth:'300px'}"
             (onChange)="changed(d.field)"
-            appendTo="body"
         >
             <ng-template let-opt pTemplate="item" >
-                <span style="width: 250px; display: inline-block">
+                <span style="width: 245px; display: inline-block;">
                     <span>
                         {{opt.label}} 
                     </span>
-                    <span style="float: right;">
-                        {{opt.count}}
+                    <span style="
+                            border-radius: 4px;
+                            color: rgb(58, 58, 58);
+                            font-style: italic;
+                            padding-right: 4px;
+                            padding-left: 3px;
+                            float: right;
+                            background-color: rgb(168, 160, 160);
+                        "
+                    >
+                        {{opt.count}} 
                     </span>
                 </span>
+                <!-- <span style="width:240px;display:inline-block;vertical-align:middle">{{opt.label}}</span>
+                <span style="float:right;margin-top:4px">{{opt.count}}</span>                 -->
             </ng-template>
         </p-multiSelect>
     </app-holder>

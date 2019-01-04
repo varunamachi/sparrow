@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './security/auth.service';
+import { AuthService, PingResult } from './security/auth.service';
 
 @Component({
     selector: 'app-root',
@@ -19,6 +19,12 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.auth.ping().subscribe((pRes: PingResult) => {
+            console.log(pRes);
+            if (!pRes.valid) {
+                this.auth.logout();
+            } 
+        })
     }
 
 }

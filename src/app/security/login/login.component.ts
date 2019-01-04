@@ -1,6 +1,6 @@
 import { Message } from 'primeng/components/common/message';
 import { Router } from '@angular/router';
-import { AuthService } from './../auth.service';
+import { AuthService, PingResult } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { MsgService } from '../../basic/msg.service';
 import {
@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
         private msgSrv: MsgService) { }
 
     ngOnInit() {
+
     }
 
     login() {

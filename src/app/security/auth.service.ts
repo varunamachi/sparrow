@@ -12,6 +12,15 @@ interface LoginResult {
     user: User;
 }
 
+export interface PingResult {
+    userID: string;
+    userName: string;
+    userType: string;
+    valid: boolean;
+    role: AuthLevel;
+
+}
+
 @Injectable()
 export class AuthService {
 
@@ -86,6 +95,13 @@ export class AuthService {
             return this.user.auth <= 4;
         }
         return false;
+    }
+
+    ping(): Observable<PingResult> {
+        const url = purl('ping');
+        return this.http.get(url).map((res: Result<PingResult>) => {
+            return res.data;
+        })
     }
 
 }

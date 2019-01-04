@@ -27,6 +27,11 @@ export class UsersComponent implements OnInit {
             type: FilterType.Prop,
         },
         {
+            name: 'Status',
+            field: 'state',
+            type: FilterType.Prop,
+        },
+        {
             name: 'Role',
             field: 'auth',
             type: FilterType.Static,
@@ -38,16 +43,16 @@ export class UsersComponent implements OnInit {
                 { value: AuthLevel.Outsider, label: 'Outsider' },
             ]
         },
-        {
-            name: 'Created',
-            field: 'created',
-            type: FilterType.DateRange,
-        },
-        {
-            name: 'Modified',
-            field: 'modified',
-            type: FilterType.DateRange,
-        },
+        // {
+        //     name: 'Created',
+        //     field: 'created',
+        //     type: FilterType.DateRange,
+        // },
+        // {
+        //     name: 'Modified',
+        //     field: 'modified',
+        //     type: FilterType.DateRange,
+        // },
     ];
 
     readonly COLSPEC: ColSpec[] = [

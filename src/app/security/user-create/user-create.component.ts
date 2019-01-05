@@ -29,6 +29,8 @@ export class UserCreateComponent implements OnInit {
 
     confirm = '';
 
+    working = false;
+
     @Input("mode") mode: UserCreateMode = UserCreateMode.Create;
 
     @Output("onFinished") onFinished = new EventEmitter()
@@ -51,13 +53,16 @@ export class UserCreateComponent implements OnInit {
             user.auth = AuthLevel.Normal;
         }
         if (this.password == this.confirm) {
+            this.working = true;
             this.secSrv.registerUser(user, this.password).subscribe(
                 res => {
+                    this.working = false;
                     this.msgSrv.showSuccess('Registration successful, please'
-                        + ' confirm the EMail');
+                    + ' confirm the EMail');
                     this.onFinished.emit({ result: true, user: user });
                 },
                 err => {
+                    this.working = false;
                     this.msgSrv.showError('Registration failed');
                     this.onFinished.emit({ result: false, user: user });
                 });
@@ -73,13 +78,16 @@ export class UserCreateComponent implements OnInit {
         if (!user.auth) {
             user.auth = AuthLevel.Normal;
         }
+        this.working = true;
         this.secSrv.createUser(user).subscribe(
             res => {
+                this.working = false;
                 this.msgSrv.showSuccess('Creation successful. '
-                    + 'account will be active once user confirms EMail');
+                + 'account will be active once user confirms EMail');
                 this.onFinished.emit({ result: true, user: user });
             },
             err => {
+                this.working = false;
                 this.msgSrv.showError('User creation failed');
                 this.onFinished.emit({ result: false, user: user });
             });

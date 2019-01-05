@@ -43,16 +43,16 @@ export class UsersComponent implements OnInit {
                 { value: AuthLevel.Outsider, label: 'Outsider' },
             ]
         },
-        // {
-        //     name: 'Created',
-        //     field: 'created',
-        //     type: FilterType.DateRange,
-        // },
-        // {
-        //     name: 'Modified',
-        //     field: 'modified',
-        //     type: FilterType.DateRange,
-        // },
+        {
+            name: 'Created',
+            field: 'created',
+            type: FilterType.DateRange,
+        },
+        {
+            name: 'Modified',
+            field: 'modified',
+            type: FilterType.DateRange,
+        },
     ];
 
     readonly COLSPEC: ColSpec[] = [

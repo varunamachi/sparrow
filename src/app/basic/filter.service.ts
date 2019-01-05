@@ -45,8 +45,8 @@ export class FilterService {
                 case FilterType.DateRange:
                     if (!ft.dates[fspec.field]) {
                         ft.dates[fspec.field] = {
-                            from: new Date(0),
-                            to: new Date(),
+                            from: null,
+                            to: null,
                         }
                     }
                     break;
@@ -218,8 +218,8 @@ export class FilterService {
                         break;
                     case FilterType.DateRange:
                         ft.dates[fspec.field] = {
-                            from: new Date(0),
-                            to: new Date(),
+                            from: null,
+                            to: null,
                         }
                         break;
                     case FilterType.Prop:

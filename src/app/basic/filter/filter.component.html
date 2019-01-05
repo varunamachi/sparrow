@@ -92,7 +92,7 @@
     >
         <app-date-range
             name="dateRange"
-            [(ngModel)]="_filter.dates[d.field]"
+            [(range)]="_filter.dates[d.field]"
             (rangeChange)="changed(d.field)"
             ngDefaultControl
         ></app-date-range>

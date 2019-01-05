@@ -54,8 +54,6 @@ export class FilterComponent implements OnInit {
 
     @Output('filterChange') filterChange = new EventEmitter();
 
-    // @Output('filterChange') onChanged = new EventEmitter();
-
     constructor(private fserve: FilterService,
         private msgSrv: MsgService) {
 

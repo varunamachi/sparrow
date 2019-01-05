@@ -14,8 +14,10 @@ export class DateRangeComponent implements OnInit {
     // @Input('to') to = moment().toDate();
 
     @Input( 'range' ) range = {
-        from: moment(0).toDate(),
-        to: moment().add(1, 'days').toDate(),
+        from: null,
+        to: null,
+        // from: moment(0).toDate(),
+        // to: moment().add(1, 'days').toDate(),
     };
 
     @Output('rangeChange') rangeChange = new EventEmitter();
@@ -30,6 +32,8 @@ export class DateRangeComponent implements OnInit {
     }
 
     changed() {
-        this.rangeChange.emit({ from: this.range.from, to: this.range.to });
+        if (this.range.from && this.range.to) {
+            this.rangeChange.emit({ from: this.range.from, to: this.range.to });
+        }
     }
 }

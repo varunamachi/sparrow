@@ -89,7 +89,9 @@
             <td>
                 <button
                     [disabled]="f.invalid
-                        || (mode === 'register' && !passwordValid())"
+                        || (mode === 'register' && !passwordValid())
+                        || working
+                    "
                     pButton
                     submit
                     style="float: right;"

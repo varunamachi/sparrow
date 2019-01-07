@@ -2,7 +2,8 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from './security.model';
-import { purl, murl, aurl } from '../basic/url.util';
+import { purl, murl, aurl, murlx } from '../basic/url.util';
+import { Result } from '../basic/basic.model';
 
 @Injectable()
 export class SecurityService {
@@ -42,5 +43,19 @@ export class SecurityService {
     deleteUser(userID: string): Observable<Object> {
         const url = aurl('uman/user', userID);
         return this.http.delete(url);
+    }
+
+    userSelfUpdate(user: User): Observable<boolean> {
+        const url = murl('uman/user/', user.id);
+        return this.http.put(url, user).map((res: Result<boolean>) => {
+            return res.data;
+        })
+    }
+    
+    userAdminUpdate(user: User): Observable<boolean> {
+        const url = aurl('uman/user/full');
+        return this.http.put(url, user).map((res: Result<boolean>) => {
+            return res.data;
+        })
     }
 }

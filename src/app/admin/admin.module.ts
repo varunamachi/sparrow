@@ -7,6 +7,7 @@ import { UsersComponent } from './users/users.component';
 import { EventsComponent } from './events/events.component';
 import { FormsModule } from '@angular/forms';
 import { AdminService } from './admin.service';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 @NgModule({
     imports: [
@@ -23,6 +24,7 @@ import { AdminService } from './admin.service';
     declarations: [
         UsersComponent,
         EventsComponent,
+        UserEditComponent,
     ],
     providers: [AdminService]
 })

@@ -1,7 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SecurityService } from 'src/app/security/security.service';
-import { MsgService } from 'src/app/basic/msg.service';
-import { User, AuthLevel } from 'src/app/security/security.model';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { SecurityService } from '../../security/security.service';
+import { MsgService } from '../../basic/msg.service';
+import { User, AuthLevel } from '../../security/security.model';
 
 @Component({
   selector: 'app-user-edit',
@@ -24,9 +24,15 @@ export class UserEditComponent implements OnInit {
 
   working = false;
 
-  @Output("onFinished") onFinished = new EventEmitter()
+  @Input() mode = 'self';
 
-  constructor(private secSrv: SecurityService, private msgSrv: MsgService) {
+  @Input() user: User = null;
+
+  @Output() onFinished = new EventEmitter()
+
+  constructor(
+    private secSrv: SecurityService,
+    private msgSrv: MsgService) {
 
   }
 
@@ -35,10 +41,12 @@ export class UserEditComponent implements OnInit {
 
   updateUser(f: any) {
     const user = <User>f.value;
-    if (!user.auth) {
-      user.auth = AuthLevel.Normal;
-    }
-    //update user
+    const func = this.mode === 'self' ? this.secSrv.updateProfile
+      : this.secSrv.updateUser;
+    func(user).subscribe(
+      () => this.msgSrv.showSuccess('Successfuly updated user'),
+      err => this.msgSrv.showError('Failed to udpate user')
+    );
   }
 
 }

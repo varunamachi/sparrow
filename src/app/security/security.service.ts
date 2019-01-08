@@ -45,17 +45,17 @@ export class SecurityService {
         return this.http.delete(url);
     }
 
-    userSelfUpdate(user: User): Observable<boolean> {
-        const url = murl('uman/user/', user.id);
+    updateUser(user: User): Observable<boolean> {
+        const url = murl('uman/user', user.id);
         return this.http.put(url, user).map((res: Result<boolean>) => {
-            return res.data;
+            return res.ok;
         })
     }
     
-    userAdminUpdate(user: User): Observable<boolean> {
-        const url = aurl('uman/user/full');
+    updateProfile(user: User): Observable<boolean> {
+        const url = aurl('uman/user/self');
         return this.http.put(url, user).map((res: Result<boolean>) => {
-            return res.data;
+            return res.ok;
         })
     }
 }

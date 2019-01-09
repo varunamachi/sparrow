@@ -42,6 +42,18 @@
     [modal]=true
 >
     <app-user-create
-        (onFinished)="onUserCreationDone()"
+        (onFinished)="onUserOpDone()"
     ></app-user-create>
+</p-dialog>
+<p-dialog
+    [style]="{'overflow': 'visible'}"
+    header="Update User"
+    [(visible)]="showEditUserDialog"
+    [modal]=true
+>
+    <app-user-edit
+        [user]="userForEdit"
+        mode="admin"
+        (onFinished)="onUserOpDone()"
+    ></app-user-edit>
 </p-dialog>

@@ -11,7 +11,7 @@ import { User, AuthLevel } from '../../security/security.model';
 export class UserEditComponent implements OnInit {
 
   readonly AUTH_LEVELS_ITEMS = [
-    // { label: "Super", value: 0 },
+    { label: "Super", value: 0 },
     { label: "Normal", value: 2 },
     { label: "Admin", value: 1 },
     { label: "Monitor", value: 3 },
@@ -43,9 +43,18 @@ export class UserEditComponent implements OnInit {
     const user = <User>f.value;
     const func = this.mode === 'self' ? this.secSrv.updateProfile
       : this.secSrv.updateUser;
+    this.working = true;
     func(user).subscribe(
-      () => this.msgSrv.showSuccess('Successfuly updated user'),
-      err => this.msgSrv.showError('Failed to udpate user')
+      () => {
+        this.msgSrv.showSuccess('Successfuly updated user'),
+          this.onFinished.emit()
+        this.working = false;
+      },
+      err => {
+        this.msgSrv.showError('Failed to udpate user')
+        this.onFinished.emit()
+        this.working = false;
+      }
     );
   }
 

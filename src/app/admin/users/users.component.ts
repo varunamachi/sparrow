@@ -1,9 +1,11 @@
 import { FilteredTableComponent } from './../../basic/filtered-table/filtered-table.component';
 import { ObjectDetailService } from './../../basic/object-detail.service';
-import { FilterSpec,
-         FilterType,
-         ColSpec,
-         ColType } from './../../basic/basic.model';
+import {
+    FilterSpec,
+    FilterType,
+    ColSpec,
+    ColType
+} from './../../basic/basic.model';
 import { FormatService } from './../../basic/format.service';
 import { AdminService } from './../admin.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -72,7 +74,7 @@ export class UsersComponent implements OnInit {
             title: 'Role',
             type: ColType.Custom,
             valueGetter: (item: User) => {
-                switch(item.auth) {
+                switch (item.auth) {
                     case AuthLevel.Super: return 'Super';
                     case AuthLevel.Admin: return 'Admin';
                     case AuthLevel.Normal: return 'Normal';
@@ -105,6 +107,14 @@ export class UsersComponent implements OnInit {
                     action: (user: User) => { this.deleteUser(user); },
                 },
                 {
+                    icon: 'fa-pencil',
+                    toolTip: 'Edit User',
+                    action: (user: User) => {
+                        this.userForEdit = user;
+                        this.showEditUserDialog = true;
+                    },
+                },
+                {
                     icon: 'fa-info',
                     toolTip: 'Show user details',
                     action: (user: User) => {
@@ -120,6 +130,10 @@ export class UsersComponent implements OnInit {
     showFilter = true;
 
     showCreateUserDialog = false;
+
+    showEditUserDialog = false;
+
+    userForEdit: User = null;
 
     constructor(
         public auth: AuthService,
@@ -153,8 +167,9 @@ export class UsersComponent implements OnInit {
 
     }
 
-    onUserCreationDone() {
+    onUserOpDone() {
         this.showCreateUserDialog = false;
+        this.showEditUserDialog = false;
         this.ftable.refreshAll();
     }
 

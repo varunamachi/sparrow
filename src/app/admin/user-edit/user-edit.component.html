@@ -5,6 +5,7 @@
                   <td>Access Level</td>
                   <td>
                       <p-dropdown
+                          *ngIf="user"
                           [style]="{'width': '250px'}"
                           name="auth"
                           [options]="AUTH_LEVELS_ITEMS"

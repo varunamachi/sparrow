@@ -75,6 +75,12 @@ export class SidebarComponent implements OnInit {
                     routerLink: ['/kpx/prices']
                 },
                 {
+                    label: 'Clients',
+                    icon: 'fa fa-mobile',
+                    level: AuthLevel.Admin,
+                    routerLink: ['/kpx/clients']
+                },
+                {
                     label: 'Agent List',
                     icon: 'fa-list-ul',
                     level: AuthLevel.Admin,

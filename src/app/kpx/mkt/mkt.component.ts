@@ -1,11 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FilterSpec, FilterType, ColSpec, ColType } from '../../basic/basic.model';
 import { FilteredTableComponent } from '../../basic/filtered-table/filtered-table.component';
-import { BasicService } from '../../basic/basic.service';
 import { ObjectDetailService } from '../../basic/object-detail.service';
-import { MsgService } from '../../basic/msg.service';
-import { KpxService } from '../kpx.service';
-import { ConfirmationService } from 'primeng/primeng';
 
 @Component({
   selector: 'app-mkt',
@@ -59,14 +55,14 @@ export class MktComponent implements OnInit {
 
   readonly FSPEC: FilterSpec[] = [
     {
-        name: 'Name',
-        field: 'name',
-        type: FilterType.Prop,
+      name: 'Name',
+      field: 'name',
+      type: FilterType.Prop,
     },
     {
-        name: 'Kannada Name',
-        field: 'nameKn',
-        type: FilterType.Prop,
+      name: 'Kannada Name',
+      field: 'nameKn',
+      type: FilterType.Prop,
     },
   ]
 
@@ -80,12 +76,7 @@ export class MktComponent implements OnInit {
 
   showSecret: boolean;
 
-  constructor(
-    private genSrv: BasicService,
-    private objSrv: ObjectDetailService,
-    private msgSrv: MsgService,
-    private kpxSrv: KpxService,
-    private confirmSrv: ConfirmationService) {
+  constructor(private objSrv: ObjectDetailService) {
 
   }
 

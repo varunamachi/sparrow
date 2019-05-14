@@ -10,6 +10,7 @@ import { ExSessionComponent } from './ex-session/ex-session.component';
 import { CmtComponent } from './cmt/cmt.component';
 import { MktComponent } from './mkt/mkt.component';
 import { PricesComponent } from './prices/prices.component';
+import { DevicesComponent } from './devices/devices.component';
 
 @NgModule({
     imports: [
@@ -25,7 +26,8 @@ import { PricesComponent } from './prices/prices.component';
         ExSessionComponent,
         CmtComponent,
         MktComponent,
-        PricesComponent
+        PricesComponent,
+        DevicesComponent,
     ],
     providers: [
         KpxService,

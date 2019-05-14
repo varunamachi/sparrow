@@ -23,6 +23,7 @@ import { ExSessionComponent } from './kpx/ex-session/ex-session.component';
 import { CmtComponent } from './kpx/cmt/cmt.component';
 import { MktComponent } from './kpx/mkt/mkt.component';
 import { PricesComponent } from './kpx/prices/prices.component';
+import { DevicesComponent } from './kpx/devices/devices.component';
 
 
 export const routes = [
@@ -79,6 +80,11 @@ export const routes = [
     {
         path: 'kpx/prices',
         component: PricesComponent,
+        canActivate: [AuthGuard, AdminGuard],
+    }, 
+    {
+        path: 'kpx/clients',
+        component: DevicesComponent,
         canActivate: [AuthGuard, AdminGuard],
     }, 
 

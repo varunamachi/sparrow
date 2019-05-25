@@ -1,3 +1,4 @@
+import { Time } from "@angular/common";
 
 
 export enum AgentPlatform {
@@ -18,4 +19,20 @@ export interface Agent {
     ownerEmail: string;
     createdOn: Date;
     modifiedOn: Date;
+}
+
+export enum NoticeType {
+    Information = "Information",
+    Warning = "Warning",
+    Critical = "Critical",
+}
+
+export interface Notice {
+    _id?: string;
+    type: NoticeType;
+    messageEn: string;
+    messageKn: string;
+    versionLimit: number;
+    time: Date;
+    done: boolean;
 }

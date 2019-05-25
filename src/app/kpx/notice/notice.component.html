@@ -1,7 +1,7 @@
 <app-page-header
     pageName="Notices"
     [placeholder]="false"
-    icon="fa fa-mobile" 
+    icon="fa fa-mobile"
 >
     <span toolbar>
         <span style="padding-right: 15px">
@@ -11,6 +11,12 @@
                 [(ngModel)]="showFilter"
             ></p-checkbox>
         </span>
+        <button pButton
+            label="Create Notice"
+            icon = "fa-plus"
+            (click)="showCreateDialog = true"
+        >
+        </button>
         <button pButton
             label="Refresh"
             icon = "fa-refresh"
@@ -23,7 +29,18 @@
     [colspec]="COLSPEC"
     [fspec]="FSPEC"
     [showFilter]="showFilter"
-    sortField="-lastLogin"
+    sortField="-time"
     [dataType]="dataType"
-> 
+>
 </app-filtered-table>
+
+<p-dialog
+    [style]="{'overflow': 'visible'}"
+    header="Create Notice"
+    [(visible)]="showCreateDialog"
+    [modal]=true
+>
+    <app-notice-create
+        (onFinished)="onCreateDone()"
+    ></app-notice-create>
+</p-dialog>

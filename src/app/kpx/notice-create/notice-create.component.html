@@ -1,3 +1,65 @@
-<p>
-  notice-create works!
-</p>
+<form #f="ngForm" (ngSubmit)="createNotice(f)">
+    <table class="ucp"><tbody>
+        <tr>
+            <td>Access Level</td>
+                <td>
+                    <p-dropdown
+                        [style]="{'width': '250px'}"
+                        name="type"
+                        [options]="AUTH_LEVELS_ITEMS"
+                        ngModel
+                    ></p-dropdown>
+                </td>
+            </tr>
+        <tr>
+            <td>Message (EN)</td>
+            <td>
+                <input
+                    required
+                    class="form-control input-text"
+                    pInputText
+                    type="text"
+                    name="messageEn"
+                    ngModel
+                >
+            </td>
+        </tr>
+        <tr>
+            <td>Message (KN)</td>
+            <td>
+                <input
+                    required
+                    class="form-control input-text"
+                    pInputText
+                    type="text"
+                    name="messageKn"
+                    ngModel
+                >
+            </td>
+        </tr>
+        <tr>
+            <td>Version Limit</td>
+            <td>
+                <p-spinner
+                    formControlName="versionLimit"
+                    min="-1"
+                    max="100"
+                ></p-spinner>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button
+                    [disabled]="f.invalid || working"
+                    pButton
+                    submit
+                    style="float: right;"
+                    type="submit"
+                    label="Submit"
+                >
+                </button>
+            </td>
+        </tr>
+    </tbody></table>
+</form>

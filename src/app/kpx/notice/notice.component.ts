@@ -1,7 +1,10 @@
+import { MsgService } from '../../basic/msg.service';
+import { KpxService } from './../kpx.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FilterType, ColSpec, ColType, FilterSpec } from '../../basic/basic.model';
 import { FilteredTableComponent } from '../../basic/filtered-table/filtered-table.component';
 import { ObjectDetailService } from '../../basic/object-detail.service';
+import { Notice } from '../kpx.model';
 
 @Component({
   selector: 'app-notice',
@@ -66,10 +69,10 @@ export class NoticeComponent implements OnInit {
           }
         },
         {
-          icon: 'fa-trash',
-          toolTip: 'Delete',
+          icon: 'fa-check',
+          toolTip: 'Mark as done',
           action: (obj: any) => {
-            // this.objSrv.show(obj);
+            this.markAsDone(obj);
           }
         },
       ]
@@ -82,11 +85,34 @@ export class NoticeComponent implements OnInit {
 
   showFilter = false;
 
-  constructor(private objSrv: ObjectDetailService) {
+  showCreateDialog = false;
+
+  constructor(
+        private objSrv: ObjectDetailService,
+        private kpx: KpxService,
+        private msgSrv: MsgService) {
 
   }
 
   ngOnInit() {
+  }
+
+  onCreateDone() {
+      this.ftable.refresh();
+  }
+
+  markAsDone(obj: Notice) {
+      this.kpx.markNoticeAsDone(obj._id).subscribe(
+        res => {
+            this.msgSrv.showSuccess('Mark Notice '
+            + 'Notice marked as done');
+            this.ftable.refresh();
+        },
+        err => {
+            this.msgSrv.showError('Mark Notice '
+            + 'Failed to mark notice as done');
+        }
+      );
   }
 
 }

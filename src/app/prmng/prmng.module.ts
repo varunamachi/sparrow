@@ -26,6 +26,7 @@ import {
     ChipsModule,
     TooltipModule,
     InputMaskModule,
+    SpinnerModule,
 
 } from 'primeng/primeng'
 import {
@@ -62,6 +63,7 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
         TooltipModule,
         TreeModule,
         InputMaskModule,
+        SpinnerModule,
     ],
     exports: [
         ButtonModule,
@@ -90,6 +92,7 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
         TooltipModule,
         TreeModule,
         InputMaskModule,
+        SpinnerModule,
     ],
     providers: [
         ConfirmationService,

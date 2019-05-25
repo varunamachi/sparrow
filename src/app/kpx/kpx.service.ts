@@ -1,7 +1,7 @@
 import { Result } from './../basic/basic.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Agent } from './kpx.model';
+import { Agent, Notice } from './kpx.model';
 import { Injectable } from '@angular/core';
 import { aurl, murl } from '../basic/url.util';
 
@@ -23,5 +23,19 @@ export class KpxService {
     return this.http.get(url).map((res: Result<Object[]>) => {
       return res.data;
     });
+  }
+
+  createNotice(notice: Notice): Observable<boolean> {
+      const url = aurl("notice");
+      return this.http.post(url, notice).map((res: Result<void>) => {
+        return res.ok;
+      });
+  }
+
+  markNoticeAsDone(id: string): Observable<boolean> {
+      const url = aurl("notice", id);
+      return this.http.delete(url).map((res: Result<void>) => {
+          return res.ok;
+      })
   }
 }

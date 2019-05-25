@@ -11,6 +11,8 @@ import { CmtComponent } from './cmt/cmt.component';
 import { MktComponent } from './mkt/mkt.component';
 import { PricesComponent } from './prices/prices.component';
 import { DevicesComponent } from './devices/devices.component';
+import { NoticeComponent } from './notice/notice.component';
+import { NoticeCreateComponent } from './notice-create/notice-create.component';
 
 @NgModule({
     imports: [
@@ -28,6 +30,8 @@ import { DevicesComponent } from './devices/devices.component';
         MktComponent,
         PricesComponent,
         DevicesComponent,
+        NoticeComponent,
+        NoticeCreateComponent,
     ],
     providers: [
         KpxService,

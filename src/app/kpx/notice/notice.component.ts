@@ -4,69 +4,57 @@ import { FilteredTableComponent } from '../../basic/filtered-table/filtered-tabl
 import { ObjectDetailService } from '../../basic/object-detail.service';
 
 @Component({
-  selector: 'app-devices',
-  templateUrl: './devices.component.html',
-  styleUrls: ['./devices.component.css']
+  selector: 'app-notice',
+  templateUrl: './notice.component.html',
+  styleUrls: ['./notice.component.css']
 })
-export class DevicesComponent implements OnInit {
+export class NoticeComponent implements OnInit {
 
   readonly FSPEC: FilterSpec[] = [
     {
-      name: 'Device ID',
-      field: 'deviceID',
-      type: FilterType.Prop,
+      name: 'Severity',
+      field: 'type',
+      type: FilterType.Static,
+      staticVals: [
+        { label: "Critical", value: "Critical" },
+        { label: "Warning", value: "Warning" },
+        { label: "Information", value: "Information" },
+      ]
     },
     {
-      name: 'OS Version',
-      field: 'osVersion',
-      type: FilterType.Prop,
-    },
-    {
-      name: 'Hardware',
-      field: 'hardware',
-      type: FilterType.Prop,
+      name: 'Done?',
+      field: 'done',
+      type: FilterType.Boolean,
     },
   ];
 
   readonly COLSPEC: ColSpec[] = [
     {
-      title: 'Device ID',
-      field: 'deviceID',
+      title: 'Severity',
+      field: 'type',
       type: ColType.Value,
-      width: '18%',
+      width: '15%',
     },
     {
-      title: 'OS Version',
-      field: 'osVersion',
+      title: 'Done?',
+      field: 'done',
       type: ColType.Value,
       width: '10%',
     },
     {
-      title: 'Hardware',
-      field: 'hardware',
+      title: 'Msg - English',
+      field: 'messageEn',
       type: ColType.Value,
-      width: '15%',
+      width: '30%',
     },
     {
-      title: 'Is Device',
-      field: 'isDevice',
+      title: 'Msg - Kannada',
+      field: 'messageKn',
       type: ColType.Boolean,
-      width: '5%',
+      width: '30%',
     },
     {
-      title: 'Last Login',
-      field: 'lastLogin',
-      type: ColType.Date,
-      width: '15%',
-    },
-    {
-      title: '# Launches',
-      field: 'loginCount',
-      type: ColType.Value,
-      width: '15%',
-    },
-    {
-      title: 'Actions',
+      title: 'Ops',
       type: ColType.Ops,
       width: '10%',
       actions: [
@@ -77,15 +65,22 @@ export class DevicesComponent implements OnInit {
             this.objSrv.show(obj);
           }
         },
+        {
+          icon: 'fa-trash',
+          toolTip: 'Delete',
+          action: (obj: any) => {
+            // this.objSrv.show(obj);
+          }
+        },
       ]
     },
   ];
 
   @ViewChild(FilteredTableComponent) ftable: FilteredTableComponent;
 
-  dataType = "clients"
+  dataType = "notices"
 
-  showFilter = true;
+  showFilter = false;
 
   constructor(private objSrv: ObjectDetailService) {
 
@@ -93,6 +88,5 @@ export class DevicesComponent implements OnInit {
 
   ngOnInit() {
   }
-
 
 }

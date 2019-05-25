@@ -24,6 +24,7 @@ import { CmtComponent } from './kpx/cmt/cmt.component';
 import { MktComponent } from './kpx/mkt/mkt.component';
 import { PricesComponent } from './kpx/prices/prices.component';
 import { DevicesComponent } from './kpx/devices/devices.component';
+import { NoticeComponent } from './kpx/notice/notice.component';
 
 
 export const routes = [
@@ -66,27 +67,32 @@ export const routes = [
         path: 'kpx/exs',
         component: ExSessionComponent,
         canActivate: [AuthGuard, AdminGuard],
-    }, 
+    },
     {
         path: 'kpx/cmt',
         component: CmtComponent,
         canActivate: [AuthGuard, AdminGuard],
-    }, 
+    },
     {
         path: 'kpx/mkt',
         component: MktComponent,
         canActivate: [AuthGuard, AdminGuard],
-    }, 
+    },
     {
         path: 'kpx/prices',
         component: PricesComponent,
         canActivate: [AuthGuard, AdminGuard],
-    }, 
+    },
     {
         path: 'kpx/clients',
         component: DevicesComponent,
         canActivate: [AuthGuard, AdminGuard],
-    }, 
+    },
+    {
+        path: 'kpx/notices',
+        component: NoticeComponent,
+        canActivate: [AuthGuard, AdminGuard],
+    },
 
     //*** admin
     {

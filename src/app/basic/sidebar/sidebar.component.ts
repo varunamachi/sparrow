@@ -81,11 +81,17 @@ export class SidebarComponent implements OnInit {
                     routerLink: ['/kpx/clients']
                 },
                 {
-                    label: 'Agent List',
-                    icon: 'fa-list-ul',
+                    label: 'Notices',
+                    icon: 'fa fa-flag',
                     level: AuthLevel.Admin,
-                    routerLink: ['/kpx/agents']
+                    routerLink: ['/kpx/notices']
                 },
+                // {
+                //     label: 'Agent List',
+                //     icon: 'fa-list-ul',
+                //     level: AuthLevel.Admin,
+                //     routerLink: ['/kpx/agents']
+                // },
             ],
         },
         {
@@ -139,7 +145,7 @@ export class SidebarComponent implements OnInit {
     ngOnInit() {
         const refined = [];
         this.ROOTS.forEach((root: AuthMenuItem) => {
-            if(this.auth.user.auth <= root.level) {
+            if (this.auth.user.auth <= root.level) {
                 refined.push(root);
                 this.refine(root)
             }
@@ -149,9 +155,9 @@ export class SidebarComponent implements OnInit {
 
     refine(parent: AuthMenuItem) {
         parent.candidates.forEach((child: AuthMenuItem) => {
-            if(this.auth.user.auth <= child.level) {
+            if (this.auth.user.auth <= child.level) {
                 (<AuthMenuItem[]>parent.items).push(child);
-                if(child.candidates && child.candidates.length > 0) {
+                if (child.candidates && child.candidates.length > 0) {
                     this.refine(child);
                 }
             }

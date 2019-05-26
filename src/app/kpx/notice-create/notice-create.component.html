@@ -14,37 +14,51 @@
         <tr>
             <td>Message (EN)</td>
             <td>
-                <input
+                <!-- <input
                     required
                     class="form-control input-text"
                     pInputText
                     type="text"
                     name="messageEn"
+                    style="width: 100%"
                     ngModel
-                >
+                > -->
+                <textarea 
+                    required
+                    pInputTextarea
+                    class="form-control input-text"
+                    name="messageEn"
+                    style="width: 100%"
+                    ngModel                    
+                ></textarea>
             </td>
         </tr>
         <tr>
             <td>Message (KN)</td>
+            <td>
+                <textarea 
+                    required
+                    pInputTextarea
+                    class="form-control input-text"
+                    name="messageKn"
+                    style="width: 100%"
+                    ngModel                    
+                ></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>Version Limit</td>
             <td>
                 <input
                     required
                     class="form-control input-text"
                     pInputText
                     type="text"
-                    name="messageKn"
+                    name="versionLimit"
+                    style="width: 100%"
+                    pattern="[0-9]+\.[0-9]+\.[0-9]+"
                     ngModel
-                >
-            </td>
-        </tr>
-        <tr>
-            <td>Version Limit</td>
-            <td>
-                <p-spinner
-                    formControlName="versionLimit"
-                    min="-1"
-                    max="100"
-                ></p-spinner>
+                >                
             </td>
         </tr>
         <tr>
@@ -57,6 +71,7 @@
                     style="float: right;"
                     type="submit"
                     label="Submit"
+                    
                 >
                 </button>
             </td>

@@ -1,4 +1,4 @@
-import { ColSpec } from './../basic.model';
+import { ColSpec, ColAction } from './../basic.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -32,5 +32,4 @@ export class TableComponent implements OnInit {
     numProps(obj: Object) {
         return Object.keys(obj).length
     }
-
 }

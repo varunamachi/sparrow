@@ -62,6 +62,7 @@
                             showDelay="100"
                             pButton
                             [icon]="ca.icon"
+                            [disabled]="ca.disabled ? ca.disabled(item) : false"
                             (click)="ca.action(item)"
                         ></button>
                     </span>

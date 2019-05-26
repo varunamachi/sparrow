@@ -5,6 +5,8 @@ import { FilterType, ColSpec, ColType, FilterSpec } from '../../basic/basic.mode
 import { FilteredTableComponent } from '../../basic/filtered-table/filtered-table.component';
 import { ObjectDetailService } from '../../basic/object-detail.service';
 import { Notice } from '../kpx.model';
+import { ValueTransformer } from '@angular/compiler/src/util';
+import { ConfirmationService } from 'primeng/primeng';
 
 @Component({
   selector: 'app-notice',
@@ -17,12 +19,13 @@ export class NoticeComponent implements OnInit {
     {
       name: 'Severity',
       field: 'type',
-      type: FilterType.Static,
-      staticVals: [
-        { label: "Critical", value: "Critical" },
-        { label: "Warning", value: "Warning" },
-        { label: "Information", value: "Information" },
-      ]
+      type: FilterType.Prop,
+      // type: FilterType.Static,
+      // staticVals: [
+      //   { label: "Critical", value: "Critical" },
+      //   { label: "Warning", value: "Warning" },
+      //   { label: "Information", value: "Information" },
+      // ]
     },
     {
       name: 'Done?',
@@ -41,8 +44,14 @@ export class NoticeComponent implements OnInit {
     {
       title: 'Done?',
       field: 'done',
+      type: ColType.Boolean,
+      width: '5%',
+    },
+    {
+      title: 'Version',
+      field: 'versionLimit',
       type: ColType.Value,
-      width: '10%',
+      width: '5%',
     },
     {
       title: 'Msg - English',
@@ -53,7 +62,7 @@ export class NoticeComponent implements OnInit {
     {
       title: 'Msg - Kannada',
       field: 'messageKn',
-      type: ColType.Boolean,
+      type: ColType.Value,
       width: '30%',
     },
     {
@@ -71,8 +80,18 @@ export class NoticeComponent implements OnInit {
         {
           icon: 'fa-check',
           toolTip: 'Mark as done',
+          disabled: (obj: Notice) => {
+            return obj.done;
+          },
           action: (obj: any) => {
             this.markAsDone(obj);
+          }
+        },
+        {
+          icon: 'fa-trash',
+          toolTip: 'Delete notice',
+          action: (obj: any) => {
+            this.delete(obj);
           }
         },
       ]
@@ -88,9 +107,10 @@ export class NoticeComponent implements OnInit {
   showCreateDialog = false;
 
   constructor(
-        private objSrv: ObjectDetailService,
-        private kpx: KpxService,
-        private msgSrv: MsgService) {
+    private objSrv: ObjectDetailService,
+    private kpx: KpxService,
+    private msgSrv: MsgService,
+    private confirmSrv: ConfirmationService) {
 
   }
 
@@ -98,21 +118,37 @@ export class NoticeComponent implements OnInit {
   }
 
   onCreateDone() {
-      this.ftable.refresh();
+    this.showCreateDialog = false;
+    this.ftable.refresh();
   }
 
   markAsDone(obj: Notice) {
-      this.kpx.markNoticeAsDone(obj._id).subscribe(
-        res => {
-            this.msgSrv.showSuccess('Mark Notice '
-            + 'Notice marked as done');
-            this.ftable.refresh();
-        },
-        err => {
-            this.msgSrv.showError('Mark Notice '
-            + 'Failed to mark notice as done');
-        }
-      );
+    this.kpx.markNoticeAsDone(obj._id).subscribe(
+      res => {
+        this.msgSrv.showSuccess('Notice marked as done');
+        this.ftable.refresh();
+      },
+      err => {
+        this.msgSrv.showError('Failed to mark notice as done');
+      }
+    );
   }
 
+  delete(obj: Notice) {
+    this.confirmSrv.confirm({
+      message: "Do you really want to delete this notice?",
+      accept: () => {
+        this.kpx.deleteNotice(obj._id).subscribe(
+          res => {
+            this.msgSrv.showSuccess('Notice deleted');
+            this.ftable.refresh();
+          },
+          err => {
+            this.msgSrv.showError('Failed to mark notice as done');
+          }
+        );
+      },
+      reject: () => this.showCreateDialog = false,
+    })
+  }
 }

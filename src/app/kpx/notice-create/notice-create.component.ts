@@ -1,24 +1,26 @@
 import { KpxService } from './../kpx.service';
-import { Notice, NoticeType } from './../kpx.model';
+import { NoticeType } from './../kpx.model';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MsgService } from '../../basic/msg.service';
 
 @Component({
-  selector: 'app-notice-create',
-  templateUrl: './notice-create.component.html',
-  styleUrls: ['./notice-create.component.css']
+    selector: 'app-notice-create',
+    templateUrl: './notice-create.component.html',
+    styleUrls: ['./notice-create.component.css']
 })
 export class NoticeCreateComponent implements OnInit {
 
     readonly AUTH_LEVELS_ITEMS = [
-        { label: "Critical", value: NoticeType.Critical },
         { label: "Warning", value: NoticeType.Warning },
+        { label: "Critical", value: NoticeType.Critical },
         { label: "Information", value: NoticeType.Information },
     ];
 
     password = '';
 
     confirm = '';
+
+    version = -1;
 
     working = false;
 
@@ -35,9 +37,9 @@ export class NoticeCreateComponent implements OnInit {
 
     createNotice(f: any) {
         const notice = {
-            type: f.value.type,
+            type: f.value.type ? f.value.type : NoticeType.Warning,
             messageEn: f.value.messageEn,
-            messageKn: f.value.meesageKn,
+            messageKn: f.value.messageKn,
             versionLimit: f.value.versionLimit,
             time: new Date(),
             done: false,

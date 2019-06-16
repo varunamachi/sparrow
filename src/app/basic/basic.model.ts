@@ -135,3 +135,22 @@ export interface FilterVal {
     _id: FVal;
     count: number;
 }
+
+export enum StatType {
+    Single = "single",
+    Range = "range",
+    Parts = "parts",
+}
+
+export interface StatPoint {
+    name: string;
+    count: number;
+}
+
+export interface UsageStat {
+    type: StatType;
+    name: string;
+    calculatedOn: Date;
+    count: number;
+    values: StatPoint[];
+}

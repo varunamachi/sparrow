@@ -12,8 +12,8 @@ export class DevicesComponent implements OnInit {
 
   readonly FSPEC: FilterSpec[] = [
     {
-      name: 'Device ID',
-      field: 'deviceID',
+      name: 'Manufacturer',
+      field: 'manufacturer',
       type: FilterType.Prop,
     },
     {
@@ -51,7 +51,7 @@ export class DevicesComponent implements OnInit {
       title: 'Is Device',
       field: 'isDevice',
       type: ColType.Boolean,
-      width: '5%',
+      width: '10%',
     },
     {
       title: 'Last Login',
@@ -60,10 +60,10 @@ export class DevicesComponent implements OnInit {
       width: '15%',
     },
     {
-      title: '# Launches',
+      title: '#Launches',
       field: 'loginCount',
       type: ColType.Value,
-      width: '15%',
+      width: '10%',
     },
     {
       title: 'Actions',

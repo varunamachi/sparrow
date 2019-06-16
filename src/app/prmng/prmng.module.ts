@@ -27,6 +27,8 @@ import {
     TooltipModule,
     InputMaskModule,
     SpinnerModule,
+    ChartModule,
+    TabViewModule,
 
 } from 'primeng/primeng'
 import {
@@ -64,6 +66,8 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
         TreeModule,
         InputMaskModule,
         SpinnerModule,
+        ChartModule,
+        TabViewModule,
     ],
     exports: [
         ButtonModule,
@@ -93,6 +97,8 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
         TreeModule,
         InputMaskModule,
         SpinnerModule,
+        ChartModule,
+        TabViewModule,
     ],
     providers: [
         ConfirmationService,

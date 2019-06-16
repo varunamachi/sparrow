@@ -81,6 +81,12 @@ export class SidebarComponent implements OnInit {
                     routerLink: ['/kpx/clients']
                 },
                 {
+                    label: 'Usage Stats',
+                    icon: 'fa fa-line-chart',
+                    level: AuthLevel.Admin,
+                    routerLink: ['/kpx/usage']
+                },
+                {
                     label: 'Notices',
                     icon: 'fa fa-flag',
                     level: AuthLevel.Admin,

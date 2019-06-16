@@ -25,6 +25,7 @@ import { MktComponent } from './kpx/mkt/mkt.component';
 import { PricesComponent } from './kpx/prices/prices.component';
 import { DevicesComponent } from './kpx/devices/devices.component';
 import { NoticeComponent } from './kpx/notice/notice.component';
+import { UsageStatsComponent } from './kpx/usage-stats/usage-stats.component';
 
 
 export const routes = [
@@ -86,6 +87,11 @@ export const routes = [
     {
         path: 'kpx/clients',
         component: DevicesComponent,
+        canActivate: [AuthGuard, AdminGuard],
+    },
+    {
+        path: 'kpx/usage',
+        component: UsageStatsComponent,
         canActivate: [AuthGuard, AdminGuard],
     },
     {

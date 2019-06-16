@@ -14,7 +14,7 @@ import { DateRangeComponent } from './date-range/date-range.component';
 import { MainComponent } from './main/main.component';
 import { ObjectComponent } from './object/object.component';
 import { TreeModule } from 'primeng/primeng';
-import {ObjectDetailService} from './object-detail.service';
+import { ObjectDetailService } from './object-detail.service';
 import { ObjectDialogComponent } from './object-dialog/object-dialog.component';
 import { BasicService } from './basic.service';
 import { FilterService } from './filter.service';
@@ -22,7 +22,8 @@ import { HolderComponent } from './holder/holder.component';
 import { TableComponent } from './table/table.component';
 import { ButtonComponent } from './button/button.component';
 import { FilteredTableComponent } from './filtered-table/filtered-table.component';
-import { IconButtonComponent } from './icon-button/icon-button.component'
+import { IconButtonComponent } from './icon-button/icon-button.component';
+import { ChartTableComponent } from './chart-table/chart-table.component'
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { IconButtonComponent } from './icon-button/icon-button.component'
         TableComponent,
         FilteredTableComponent,
         IconButtonComponent,
+        ChartTableComponent,
     ],
     declarations: [
         HeaderComponent,
@@ -65,6 +67,7 @@ import { IconButtonComponent } from './icon-button/icon-button.component'
         ButtonComponent,
         FilteredTableComponent,
         IconButtonComponent,
+        ChartTableComponent,
     ],
     providers: [
         MsgService,

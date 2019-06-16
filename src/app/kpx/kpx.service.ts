@@ -1,9 +1,9 @@
-import { Result } from './../basic/basic.model';
+import { Result, UsageStat } from './../basic/basic.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Agent, Notice } from './kpx.model';
 import { Injectable } from '@angular/core';
-import { aurl, murl } from '../basic/url.util';
+import { aurl, murl, purl } from '../basic/url.util';
 
 @Injectable()
 export class KpxService {
@@ -44,5 +44,12 @@ export class KpxService {
     return this.http.delete(url).map((res: Result<void>) => {
       return res.ok;
     })
+  }
+
+  getStats(): Observable<UsageStat[]> {
+    const url = purl('stats/app');
+    return this.http.get(url).map((res: Result<UsageStat[]>) => {
+      return res.data;
+    });
   }
 }

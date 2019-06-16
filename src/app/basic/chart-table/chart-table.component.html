@@ -1,0 +1,14 @@
+ 
+<p-tabView>
+  <p-tabPanel header="Chart">
+    <p-chart [type]="chartType">
+    
+    </p-chart>
+  </p-tabPanel>
+  <p-tabPanel>
+    <app-table
+      [specs]="colSpec"
+      [items]="stat.values"
+    ></app-table> 
+  </p-tabPanel>
+</p-tabView>

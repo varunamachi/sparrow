@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { FilterSpec, Result, Filter, CountList } from './basic.model';
+import { FilterSpec, Result, Filter, CountList, StatPoint, UsageStat } from './basic.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { murlx, murl, nurl } from './url.util';
@@ -49,17 +49,33 @@ export class BasicService {
 
     createItem(dataType: string, data: any): Observable<void> {
         const url = nurl('gen', dataType);
-        return this.http.post(url, data).map((res: Result<void>) => {});
+        return this.http.post(url, data).map((res: Result<void>) => { });
     }
 
     updateItem(dataType: string, data: any): Observable<void> {
         const url = nurl('gen', dataType);
-        return this.http.put(url, data).map((res: Result<void>) => {});
+        return this.http.put(url, data).map((res: Result<void>) => { });
     }
 
     deleteItem(dataType: string, id: string): Observable<void> {
         const url = nurl('gen', dataType, id);
-        return this.http.delete(url).map((res) =>{});
+        return this.http.delete(url).map((res) => { });
+    }
+
+    transformToChartModel(sts: UsageStat): any {
+        const model = {
+            labels: [],
+            datasets: {
+                label: sts.name,
+                data: [],
+            },
+        };
+        sts.values.forEach((st: StatPoint) => {
+            model.labels.push(st.name);
+            model.datasets.data.push(st.count);
+        });
+        console.log(model);
+        return model;
     }
 
 }

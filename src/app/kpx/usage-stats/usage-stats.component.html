@@ -1,0 +1,14 @@
+<app-page-header
+    pageName="Usage Stats"
+    [placeholder]=false
+    icon="fa fa-line-chart"
+>
+    <div *ngFor="let st of stats"> 
+        <div *ngIf="st.values.length !== 0">
+            <app-chart-table
+                [stat]="st"
+                [chartType]="getChartType(st.type)"
+            ></app-chart-table>
+        </div>
+    </div>
+</app-page-header> 

@@ -23,7 +23,7 @@ export class UsageStatsComponent implements OnInit {
 
   getChartType(statType: StatType) {
     if (statType === StatType.Range) {
-      return "line";
+      return "bar";
     }
     return 'doughnut';
   }

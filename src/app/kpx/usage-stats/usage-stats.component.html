@@ -3,12 +3,15 @@
     [placeholder]=false
     icon="fa fa-line-chart"
 >
-    <div *ngFor="let st of stats"> 
-        <div *ngIf="st.values.length !== 0">
-            <app-chart-table
-                [stat]="st"
-                [chartType]="getChartType(st.type)"
-            ></app-chart-table>
-        </div>
-    </div>
 </app-page-header> 
+
+<div *ngFor="let st of stats" class="ui-g  ui-fluid"> 
+    <!-- <div *ngIf="st.values.length !== 0" class="ui-g-1"></div> -->
+    <div *ngIf="st.values.length !== 0" class="ui-g-4">
+        <app-chart-table
+        [stat]="st"
+        [chartType]="getChartType(st.type)"
+        ></app-chart-table>
+    </div>
+    <!-- <div *ngIf="st.values.length !== 0" class="ui-g-1"></div> -->
+</div>

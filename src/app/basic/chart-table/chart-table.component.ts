@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UsageStat, ColSpec } from '../basic.model';
+import { UsageStat, ColSpec, ColType, StatType } from '../basic.model';
 import { BasicService } from '../basic.service';
 
 @Component({
@@ -9,7 +9,20 @@ import { BasicService } from '../basic.service';
 })
 export class ChartTableComponent implements OnInit {
 
-  readonly colSpec: ColSpec[] = [];
+  readonly colSpec: ColSpec[] = [
+    {
+      title: 'Name',
+      field: 'name',
+      type: ColType.Value,
+      width: '48%',
+    },
+    {
+      title: 'Count',
+      field: 'count',
+      type: ColType.Value,
+      width: '48%',
+    },
+  ];
 
   @Input('stat') stat: UsageStat;
 
@@ -17,6 +30,35 @@ export class ChartTableComponent implements OnInit {
 
   chartModel = {};
 
+  options = {
+
+
+    segmentShowStroke: false,
+    legend: {
+      display: false,
+      labels: {
+        fontColor: 'white',
+      },
+      elements: {
+        arc: {
+          borderWidth: 0,
+        },
+      },
+      backgroundColor: 'white',
+      scales: {
+        xAxes: [{
+          ticks: {
+            fontColor: "white", // this here
+          },
+        }],
+        yAxes: [{
+          ticks: {
+            fontColor: "white", // this here
+          },
+        }],
+      }
+    }
+  }
   constructor(private basicSrv: BasicService) { }
 
   ngOnInit() {

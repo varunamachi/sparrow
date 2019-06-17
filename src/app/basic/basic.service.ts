@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { FilterSpec, Result, Filter, CountList, StatPoint, UsageStat } from './basic.model';
+import { FilterSpec, Result, Filter, CountList, StatPoint, UsageStat, StatType } from './basic.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { murlx, murl, nurl } from './url.util';
@@ -65,17 +65,61 @@ export class BasicService {
     transformToChartModel(sts: UsageStat): any {
         const model = {
             labels: [],
-            datasets: {
-                label: sts.name,
-                data: [],
-            },
+            datasets: [
+                {
+                    label: sts.name,
+                    data: [],
+                    backgroundColor: [],
+                }
+            ]
         };
+        let index = 0;
+        let others = 0;
+        const total = sts.values.length > 20 ? 21 : sts.values.length;
         sts.values.forEach((st: StatPoint) => {
-            model.labels.push(st.name);
-            model.datasets.data.push(st.count);
+            if (sts.type === StatType.Parts
+                && index > 20) {
+                others += st.count;
+            } else {
+                model.labels.push(st.name);
+                model.datasets[0].data.push(st.count);
+                model.datasets[0].backgroundColor.push(
+                    this.rainbow(total, index));
+            }
+            index++;
         });
+        if (others != 0) {
+            model.labels.push('Others');
+            model.datasets[0].data.push(others);
+            model.datasets[0].backgroundColor.push(
+                'white');
+        }
+
         console.log(model);
         return model;
     }
 
+    rainbow(numOfSteps: number, step: number): string {
+        let r: number, g: number, b: number;
+        var h = step / numOfSteps;
+        var i = ~~(h * 6);
+        var f = h * 6 - i;
+        var q = 1 - f;
+        switch (i % 6) {
+            case 0: r = 1; g = f; b = 0; break;
+            case 1: r = q; g = 1; b = 0; break;
+            case 2: r = 0; g = 1; b = f; break;
+            case 3: r = 0; g = q; b = 1; break;
+            case 4: r = f; g = 0; b = 1; break;
+            case 5: r = 1; g = 0; b = q; break;
+        }
+        const c = "#" + ("00" + (~ ~(r * 255)).toString(16)).slice(-2)
+            + ("00" + (~ ~(g * 255)).toString(16)).slice(-2)
+            + ("00" + (~ ~(b * 255)).toString(16)).slice(-2)
+            + "A0";
+        return (c);
+    }
+
+
 }
+

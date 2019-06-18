@@ -1,0 +1,23 @@
+
+.holder {
+    border: solid 1px rgb(126, 126, 126);
+    border-radius: 4px;
+}
+.heading {
+    font-size: 14px;
+}
+
+.content {
+    background-color: rgb(78, 78, 78);
+}
+
+.header {
+    background-color: rgb(78, 78, 78);
+    padding-bottom: 5px;
+}
+
+.bh {
+    padding-top: 5px;
+    float: right;
+}
+

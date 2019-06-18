@@ -68,6 +68,7 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
         SpinnerModule,
         ChartModule,
         TabViewModule,
+        SelectButtonModule,
     ],
     exports: [
         ButtonModule,
@@ -99,6 +100,7 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
         SpinnerModule,
         ChartModule,
         TabViewModule,
+        SelectButtonModule,
     ],
     providers: [
         ConfirmationService,

@@ -3,15 +3,27 @@
     [placeholder]=false
     icon="fa fa-line-chart"
 >
+    <span message>
+        Calculated on {{stats?.calculatedOn | date: 'dd MMMM yyyy HH:mm:ss'}}
+    </span>
+    <span toolbar>
+        <button pButton
+            label="Recalculate"
+            icon = "fa-calculator"
+            (click)="recalcReload()"
+            class="ui-button-warning"
+        >
+        </button>
+    </span>
 </app-page-header> 
 
-<div *ngFor="let st of stats" class="ui-g  ui-fluid"> 
-    <!-- <div *ngIf="st.values.length !== 0" class="ui-g-1"></div> -->
-    <div *ngIf="st.values.length !== 0" class="ui-g-4">
-        <app-chart-table
-            [stat]="st"
-            [chartType]="getChartType(st.type)"
-        ></app-chart-table>
-    </div>
-    <!-- <div *ngIf="st.values.length !== 0" class="ui-g-1"></div> -->
+<div class="ui-g ui-fluid">
+    <ng-container *ngFor="let st of stats?.stats" > 
+        <div *ngIf="st.values.length !== 0" class="ui-g-6">
+            <app-chart-table
+                [stat]="st"
+                [chartType]="getChartType(st.type)"
+            ></app-chart-table>
+        </div>
+    </ng-container>
 </div>

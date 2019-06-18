@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UsageStat, ColSpec, ColType, StatType } from '../basic.model';
+import { UsageStat, ColSpec, ColType, StatType, LabelType, StatPoint } from '../basic.model';
 import { BasicService } from '../basic.service';
+import * as moment from 'moment';
+import { SelectItem } from 'primeng/primeng';
 
 @Component({
   selector: 'app-chart-table',
@@ -11,10 +13,20 @@ export class ChartTableComponent implements OnInit {
 
   readonly colSpec: ColSpec[] = [
     {
-      title: 'Name',
-      field: 'name',
-      type: ColType.Value,
+      title: 'Label',
+      field: 'label',
+      type: ColType.Custom,
       width: '48%',
+      valueGetter: (val: StatPoint): string => {
+        if (!this.stat) {
+          return '';
+        }
+        if (this.stat.labelType === LabelType.Str
+          || this.stat.labelType === LabelType.Number) {
+          return val.label
+        }
+        return moment(val.label).format('DD MMMM YYYY - HH:mm:ss')
+      }
     },
     {
       title: 'Count',
@@ -28,41 +40,53 @@ export class ChartTableComponent implements OnInit {
 
   @Input('chartType') chartType = 'doughnut';
 
+  readonly TAB_CHART: SelectItem[] = [
+    { label: 'Chart', value: 'chart' },
+    { label: "Table", value: 'table' },
+  ];
+
+  selected = 'chart';
+
   chartModel = {};
 
   options = {
-
-
-    segmentShowStroke: false,
+    animation: {
+      duration: 0,
+    },
     legend: {
       display: false,
-      labels: {
-        fontColor: 'white',
+    },
+    elements: {
+      arc: {
+        borderWidth: 0,
       },
-      elements: {
-        arc: {
-          borderWidth: 0,
+    },
+    title: {
+      display: false,
+    },
+    scales: {
+      xAxes: [{
+        display: true,
+        ticks: {
+          fontColor: 'white',
+        }
+      }],
+      yAxes: [{
+        display: true,
+        ticks: {
+          fontColor: 'white',
+          beginAtZero: true,
         },
-      },
-      backgroundColor: 'white',
-      scales: {
-        xAxes: [{
-          ticks: {
-            fontColor: "white", // this here
-          },
-        }],
-        yAxes: [{
-          ticks: {
-            fontColor: "white", // this here
-          },
-        }],
-      }
+      }]
     }
   }
   constructor(private basicSrv: BasicService) { }
 
   ngOnInit() {
+    if (this.stat.type === StatType.Parts) {
+      this.options.scales.xAxes[0].display = false;
+      this.options.scales.yAxes[0].display = false;
+    }
     this.chartModel = this.basicSrv.transformToChartModel(this.stat);
   }
-
 }

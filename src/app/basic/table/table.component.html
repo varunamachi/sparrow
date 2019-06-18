@@ -1,10 +1,14 @@
 <p-table
+    [style]="{'height': '100%'}"
     [columns]="specs"
     [value]="items"
     [selectionMode]="selectionMode"
     ([selection])="selection"
     [dataKey]="key"
     (selectionChange)="onSelect()"
+    [responsive]="true"
+    [scrollHeight]="fixedHeight"
+    [scrollable]="fixedHeight !== null"
 >
     <ng-template pTemplate="header" let-columns>
         <tr>

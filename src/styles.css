@@ -130,6 +130,10 @@ html{
     font-family: 'Source Code Pro', monospace !important;
 }
 
+.ui-select-button > .ui-state-focus {
+    background-color: red;
+}
+
 
 /* .ui-dropdown {
     background-color: red;
@@ -141,3 +145,12 @@ html{
     background-color: red;
     border-color: blue;
 } */
+
+.ui-state-focus {
+    border-color: #2e2e2e;
+    background: #0099e0;
+    color: #ffffff; 
+}
+.ui-state-focus a {
+      color: #ffffff; 
+}

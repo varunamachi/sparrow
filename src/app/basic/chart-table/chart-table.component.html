@@ -1,18 +1,29 @@
  
-<p-tabView>
-  <p-tabPanel header="Chart">
+<div class="holder">
+  <div class="ui-g header">
+    <div class="ui-g-10 heading">
+      {{stat.name}}
+    </div>
+    <div class="bh">
+      <p-selectButton 
+        [options]="TAB_CHART" 
+        [(ngModel)]="selected"
+      ></p-selectButton>
+    </div>
+  </div>
+  <div class="content" [hidden]="(''+selected) !== 'chart'">
     <p-chart 
       [type]="chartType"
-      [data]="chartModel"
+      [data]="chartModel" 
       [options]="options"
-    >
-    
-    </p-chart>
-  </p-tabPanel>
-  <p-tabPanel header="Table">
+      height="100%"
+    ></p-chart>
+  </div>
+  <div class="content" [hidden]="(''+selected) !== 'table'">
     <app-table
       [specs]="colSpec"
       [items]="stat.values"
+      fixedHeight="300px"
     ></app-table> 
-  </p-tabPanel>
-</p-tabView> 
+  </div>
+</div>

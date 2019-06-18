@@ -1,8 +1,9 @@
 import { Observable } from 'rxjs/Observable';
-import { FilterSpec, Result, Filter, CountList, StatPoint, UsageStat, StatType } from './basic.model';
+import { FilterSpec, Result, Filter, CountList, StatPoint, UsageStat, StatType, LabelType } from './basic.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { murlx, murl, nurl } from './url.util';
+import * as moment from 'moment';
 
 @Injectable()
 export class BasicService {
@@ -67,7 +68,7 @@ export class BasicService {
             labels: [],
             datasets: [
                 {
-                    label: sts.name,
+                    label: 'default',
                     data: [],
                     backgroundColor: [],
                 }
@@ -81,7 +82,7 @@ export class BasicService {
                 && index > 20) {
                 others += st.count;
             } else {
-                model.labels.push(st.name);
+                model.labels.push(this.toLabelString(st.label, sts.labelType));
                 model.datasets[0].data.push(st.count);
                 model.datasets[0].backgroundColor.push(
                     this.rainbow(total, index));
@@ -94,8 +95,10 @@ export class BasicService {
             model.datasets[0].backgroundColor.push(
                 'white');
         }
-
-        console.log(model);
+        if (sts.type === StatType.Range) {
+            model.datasets[0]['fill'] = false;
+            model.datasets[0]['borderColor'] = 'white';
+        }
         return model;
     }
 
@@ -120,6 +123,17 @@ export class BasicService {
         return (c);
     }
 
-
+    toLabelString(label: any, type: LabelType): string {
+        if (type === LabelType.Day) {
+            return moment(label).format("YYYY-MM-DD");
+        } else if (type === LabelType.Month) {
+            return moment(label).format("YYYY/MMMM");
+        } else if (type === LabelType.Year) {
+            return moment(label).format("YYYY");
+        } else if (type === LabelType.Number) {
+            return '' + label;
+        }
+        return label;
+    }
 }
 

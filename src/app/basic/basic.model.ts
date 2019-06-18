@@ -142,15 +142,27 @@ export enum StatType {
     Parts = "parts",
 }
 
+export enum LabelType {
+    Str = "str",
+    Day = "day",
+    Month = "month",
+    Year = "year",
+    Number = "number",
+}
+
+export interface StatContainer {
+    calculatedOn: Date;
+    stats: UsageStat[];
+}
+
 export interface StatPoint {
-    name: string;
+    label: any;
     count: number;
 }
 
 export interface UsageStat {
     type: StatType;
+    labelType: LabelType;
     name: string;
-    calculatedOn: Date;
-    count: number;
     values: StatPoint[];
 }

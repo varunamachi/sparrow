@@ -1,4 +1,4 @@
-import { Result, UsageStat } from './../basic/basic.model';
+import { Result, UsageStat, StatContainer } from './../basic/basic.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Agent, Notice } from './kpx.model';
@@ -46,9 +46,16 @@ export class KpxService {
     })
   }
 
-  getStats(): Observable<UsageStat[]> {
-    const url = purl('stats/app');
-    return this.http.get(url).map((res: Result<UsageStat[]>) => {
+  getStats(): Observable<StatContainer> {
+    const url = aurl('stats/app');
+    return this.http.get(url).map((res: Result<StatContainer>) => {
+      return res.data;
+    });
+  }
+
+  recalAndGetStats(): Observable<StatContainer> {
+    const url = aurl('stats/app/new');
+    return this.http.post(url, null).map((res: Result<StatContainer>) => {
       return res.data;
     });
   }

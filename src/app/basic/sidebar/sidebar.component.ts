@@ -17,33 +17,6 @@ export class SidebarComponent implements OnInit {
 
     readonly ROOTS: AuthMenuItem[] = [
         {
-            label: 'Entities',
-            icon: 'fa-cubes',
-            level: AuthLevel.Monitor,
-            expanded: true,
-            items: new Array<AuthMenuItem>(),
-            candidates: [
-                {
-                    label: 'List',
-                    icon: 'fa-list-ul',
-                    level: AuthLevel.Monitor,
-                    routerLink: ['/entity/list']
-                },
-                {
-                    label: 'Monitor',
-                    icon: 'fa-eye',
-                    level: AuthLevel.Monitor,
-                    routerLink: ['/entity/monitor'],
-                },
-                {
-                    label: 'Configure',
-                    icon: 'fa-gears',
-                    level: AuthLevel.Normal,
-                    routerLink: ['/entity/configure'],
-                },
-            ],
-        },
-        {
             label: 'KMV Proxy',
             icon: 'fa-space-shuttle',
             level: AuthLevel.Admin,
@@ -122,10 +95,37 @@ export class SidebarComponent implements OnInit {
             ],
         },
         {
+            label: 'Entities',
+            icon: 'fa-cubes',
+            level: AuthLevel.Monitor,
+            expanded: false,
+            items: new Array<AuthMenuItem>(),
+            candidates: [
+                {
+                    label: 'List',
+                    icon: 'fa-list-ul',
+                    level: AuthLevel.Monitor,
+                    routerLink: ['/entity/list']
+                },
+                {
+                    label: 'Monitor',
+                    icon: 'fa-eye',
+                    level: AuthLevel.Monitor,
+                    routerLink: ['/entity/monitor'],
+                },
+                {
+                    label: 'Configure',
+                    icon: 'fa-gears',
+                    level: AuthLevel.Normal,
+                    routerLink: ['/entity/configure'],
+                },
+            ],
+        },
+        {
             label: 'God Mode',
             icon: 'fa-sun-o',
             level: AuthLevel.Super,
-            expanded: true,
+            expanded: false,
             items: new Array<AuthMenuItem>(),
             candidates: [
                 {

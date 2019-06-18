@@ -18,6 +18,8 @@ export class TableComponent implements OnInit {
 
     @Input('key') key = '_id';
 
+    @Input('fixedHeight') fixedHeight = null;
+
     @Output('selectionChange') selectionChange = new EventEmitter();
 
     constructor() { }

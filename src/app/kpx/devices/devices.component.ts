@@ -26,6 +26,16 @@ export class DevicesComponent implements OnInit {
       field: 'hardware',
       type: FilterType.Prop,
     },
+    {
+      name: 'Is Device',
+      field: 'isDevice',
+      type: FilterType.Boolean,
+    },
+    {
+      name: 'App Version',
+      field: 'appVersion',
+      type: FilterType.Prop,
+    },
   ];
 
   readonly COLSPEC: ColSpec[] = [

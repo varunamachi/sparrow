@@ -43,7 +43,7 @@ export class DevicesComponent implements OnInit {
       title: 'Device ID',
       field: 'deviceID',
       type: ColType.Value,
-      width: '18%',
+      width: '14%',
     },
     {
       title: 'OS Version',
@@ -73,6 +73,12 @@ export class DevicesComponent implements OnInit {
       title: '#Launches',
       field: 'loginCount',
       type: ColType.Value,
+      width: '10%',
+    },
+    {
+      title: '#Subs',
+      field: 'subscriptions',
+      type: ColType.ArrayLength,
       width: '10%',
     },
     {

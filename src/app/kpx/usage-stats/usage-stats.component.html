@@ -20,13 +20,14 @@
 <div class="ui-g ui-fluid">
     <div class="ui-g-1"></div>
     <div class="ui-g-10">
-    <ng-container *ngFor="let st of stats?.stats; let i = index" > 
-        <div *ngIf="st.values.length !== 0" class="ui-g-6">
-            <app-chart-table
-                [stat]="st"
-                [chartType]="getChartType(st.type)"
-            ></app-chart-table>
-        </div>
-    </ng-container>
+        <ng-container *ngFor="let st of stats?.stats; let i = index" > 
+            <div *ngIf="st.values.length !== 0" class="ui-g-6">
+                <app-chart-table
+                    [stat]="st"
+                    [chartType]="getChartType(st.type)"
+                ></app-chart-table>
+            </div>
+        </ng-container>
     </div>
+    <div class="ui-g-1"></div>
 </div>

@@ -92,6 +92,12 @@ export class SidebarComponent implements OnInit {
                     level: AuthLevel.Admin,
                     routerLink: ['/admin/events'],
                 },
+                {
+                    label: 'Server',
+                    icon: 'fa-server',
+                    level: AuthLevel.Admin,
+                    routerLink: ['/admin/server'],
+                },
             ],
         },
         {

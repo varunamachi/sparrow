@@ -41,8 +41,8 @@ export class ChartTableComponent implements OnInit {
   @Input('chartType') chartType = 'doughnut';
 
   readonly TAB_CHART: SelectItem[] = [
-    { label: 'Chart', value: 'chart' },
-    { label: "Table", value: 'table' },
+    { label: '', value: 'chart', icon: 'fa fa-line-chart' },
+    { label: "", value: 'table', icon: 'fa fa-table' },
   ];
 
   selected = 'chart';

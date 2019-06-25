@@ -26,6 +26,7 @@ import { PricesComponent } from './kpx/prices/prices.component';
 import { DevicesComponent } from './kpx/devices/devices.component';
 import { NoticeComponent } from './kpx/notice/notice.component';
 import { UsageStatsComponent } from './kpx/usage-stats/usage-stats.component';
+import { ServerComponent } from './admin/server/server.component';
 
 
 export const routes = [
@@ -109,6 +110,11 @@ export const routes = [
     {
         path: 'admin/events',
         component: EventsComponent,
+        canActivate: [AuthGuard, AdminGuard],
+    },
+    {
+        path: 'admin/server',
+        component: ServerComponent,
         canActivate: [AuthGuard, AdminGuard],
     },
 

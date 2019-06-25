@@ -8,6 +8,7 @@ import { EventsComponent } from './events/events.component';
 import { FormsModule } from '@angular/forms';
 import { AdminService } from './admin.service';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { ServerComponent } from './server/server.component';
 
 @NgModule({
     imports: [
@@ -25,6 +26,7 @@ import { UserEditComponent } from './user-edit/user-edit.component';
         UsersComponent,
         EventsComponent,
         UserEditComponent,
+        ServerComponent,
     ],
     providers: [AdminService]
 })

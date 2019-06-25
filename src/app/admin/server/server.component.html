@@ -1,0 +1,29 @@
+<app-page-header
+    pageName="Server Info"
+    [placeholder]=false
+    icon="fa fa-server"
+>
+    <span message>
+        <!-- Calculated on {{}} -->
+    </span>
+    <span toolbar>
+        <button pButton
+            label="Refresh"
+            icon = "fa fa-refresh"
+            (click)="load()"
+        >
+        </button>
+    </span>
+</app-page-header> 
+
+<!-- {{ systemStats | json }} -->
+
+<div class="ui-g">
+  <div class="ui-g-3"></div>
+  <div class="ui-g-6">
+    <app-object
+      [object]="systemStats"
+    ></app-object>
+  </div>
+</div>
+ 

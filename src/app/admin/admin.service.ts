@@ -6,7 +6,7 @@ import { AuthService } from './../security/auth.service';
 import { Injectable } from '@angular/core';
 import { nurl, murl, aurl, murlx, aurlx } from '../basic/url.util';
 import { Result } from '../basic/basic.model';
-import { SEvent, EventList, UserList, EventFilterModel, SysStat } from './admin.model';
+import { SEvent, EventList, UserList, EventFilterModel, SysStat, CPUStats } from './admin.model';
 
 @Injectable()
 export class AdminService {
@@ -46,12 +46,19 @@ export class AdminService {
     )
   }
 
-  getServerStats() {
+  getSysStats() {
     const url = aurl('system/stats')
     return this.http.get(url).map((resp: Result<SysStat>) => {
       return resp.data;
     })
 
+  }
+
+  getSysInfo() {
+    const url = aurl('system/info')
+    return this.http.get(url).map((resp: Result<CPUStats>) => {
+      return resp.data;
+    })
   }
 
 

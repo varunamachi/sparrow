@@ -1,4 +1,5 @@
 import { User } from "../security/security.model";
+import { CpuInfo } from "os";
 
 
 
@@ -27,7 +28,23 @@ export interface EventFilterModel {
     eventTypes: string[];
 }
 
-export interface DiskStats {
+export interface MemoryStats {
+    total: number;
+    usage: number;
+    free: number;
+}
+
+export interface CPUStats {
+    usage: Array<number>;
+    combinedUsage: number;
+}
+
+export interface SysStat {
+    cpuStats: CPUStats;
+    memoryStats: MemoryStats;
+}
+
+export interface DiskInfo {
     path: string;
     fstype: string;
     total: number;
@@ -35,21 +52,12 @@ export interface DiskStats {
     used: number;
 }
 
-export interface MemoryStats {
-    total: number;
-    usage: number;
-    free: number;
-}
-
-
-export interface CPUStats {
+export interface CPUInfo {
     numPhysical: number;
     numLogical: number;
-    usage: Array<number>;
 }
 
-export interface SysStat {
-    cpuUsage: CPUStats;
-    diskStats: Array<DiskStats>;
-    memoryStats: MemoryStats;
+export interface SysInfo {
+    cpuInfo: CpuInfo;
+    diskInfo: Array<DiskInfo>;
 }

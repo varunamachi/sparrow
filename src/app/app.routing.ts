@@ -40,7 +40,8 @@ export const routes = [
     },
     {
         path: 'home',
-        component: HomeComponent,
+        //TODO Change this later
+        component: DevicesComponent,
         canActivate: [AuthGuard],
     },
 

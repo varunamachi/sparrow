@@ -6,10 +6,12 @@ import { AuthService } from './../security/auth.service';
 import { Injectable } from '@angular/core';
 import { nurl, murl, aurl, murlx, aurlx } from '../basic/url.util';
 import { Result } from '../basic/basic.model';
-import { SEvent, EventList, UserList, EventFilterModel, SysStat, CPUStats } from './admin.model';
+import { EventList, UserList, SysStat, SysInfo } from './admin.model';
 
 @Injectable()
 export class AdminService {
+  refresh: boolean;
+  refreshRate: number;
 
   constructor(private http: HttpClient,
     private auth: AuthService) {
@@ -46,20 +48,30 @@ export class AdminService {
     )
   }
 
-  getSysStats() {
+  getSysStats(): Observable<SysStat> {
     const url = aurl('system/stats')
     return this.http.get(url).map((resp: Result<SysStat>) => {
       return resp.data;
     })
-
   }
 
-  getSysInfo() {
+  getSysInfo(): Observable<SysInfo> {
     const url = aurl('system/info')
-    return this.http.get(url).map((resp: Result<CPUStats>) => {
+    return this.http.get(url).map((resp: Result<SysInfo>) => {
       return resp.data;
     })
   }
 
+  setServerStatRefreshState(repeat: boolean, repeatMs: number) {
+    this.refresh = repeat;
+    this.refreshRate = repeatMs;
+  }
 
+  getServerStatRefreshState(): boolean {
+    return this.refresh;
+  }
+
+  getServerStatRefreshRate(): number {
+    return this.refreshRate;
+  }
 }

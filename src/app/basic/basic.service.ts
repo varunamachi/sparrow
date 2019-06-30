@@ -125,9 +125,9 @@ export class BasicService {
 
     toLabelString(label: any, type: LabelType): string {
         if (type === LabelType.Day) {
-            return moment(label).format("YYYY-MM-DD");
+            return moment(label).format("MMM-DD");
         } else if (type === LabelType.Month) {
-            return moment(label).format("YYYY/MMMM");
+            return moment(label).format("YY/MMM");
         } else if (type === LabelType.Year) {
             return moment(label).format("YYYY");
         } else if (type === LabelType.Number) {

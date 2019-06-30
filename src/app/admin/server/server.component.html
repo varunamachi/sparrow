@@ -13,27 +13,64 @@
             (click)="load()"
         >
         </button>
+        <span style="padding-left: 20px"></span>
+        Auto refresh at: 
+        <span style="padding-left: 5px"></span>
+        <p-dropdown
+          [options]="repeatOpts"
+          [(ngModel)]="repeatMs"
+        ></p-dropdown>
         <span style="padding-left: 10px"></span>
-        <p-checkbox 
-          label="Realtime"
+        <p-toggleButton 
+          onLabel="Stop"
+          offLabel="Start"
           [(ngModel)]="repeat"
-          binary="true"
           (onChange)="repeatChanged()"
-        ></p-checkbox>
+        ></p-toggleButton>
     </span>
 </app-page-header> 
 
-<!-- {{ systemStats | json }} -->
 
 <div class="ui-g">
   <div class="ui-g-6">
-    <p-chart type="line" [data]="cpuChart" [options]="options"></p-chart>
+      <div class="holder">
+        <div class="ui-g header">
+          <span class="heading">
+              CPU Usage -- {{cpuUsage[cpuUsage.length - 1]}}%
+          </span>
+        </div>
+      </div>
+      <div class="content">
+        <p-chart type="line" [data]="cpuChart" [options]="cpuOpts"></p-chart>
+      </div>
   </div>
   <div class="ui-g-6">
-      <p-chart type="line" [data]="memChart" [options]="options"></p-chart>
+      <div class="holder">
+        <div class="ui-g header">
+          <span class="heading">
+              Memory Usage -- {{memoryUsage[memoryUsage.length - 1]}} MB
+          </span>
+        </div>
+      </div>
+      <div class="content">
+        <p-chart type="line" [data]="memChart" [options]="memOpts"></p-chart>
+      </div>
   </div>
 </div>
 
-<!-- <app-object
-  [object]="systemStats"
-></app-object> -->
+<div class="ui-g">
+  <div class="ui-g-4" *ngFor="let d of disks">
+    <div class="holder">
+        <div class="ui-g header">
+        </div>
+        <span class="heading">
+          {{ d['name'] }}
+        </span>
+        </div>
+        <div class="content">
+            <p-chart type="doughnut" [data]="d" [options]="pieOpts"></p-chart>
+        </div>
+    </div>
+</div>
+    
+<p></p>

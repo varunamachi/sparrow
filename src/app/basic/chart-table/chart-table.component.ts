@@ -25,6 +25,9 @@ export class ChartTableComponent implements OnInit {
           || this.stat.labelType === LabelType.Number) {
           return val.label
         }
+        if (this.stat.labelType == LabelType.Month) {
+          return moment(val.label).format('DD MMMM YYYY')
+        }
         return moment(val.label).format('DD MMMM YYYY - HH:mm:ss')
       }
     },

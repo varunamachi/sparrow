@@ -1,0 +1,23 @@
+
+.holder {
+    /* border: solid 1px rgb(126, 126, 126); */
+    background-color: rgb(78, 78, 78);
+}
+.heading {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 6px;
+}
+
+.content {
+    background-color: rgb(78, 78, 78);
+}
+
+.header {
+    background-color: rgb(78, 78, 78);
+    padding-bottom: 5px;
+}
+
+

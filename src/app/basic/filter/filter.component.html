@@ -125,12 +125,10 @@
         *ngSwitchCase="'search'"
         [collapsible]="false"
         (onReset)="onReset(d.field)"
-        [(modifier)]="_filter.searches[d.field].strategy"
-        (modifierChange)="changed(d.field)"
         filterType="search"
     >
         <p-chips
-            [(ngModel)]="_filter.searches[d.field].fields"
+            [(ngModel)]="_filter.searches[d.field]"
             ngDefaultControl
             (onAdd)="changed(d.field)"
             (onRemove)="changed(d.field)"

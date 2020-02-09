@@ -1,0 +1,31 @@
+<app-page-header
+    pageName="Usage Stats"
+    [placeholder]=false
+    icon="fa fa-pie-chart"
+>
+    <span toolbar>
+        <button pButton
+            label="Refresh"
+            icon = "fa-refresh"
+            (click)="load()"
+            class="ui-button-warning"
+        >
+        </button>
+    </span>
+</app-page-header> 
+
+<div class="ui-g ui-fluid">
+    <!-- <div class="ui-g-1"></div>
+    <div class="ui-g-10">
+        <ng-container *ngFor="let st of stats?.stats; let i = index" > 
+            <div *ngIf="st.values.length !== 0" class="ui-g-6">
+                <app-chart-table
+                    [stat]="st"
+                    [chartType]="getChartType(st.type)"
+                ></app-chart-table>
+            </div>
+        </ng-container>
+    </div>
+    <div class="ui-g-1"></div> -->
+    {{ stats | json }}
+</div>

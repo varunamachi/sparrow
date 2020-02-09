@@ -1,10 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as moment from 'moment';
-import { SysStat, CPUStats, MemoryStats, SysInfo, DiskInfo } from '../admin.model';
-import { AdminService } from '../admin.service';
-import { MsgService } from '../../basic/msg.service';
-import { BasicService } from '../../basic/basic.service';
-import { SelectItem } from 'primeng/primeng';
+import {SelectItem} from 'primeng/primeng';
+
+import {BasicService} from '../../basic/basic.service';
+import {MsgService} from '../../basic/msg.service';
+import {CPUStats, DiskInfo, MemoryStats, SysInfo, SysStat} from '../admin.model';
+import {AdminService} from '../admin.service';
 
 @Component({
   selector: 'app-server',
@@ -12,7 +13,6 @@ import { SelectItem } from 'primeng/primeng';
   styleUrls: ['./server.component.css']
 })
 export class ServerComponent implements OnInit, OnDestroy {
-
   readonly numItems = 20;
 
   readonly defaultRepeatMS = 5000;
@@ -39,22 +39,34 @@ export class ServerComponent implements OnInit, OnDestroy {
   disks: Object[] = [];
 
   repeatOpts: SelectItem[] = [
-    { label: '1 second', value: 1000 },
-    { label: '5 seconds', value: 5000 },
-    { label: '10 seconds', value: 10000 },
-    { label: '30 seconds', value: 1000 * 30 },
-    { label: '1 Minute', value: 1000 * 60 },
+    {label: '1 second', value: 1000},
+    {label: '5 seconds', value: 5000},
+    {label: '10 seconds', value: 10000},
+    {label: '30 seconds', value: 1000 * 30},
+    {label: '1 Minute', value: 1000 * 60},
   ]
 
   cpuOpts = {
-    animation: { duration: 0, },
-    legend: { display: false, },
-    elements: { arc: { borderWidth: 0, }, },
-    title: { display: false, },
+    animation: {
+      duration: 0,
+    },
+    legend: {
+      display: false,
+    },
+    elements: {
+      arc: {
+        borderWidth: 0,
+      },
+    },
+    title: {
+      display: false,
+    },
     scales: {
       xAxes: [{
         display: true,
-        ticks: { fontColor: 'white', }
+        ticks: {
+          fontColor: 'white',
+        }
       }],
       yAxes: [{
         display: true,
@@ -68,14 +80,26 @@ export class ServerComponent implements OnInit, OnDestroy {
   }
 
   memOpts = {
-    animation: { duration: 0, },
-    legend: { display: false, },
-    elements: { arc: { borderWidth: 0, }, },
-    title: { display: false, },
+    animation: {
+      duration: 0,
+    },
+    legend: {
+      display: false,
+    },
+    elements: {
+      arc: {
+        borderWidth: 0,
+      },
+    },
+    title: {
+      display: false,
+    },
     scales: {
       xAxes: [{
         display: true,
-        ticks: { fontColor: 'white', }
+        ticks: {
+          fontColor: 'white',
+        }
       }],
       yAxes: [{
         display: true,
@@ -89,16 +113,18 @@ export class ServerComponent implements OnInit, OnDestroy {
   }
 
   pieOpts = {
-    animation: { duration: 0, },
-    legend: {
-      display: true,
-      position: 'left',
-      labels: {
-        fontColor: 'white'
-      }
+    animation: {
+      duration: 0,
     },
-    elements: { arc: { borderWidth: 0, }, },
-    title: { display: false, },
+    legend: {display: true, position: 'left', labels: {fontColor: 'white'}},
+    elements: {
+      arc: {
+        borderWidth: 0,
+      },
+    },
+    title: {
+      display: false,
+    },
     scales: {
       xAxes: [{
         display: false,
@@ -111,23 +137,24 @@ export class ServerComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private adminSrv: AdminService,
-    private messageSrv: MsgService,
-    private basicSrv: BasicService) { }
+      private adminSrv: AdminService, private messageSrv: MsgService,
+      private basicSrv: BasicService) {}
 
   ngOnInit() {
     this.repeat = this.adminSrv.getServerStatRefreshState();
     const repeatMs = this.adminSrv.getServerStatRefreshRate();
     this.repeatMs = repeatMs ? repeatMs : this.defaultRepeatMS;
 
-    this.adminSrv.getSysInfo().subscribe((sysInfo: SysInfo) => {
-      this.handleDiskInfo(sysInfo.diskInfo);
-      if (this.repeat) {
-        this.loadRepeated();
-      }
-    }, err => {
-      this.messageSrv.showError('Failed to retrieve disk information');
-    });
+    this.adminSrv.getSysInfo().subscribe(
+        (sysInfo: SysInfo) => {
+          this.handleDiskInfo(sysInfo.diskInfo);
+          if (this.repeat) {
+            this.loadRepeated();
+          }
+        },
+        err => {
+          this.messageSrv.showError('Failed to retrieve disk information');
+        });
   }
 
   ngOnDestroy(): void {
@@ -136,28 +163,24 @@ export class ServerComponent implements OnInit, OnDestroy {
   }
 
   loadRepeated() {
-    console.log(this.repeat);
     if (!this.repeat) {
       return;
     }
     setTimeout(() => {
-      this.load()
+      this.load();
       this.loadRepeated();
     }, this.repeatMs);
   }
 
   load() {
-    this.adminSrv.getSysStats().subscribe(
-      (stats: SysStat) => {
-        // console.log(stats);
-        this.handleCPUUsageInfo(stats.cpuStats);
-        this.handleMemoryInfo(stats.memoryStats);
-
-      }),
-      (err: any) => {
-        this.messageSrv.showError('Failed to retrieve server information'
-          + err);
-      }
+    this.adminSrv.getSysStats().subscribe((stats: SysStat) => {
+      this.handleCPUUsageInfo(stats.cpuStats);
+      this.handleMemoryInfo(stats.memoryStats);
+    }),
+        (err: any) => {
+          this.messageSrv.showError(
+              'Failed to retrieve server information' + err);
+        }
   }
 
   repeatChanged() {
@@ -176,13 +199,11 @@ export class ServerComponent implements OnInit, OnDestroy {
     }
     this.cpuChart = {
       labels: this.labels,
-      datasets: [
-        {
-          label: 'CPU Usage',
-          data: this.cpuUsage,
-          backgroundColor: '#e3d21490',
-        }
-      ]
+      datasets: [{
+        label: 'CPU Usage',
+        data: this.cpuUsage,
+        backgroundColor: '#e3d21490',
+      }]
     };
   }
 
@@ -194,13 +215,11 @@ export class ServerComponent implements OnInit, OnDestroy {
     this.memOpts.scales.yAxes[0].ticks.suggestedMax = this.toMB(usage.total);
     this.memChart = {
       labels: this.labels,
-      datasets: [
-        {
-          label: 'Mem Usage',
-          data: this.memoryUsage,
-          backgroundColor: '#e3d21490',
-        }
-      ]
+      datasets: [{
+        label: 'Mem Usage',
+        data: this.memoryUsage,
+        backgroundColor: '#e3d21490',
+      }]
     };
   }
 
@@ -209,13 +228,11 @@ export class ServerComponent implements OnInit, OnDestroy {
       const model = {
         name: d.path,
         labels: ['Used in GBs', 'Free in GBs'],
-        datasets: [
-          {
-            label: d.path,
-            data: [this.toGB(d.used), this.toGB(d.free)],
-            backgroundColor: ['red', 'green'],
-          }
-        ]
+        datasets: [{
+          label: d.path,
+          data: [this.toGB(d.used), this.toGB(d.free)],
+          backgroundColor: ['red', 'green'],
+        }]
       };
       this.disks.push(model);
     })

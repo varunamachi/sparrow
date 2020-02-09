@@ -14,6 +14,7 @@ import { DevicesComponent } from './devices/devices.component';
 import { NoticeComponent } from './notice/notice.component';
 import { NoticeCreateComponent } from './notice-create/notice-create.component';
 import { UsageStatsComponent } from './usage-stats/usage-stats.component';
+import { AppStatsComponent } from './app-stats/app-stats.component';
 
 @NgModule({
     imports: [
@@ -34,6 +35,7 @@ import { UsageStatsComponent } from './usage-stats/usage-stats.component';
         NoticeComponent,
         NoticeCreateComponent,
         UsageStatsComponent,
+        AppStatsComponent,
     ],
     providers: [
         KpxService,

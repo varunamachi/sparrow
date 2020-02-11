@@ -2,7 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
-import {aurl, murl, purl} from '../basic/url.util';
+import {aurl, aurlx, murl, purl} from '../basic/url.util';
 
 import {Result, StatContainer, UsageStat} from './../basic/basic.model';
 import {Agent, Notice, RecentStat} from './kpx.model';
@@ -63,6 +63,13 @@ export class KpxService {
   getRecentStats(): Observable<RecentStat> {
     const url = aurl('stats/recent');
     return this.http.get(url).map((res: Result<RecentStat>) => {
+      return res.data;
+    });
+  }
+
+  getSingleStat(id: String, days: number): Observable<UsageStat> {
+    const url = aurl(`stats/${id}/${days}`);
+    return this.http.get(url).map((res: Result<UsageStat>) => {
       return res.data;
     });
   }

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SelectItem} from 'primeng/primeng';
 
-import {StatType} from '../../basic/basic.model';
+import {StatType, UsageStat} from '../../basic/basic.model';
 import {MsgService} from '../../basic/msg.service';
 import {RecentStat} from '../kpx.model';
 import {KpxService} from '../kpx.service';
@@ -41,6 +41,10 @@ export class AppStatsComponent implements OnInit {
   ];
 
   stats: RecentStat;
+  chartStat: UsageStat;
+  chartID: string = 'devices';
+  days: number = 30;
+
 
   constructor(private kpxSrv: KpxService, private msgSrv: MsgService) {}
 
@@ -56,13 +60,30 @@ export class AppStatsComponent implements OnInit {
   }
 
   load() {
-    this.kpxSrv.getRecentStats().subscribe(
-        (stats: RecentStat) => {
+    this.kpxSrv.getRecentStats()
+        .flatMap((stats: RecentStat) => {
           this.stats = stats;
-        },
-        err => {this.msgSrv.showError('Failed to fetch stats from server')},
-    );
+          return this.kpxSrv.getSingleStat(this.chartID, this.days);
+        })
+        .subscribe(
+            (singleStat: UsageStat) => {
+              this.chartStat = singleStat;
+            },
+            err => {
+
+            },
+        );
   }
 
-  loadStats(id: string) {}
+  loadChart() {
+    this.kpxSrv.getSingleStat(this.chartID, this.days)
+        .subscribe(
+            (singleStat: UsageStat) => {
+              this.chartStat = singleStat;
+            },
+            err => {
+
+            },
+        );
+  }
 }

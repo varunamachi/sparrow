@@ -13,8 +13,7 @@
     </span>
 </app-page-header> 
 
-<div class="ui-g ui-fluid">
-
+<div class="ui-g ui-fluid" *ngIf="stats">
     <div *ngFor="let i of RECENT_INFO" class="ui-g-3">
         <p-card [title]="i.name">
             <div class="ui-g">
@@ -41,7 +40,8 @@
             [filter]="false"
             [autoWidth]="false"
             [options]="CHARTS"
-            (onChange)="loadStats($event)"
+            [(ngModel)]="chartID"
+            (onChange)="loadChart()"
             [style]="{'width': '40%'}"
         ></p-dropdown>
         &nbsp; For &nbsp;
@@ -49,10 +49,23 @@
             [filter]="false"
             [autoWidth]="false"
             [options]="DAYS"
-            (onChange)="loadStats($event)"
+            [(ngModel)]="days"
+            (onChange)="loadChart()"
             [style]="{'width': '40%'}"
         ></p-dropdown>
         &nbsp; Days
+    </div>
+    <div class="ui-g-1">
+    </div>
+</div>
+<div class="ui-g" >
+    <div class="ui-g-1"></div>
+    <div class="ui-g-10" style="height: 90%;">
+        <app-chart-table
+            [stat]="chartStat"
+            [chartType]="getChartType(chartStat?.type)"
+        >
+        </app-chart-table>
     </div>
     <div class="ui-g-1"></div>
 </div>

@@ -2,7 +2,7 @@
 <div class="holder">
   <div class="ui-g header">
     <div class="ui-g-10 heading">
-      {{stat.name}}
+      {{stat?.name}}
     </div>
     <div class="bh">
       <p-selectButton 
@@ -22,7 +22,7 @@
   <div class="content" [hidden]="(''+selected) !== 'table'">
     <app-table
       [specs]="colSpec"
-      [items]="stat.values"
+      [items]="usageStat?.values"
       fixedHeight="300px"
     ></app-table> 
   </div>

@@ -19,15 +19,18 @@ export class ChartTableComponent implements OnInit {
       width: '48%',
       valueGetter: (val: StatPoint):
           string => {
-            if (!this.stat) {
+            if (!val || !this.usageStat) {
               return '';
             }
-            if (this.stat.labelType === LabelType.Str ||
-                this.stat.labelType === LabelType.Number) {
+            if (this.usageStat.labelType === LabelType.Str ||
+                this.usageStat.labelType === LabelType.Number) {
               return val.label
             }
-            if (this.stat.labelType == LabelType.Month) {
+            if (this.usageStat.labelType == LabelType.Month) {
               return moment(val.label).format('DD MMMM YYYY')
+            }
+            if (this.usageStat.labelType == LabelType.Day) {
+              return moment(val.label).format('DD MMMM')
             }
             return moment(val.label).format('DD MMMM YYYY - HH:mm:ss')
           }
@@ -40,13 +43,23 @@ export class ChartTableComponent implements OnInit {
     },
   ];
 
-  usageStat: UsageStat;
+  usageStat: UsageStat = {
+    labelType: LabelType.Str,
+    name: '',
+    type: StatType.Single,
+    values: [],
+  };
+
+  values: StatPoint[] = [];
 
   @Input('stat')
   set stat(stat: UsageStat) {
     if (stat) {
+      console.log(stat);
       this.usageStat = stat;
       this.chartModel = this.basicSrv.transformToChartModel(stat);
+      this.values = stat.values.reverse();
+      console.log(this.values);
     }
   }
 

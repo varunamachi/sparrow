@@ -25,6 +25,12 @@ export class SidebarComponent implements OnInit {
       candidates:
           [
             {
+              label: 'App Stats',
+              icon: 'fa fa-line-chart',
+              level: AuthLevel.Admin,
+              routerLink: ['/kpx/stats']
+            },
+            {
               label: 'Clients',
               icon: 'fa fa-mobile',
               level: AuthLevel.Admin,
@@ -54,18 +60,12 @@ export class SidebarComponent implements OnInit {
               level: AuthLevel.Admin,
               routerLink: ['/kpx/prices']
             },
-            {
-              label: 'Usage Stats',
-              icon: 'fa fa-line-chart',
-              level: AuthLevel.Admin,
-              routerLink: ['/kpx/usage']
-            },
-            {
-              label: 'App Stats',
-              icon: 'fa fa-pie-chart',
-              level: AuthLevel.Admin,
-              routerLink: ['/kpx/stats']
-            },
+            // {
+            //   label: 'Usage Stats',
+            //   icon: 'fa fa-line-chart',
+            //   level: AuthLevel.Admin,
+            //   routerLink: ['/kpx/usage']
+            // },
             {
               label: 'Notices',
               icon: 'fa fa-flag',

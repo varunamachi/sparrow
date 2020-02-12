@@ -9,6 +9,9 @@
     [responsive]="true"
     [scrollHeight]="fixedHeight"
     [scrollable]="fixedHeight !== null"
+    [paginator]="rowsPerPage && rowsPerPage != 0"
+    [rows]="rowsPerPage"
+
 >
     <ng-template pTemplate="header" let-columns>
         <tr>

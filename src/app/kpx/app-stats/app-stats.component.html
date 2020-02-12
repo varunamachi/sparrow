@@ -1,7 +1,7 @@
 <app-page-header
-    pageName="Usage Stats"
+    pageName="App Stats"
     [placeholder]=false
-    icon="fa fa-pie-chart"
+    icon="fa fa-line-chart"
 >
     <span toolbar>
         <button pButton
@@ -34,31 +34,24 @@
 <p></p>
 <div class="ui-g ui-fluid">
     <div class="ui-g-1"></div>
-    <div class="ui-g-10">
-        Chart &nbsp;
-        <p-dropdown
-            [filter]="false"
-            [autoWidth]="false"
-            [options]="CHARTS"
-            [(ngModel)]="chartID"
+    <div class="ui-g-5">
+        <p-selectButton 
+            [options]="CHARTS" 
+            [(ngModel)]="chartID" 
             (onChange)="loadChart()"
-            [style]="{'width': '40%'}"
-        ></p-dropdown>
-        &nbsp; For &nbsp;
-        <p-dropdown
-            [filter]="false"
-            [autoWidth]="false"
-            [options]="DAYS"
-            [(ngModel)]="days"
+        ></p-selectButton>
+    </div> 
+    <div class="ui-g-1"></div>
+    <div class="ui-g-4">
+        <p-selectButton 
+            [options]="DAYS" 
+            [(ngModel)]="days" 
             (onChange)="loadChart()"
-            [style]="{'width': '40%'}"
-        ></p-dropdown>
-        &nbsp; Days
+        ></p-selectButton>
     </div>
-    <div class="ui-g-1">
-    </div>
+    <div class="ui-g-1"></div>
 </div>
-<div class="ui-g" >
+<div class="ui-g" *ngIf="!loading">
     <div class="ui-g-1"></div>
     <div class="ui-g-10" style="height: 90%;">
         <app-chart-table
@@ -68,4 +61,12 @@
         </app-chart-table>
     </div>
     <div class="ui-g-1"></div>
+</div>
+
+<div class="ui-g" *ngIf="loading">
+    <div class="ui-g-4">
+        <div style="height: 90%; vertical-align: middle;">
+            Loading...
+        </div>
+    </div>
 </div>

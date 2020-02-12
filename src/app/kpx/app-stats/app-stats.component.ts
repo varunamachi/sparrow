@@ -44,6 +44,7 @@ export class AppStatsComponent implements OnInit {
   chartStat: UsageStat;
   chartID: string = 'devices';
   days: number = 30;
+  loading = false;
 
 
   constructor(private kpxSrv: KpxService, private msgSrv: MsgService) {}
@@ -69,20 +70,22 @@ export class AppStatsComponent implements OnInit {
             (singleStat: UsageStat) => {
               this.chartStat = singleStat;
             },
-            err => {
-
-            },
+            err => {this.msgSrv.showError('Failed to load recent stats')},
         );
   }
 
   loadChart() {
+    this.loading = true;
     this.kpxSrv.getSingleStat(this.chartID, this.days)
         .subscribe(
             (singleStat: UsageStat) => {
               this.chartStat = singleStat;
+              this.loading = false;
             },
             err => {
-
+              this.loading = false;
+              this.msgSrv.showError(
+                  'Failed to load charts for ' + this.chartID);
             },
         );
   }

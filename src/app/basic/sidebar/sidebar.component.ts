@@ -28,13 +28,13 @@ export class SidebarComponent implements OnInit {
               label: 'App Stats',
               icon: 'fa fa-line-chart',
               level: AuthLevel.Admin,
-              routerLink: ['/kpx/stats']
+              routerLink: ['home']
             },
             {
               label: 'Clients',
               icon: 'fa fa-mobile',
               level: AuthLevel.Admin,
-              routerLink: ['home']
+              routerLink: ['/kpx/clients']
             },
             {
               label: 'Extraction Sessions',

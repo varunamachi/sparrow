@@ -59,6 +59,11 @@ export const routes = [
     canActivate: [AuthGuard, NormalGuard],
   },
   {
+    path: 'kpx/clients',
+    component: DevicesComponent,
+    canActivate: [AuthGuard, AdminGuard],
+  },
+  {
     path: 'kpx/agents',
     component: AgentListComponent,
     canActivate: [AuthGuard, AdminGuard],

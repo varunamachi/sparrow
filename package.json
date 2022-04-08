@@ -25,7 +25,7 @@
     "chart.js": "^2.8.0",
     "core-js": "^2.5.7",
     "font-awesome": "^4.7.0",
-    "moment": "^2.22.2",
+    "moment": "^2.29.2",
     "primeng": "^5.2.7",
     "rxjs": "^5.5.11",
     "zone.js": "^0.8.26"
